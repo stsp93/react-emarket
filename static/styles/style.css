@@ -1,3 +1,32 @@
+:root {
+  --honeydew: #e2f8edff;
+  --white: #fff;
+  --gunmetal: #1d2f36ff;
+  -asd: rgb(29, 47, 54);
+
+  --aquamarine: #a0eec8ff;
+  --zomp: #56a386ff;
+
+  --blue-gradient90deg: linear-gradient(
+    90deg,
+    var(--aquamarine) 0%,
+    rgba(86, 163, 133, 0.5) 80%
+  );
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  max-width: 1500px;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--gunmetal);
+}
+
 /* Header */
 
 header {
@@ -12,6 +41,7 @@ header {
   width: 100%;
   height: 0.3rem;
   background: var(--aquamarine);
+  border-radius: 10%;
   margin-bottom: 3rem;
 }
 
@@ -71,8 +101,6 @@ header {
   border: 1px solid var(--gunmetal);
   border-radius: 5px;
   padding: 1.6rem;
-
-  margin-right: 1rem;
 }
 .search-box__button i {
   font-size: 2rem;
@@ -85,13 +113,13 @@ header {
 /* homepage carousel */
 .carousel {
   display: none;
-  position: relateivee;
+  position: relative;
   margin: 0 auto;
   margin-bottom: 3rem;
 
   position: relative;
   height: 40rem;
-  width: 100%;
+  width: 80%;
 }
 .carousel__sign {
   position: absolute;
@@ -118,10 +146,13 @@ header {
   font-size: 4rem;
   color: var(--white);
   z-index: 8;
+
+  transition: all 0.2s;
 }
 
 .carousel__button:hover {
-  color: var(--zomp);
+  font-size: 5rem;
+  color: var(--aquamarine);
 }
 .carousel__link {
   height: 100%;
@@ -167,8 +198,8 @@ main {
 }
 
 .main-title {
-  /* background: var(--blue-gradient90deg); */
-  border-bottom: 3px solid var(--zomp);
+  background: var(--blue-gradient90deg);
+  border-radius: 10px;
   margin-bottom: 3rem;
 }
 
@@ -191,8 +222,8 @@ main {
 .category img {
   display: block;
 
-  width: 16rem;
-  height: 16rem;
+  width: 12rem;
+  height: 12rem;
   border-radius: 50%;
 }
 
@@ -524,7 +555,6 @@ footer {
 
   .header__nav ul li:hover {
     color: var(--zomp);
-    transform: translate(0, 5%);
   }
 
   /* homepage categories */

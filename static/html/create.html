@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E Market</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../images/Web/icons8-shopping-cart-windows-11-color-32.png"
+    />
+    <script
+      src="https://kit.fontawesome.com/48ed1957d1.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../images/logo.png" alt="Shop open e-market" />
+      </div>
+      <nav class="header__nav">
+        <button class="nav__button"><i class="fa-solid fa-bars"></i></button>
+        <ul>
+          <!-- USER -->
+          <li><a href="">Profile</a></li>
+          <li><a href="">Logout</a></li>
+          <!-- GUEST -->
+          <li><a href="">Login</a></li>
+          <li><a href="">Register</a></li>
+        </ul>
+      </nav>
+      <form>
+        <div>
+          <input
+            class="search-box"
+            type="text"
+            maxlength="30"
+            placeholder="Search for anything"
+          />
+          <button type="submit" class="search-box__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </header>
+
+    <main>
+      <h2 class="title form-title">Create</h2>
+
+      <form class="user-form" method="POST">
+        <article class="input-group">
+          <label for="title">Title*</label>
+          <i class="fa-solid fa-tag"></i>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Red Hat"
+          />
+        </article>
+        <article class="input-group">
+          <label for="category">Category*</label>
+          <i class="fa-solid fa-list-ul"></i>
+          <select name="category" id="category">
+            <option value="Clothing">Clothing</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Deals">Deals</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Hobbies">Hobbies</option>
+            <option value="Housing">Housing</option>
+          </select>
+        </article>
+        <article class="input-group">
+            <label for="description">Description*</label>
+            <textarea name="description" id="description" cols="30" rows="5" placeholder="Describe the item"></textarea>
+            <i class="fa-solid fa-pencil"></i>
+          </article>
+        
+
+        <article class="input-group">
+          <label for="price">Price*</label>
+          <i class="fa-solid fa-money-check-dollar"></i>
+          <input
+            id="price"
+            type="text"
+            name="price"
+            placeholder="20.99"
+          />
+        </article>
+        <article class="input-group">
+          <label for="imageUrl">Image Url</label>
+          <i class="fa-solid fa-image"></i>
+          <input
+            id="imageUrl"
+            type="text"
+            name="imageUrl"
+            placeholder="http://example.com"
+          />
+        </article>
+        
+        <article class="input-group">
+            <p class="message-field">* Mandatory fields</p>
+        </article>
+
+        <article class="input-group">
+          <button class="action-button">Create</button>
+        </article>
+      </form>
+    </main>
+
+    <footer>
+      <a href="https://github.com/stsp93">&rAarr; github.com/stsp93</a>
+    </footer>
+  </body>
+</html>

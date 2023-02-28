@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E Market</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/Web/icons8-shopping-cart-windows-11-color-32.png"
+    />
+    <script
+      src="https://kit.fontawesome.com/48ed1957d1.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      
+      <div class="header__nav-wrapper">
+        <img class="header__logo" src="../images/logo.png" alt="Shop open e-market" />
+        <nav class="header__nav">
+          <button class="nav__button"><i class="fa-solid fa-bars"></i></button>
+        <ul>
+            <li><a href=""><i class="fa-solid fa-list-ul"></i> Categories</a></li>
+          <!-- USER -->
+          <li><a href=""><i class="fa-solid fa-user"></i> Profile</a></li>
+          <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          <!-- GUEST -->
+          <li><a href=""><i class="fa-solid fa-user-check"></i> Login</a></li>
+          <li><a href=""><i class="fa-solid fa-file-signature"></i> Register</a></li>
+        </ul>
+      </nav>
+    </div>
+      <form>
+        <div>
+          <input class="search-box" type="text" maxlength="30" />
+          <button class="search-box__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </header>
+
+    <main>
+      <button class="close-modal">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </button>
+      <form class="user-form" method="POST">
+        <h2 class="title form-title">Register</h2>
+        <article class="input-group">
+          <label for="email">Email*</label>
+          <i class="fa-solid fa-envelope"></i>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="john@abv.bg"
+          />
+        </article>
+        <article class="input-group">
+          <label for="username">Username*</label>
+          <i class="fa-solid fa-user"></i>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="john123"
+          />
+        </article>
+        <article class="input-group">
+          <label for="password">Password*</label>
+          <i class="fa-sharp fa-solid fa-key"></i>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="********"
+          />
+        </article>
+        <article class="input-group">
+          <label for="repeatPassword">Repeat Password*</label>
+          <i class="fa-solid fa-repeat"></i>
+          <input
+            id="repeatPassword"
+            type="password"
+            name="repeatPassword"
+            placeholder="********"
+          />
+        </article>
+        <article class="input-group">
+          <p class="message-field">* Mandatory fields</p>
+      </article>
+        <article class="input-group">
+            <button class="action-button" >Register</button>
+        </article>
+      </form>
+    </main>
+
+    <footer>
+      <a href="https://github.com/stsp93">&rAarr; github.com/stsp93</a>
+    </footer>
+  </body>
+</html>
