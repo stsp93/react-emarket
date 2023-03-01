@@ -1,0 +1,139 @@
+/* Header */
+
+header {
+    text-align: center;
+    position: relative;
+  }
+  
+  .header__nav::after {
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 0.3rem;
+    background: var(--aquamarine);
+    margin-bottom: 3rem;
+  }
+  
+  .header__logo {
+    width: 60%;
+  }
+  
+  .header__nav-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header__nav li {
+    font-size: 2.4rem;
+  }
+  
+  .nav__li {
+    transition: height 0.2s;
+  
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: block;
+  }
+  .nav__active {
+    height: 3.5rem;
+    opacity: 100%;
+  }
+  
+  .nav__active a {
+    height: 3rem;
+  }
+  
+  .nav__button {
+    /* background: var(--blue-gradient270deg); */
+    border-bottom: 3px solid var(--aquamarine);
+    padding: 1rem 0;
+    width: 100%;
+  }
+  
+  .nav__button i {
+    color: var(--gunmetal);
+    border: 2px solid var(--gunmetal);
+    border-radius: 50%;
+    font-size: 2.4rem;
+    padding: 1.6rem;
+  
+    margin-right: 80%;
+  }
+  
+  .search-box {
+    margin-bottom: 3rem;
+    width: 75%;
+    height: 3rem;
+    font-size: 1.6rem;
+  
+    border: 1px solid var(--gunmetal);
+    border-radius: 5px;
+    padding: 1.6rem;
+  
+    margin-right: 1rem;
+  }
+  .search-box__button i {
+    font-size: 2rem;
+  }
+  
+  .search-box__button i:hover {
+    color: var(--zomp);
+  }
+
+
+  /******* Responsive  ***********/
+
+@media screen and (min-width: 860px) {
+     /* header */
+
+  .header__logo {
+    width: 25rem;
+  }
+
+  /* navigation */
+  .nav__button {
+    display: none;
+  }
+
+  .header__nav ul {
+    font-size: 3rem;
+
+    display: flex;
+    gap: 2rem;
+    padding: 0.2rem;
+  }
+
+  .header__nav ul li {
+    font-weight: 600;
+    color: var(--gunmetal);
+  }
+
+  .header__nav ul li:hover {
+    color: var(--zomp);
+    transform: translate(0, 5%);
+  }
+  
+  .nav__li {
+    height: 3.2rem;
+    opacity: 100%;
+  }
+
+  }
+  
+  @media screen and (min-width: 1100px) {
+    /* header */
+  
+    .header__nav-wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .header__nav::after {
+      margin-bottom: 1rem;
+    }
+  
+  }
+  
