@@ -49,7 +49,7 @@ main {
 
 .modal {
   position: fixed;
-  top: 10%;
+  top: 5vh;
   left: 50%;
   transform: translate(-50%, 0);
   padding: 1rem 3rem;
@@ -62,7 +62,7 @@ main {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -379,6 +379,7 @@ footer {
     height: 3.2rem;
     opacity: 100%;
   }
+
   
   /* homepage categories */
   .categories-list {

@@ -41,9 +41,6 @@ header {
     opacity: 100%;
   }
   
-  .nav__active a {
-    height: 3rem;
-  }
   
   .nav__button {
     /* background: var(--blue-gradient270deg); */

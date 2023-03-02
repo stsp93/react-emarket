@@ -1,42 +1,14 @@
-export default function CategoryList() {
-  return (
-    <ul className="categories-list">
-                    <li className="category">
-                        <a href="/clothings"
-                        ><img src="/images/clothing.jpg" alt="" />
-                            <p>Clothing</p></a
-                        >
-                    </li>
-                    <li className="category">
-                        <a href="/electronics"
-                        ><img src="/images/electronics.jpg" alt="" />
-                            <p>Electronics</p>
-                        </a>
-                    </li>
-                    <li className="category">
-                        <a href="/"
-                        ><img src="/images/electronics.jpg" alt="" />
-                            <p>Cat1</p>
-                        </a>
-                    </li>
-                    <li className="category">
-                        <a href="/"
-                        ><img src="/images/electronics.jpg" alt="" />
-                            <p>Cat1</p>
-                        </a>
-                    </li>
-                    <li className="category">
-                        <a href="/"
-                        ><img src="/images/electronics.jpg" alt="" />
-                            <p>Cat1</p>
-                        </a>
-                    </li>
-                    <li className="category">
-                        <a href="/"
-                        ><img src="/images/electronics.jpg" alt="" />
-                            <p>Cat1</p>
-                        </a>
-                    </li>
-                </ul>
-  )
+import Category from "./Category/Category"
+
+export default function CategoryList(props) {
+    const categories = props.categories
+    return (
+        <>
+            <h2 className="title main-title">Categories</h2>
+            <ul className="categories-list">
+                {categories.map(category => <Category key={category[0]} category={category}></Category>)}
+            </ul>
+        </>
+
+    )
 }

@@ -1,11 +1,10 @@
 export default function Login(props) {
-    console.log(props.opacity);
     return (
         <>
             <button onClick={props.closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form style={{opacity: props.opacity}} className="user-form" method="POST">
+            <form className="user-form" method="POST">
                 <h2 className="title form-title">Login</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email</label>

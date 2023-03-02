@@ -4,7 +4,7 @@ export default function Register(props) {
             <button onClick={props.closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form style={{opacity: props.opacity}} className="user-form" method="POST">
+            <form  className="user-form" method="POST">
                 <h2 className="title form-title">Register</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email*</label>

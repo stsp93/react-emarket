@@ -4,22 +4,16 @@ import { useEffect, useState } from 'react';
 import Slide from './Slide/Slide';
 
 
-export default function Carousel() {
-  const [categories, setCategories] = useState([]);
+export default function Carousel(props) {
+  const categories = props.categories
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    // Fetch all categories
-    (async () => {
-      const res = await fetch('http://localhost:3030/items/categories');
-      const data = await res.json();
-      setCategories(cat => Object.entries(data));
-    })()
 
     // start slideshow
     const interval = setInterval(() => {
       setActiveIndex(i => i + 1);
-    }, 2000)
+    }, 3000)
 
     // clear slideshow
     return () => clearInterval(interval)
@@ -43,7 +37,7 @@ export default function Carousel() {
 
   return (
     <article className="carousel">
-      {categories.map((category, i) => <Slide key={category[0]} category={category} active={i===activeIndex} ></Slide>)}
+      {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i===activeIndex} ></Slide>)}
 
       <button onClick={prevSlide} className="carousel__prev carousel__button">
         <i className="fa-solid fa-chevron-left"></i>
