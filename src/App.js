@@ -6,7 +6,8 @@ import Modal from './componets/Modal/Modal';
 import { useState } from 'react';
 import Home from './componets/Home/Home';
 
-import { Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
+import Profile from './componets/Profile/Profile';
 
 function App() {
     const [modal, setModal] = useState(null);
@@ -26,7 +27,12 @@ function App() {
 
             {/* Main Content */}
             <main>
-                <Home></Home>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/user/profile' element={<Profile />} />
+                    
+                </Routes>
+                
 
 
             {/* Modal Window */}

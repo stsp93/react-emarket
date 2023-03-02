@@ -94,20 +94,33 @@ main {
 }
 
 .offer-card {
-  width: 50rem;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: 1rem;
 
   padding: 1rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--gunmetal);
   border-radius: 5px;
 
-  margin-bottom: 1rem;
+}
+
+.offer-wrapper {
+  display: flex;
+  gap: 1rem;
+
+  max-width: 80%;
 }
 
 .offer-img {
   width: 20rem;
   border-radius: 5px;
+}
+.offer-text {
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .offer-title {
@@ -116,9 +129,11 @@ main {
   font-weight: 600;
 }
 
+
 .location {
   font-size: 1.4rem;
   font-style: italic;
+  margin-bottom: 1rem;
 }
 
 .price {
@@ -146,10 +161,13 @@ main {
   align-items: center;
 }
 
-.pagination-arrow {
+.pagination-arrow, .pagination-arrow:active {
+  color: var(--gunmetal);
   font-size: 3.4rem;
 }
-
+.pagination-arrow:hover {
+  color: var(--zomp);
+}
 /* details */
 
 .detials {
@@ -277,21 +295,26 @@ main {
 }
 
 /* Profile */
+.profile-buttons {
+  display: flex;
+  flex-direction: column;
+}
 
-.profile-buttons a {
+.profile-buttons button {
   display: inline-block;
   font-size: 1.8rem;
   padding: 0.6rem 1.6rem;
+  margin-right: 1rem;
   border-radius: 5px;
   border: 2px solid var(--gunmetal);
 }
 
-.profile-buttons a:hover {
+.profile-buttons button:hover {
   background-color: var(--gunmetal);
   color: var(--white);
 }
 
-.profile-buttons a:active {
+.profile-buttons button:active {
   background-color: var(--white);
   color: var(--gunmetal);
 }
@@ -387,15 +410,25 @@ footer {
   }
 
   /* offers page*/
-  .offers-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
   .offer-card {
-    width: 40rem;
+    width: 80%;
   }
 
+  .offer-img {
+    width: 30rem;
+  }
+
+  .offer-title {
+    font-size: 2.2rem;
+  }
+
+  .location {
+    font-size: 1.8rem;
+  }
+  
+  .price {
+    font-size: 3rem;
+  }
 }
 
 @media screen and (min-width: 1100px) {
@@ -419,21 +452,28 @@ footer {
   }
 
   /* offers page */
-  .offers-list {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-  }
-  .offer-card {
-    width: 100%;
-    margin-bottom: 0;
-  }
 
+  .offer-card {
+    width: 90%;
+  }
+  
+ .offer-wrapper {
+  gap: 2rem;
+ }
+
+ .offer-text {
+  width: 80rem;
+ }
+
+ .profile-buttons {
+  min-width: 12rem;
+  width: 20%;
+ }
+
+  
   /* homepage carousel */
   .carousel {
     display: block;
   }
 
-  .price {
-    font-size: 3rem;
-  }
 }
