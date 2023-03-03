@@ -18,7 +18,7 @@ export default function Profile() {
                                 <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
                                 </Link>
                                 <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-buttons">
+                                <div className="action-buttons">
                                     <button className="profile-edit">Edit</button>
                                     <button className="profile-delete">Delete</button>
                                 </div>
@@ -38,7 +38,7 @@ export default function Profile() {
                                 <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
                                 </Link>
                                 <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-buttons">
+                                <div className="profile-action">
                                     <button className="profile-edit">Edit</button>
                                     <button className="profile-delete">Delete</button>
                                 </div>
@@ -58,7 +58,7 @@ export default function Profile() {
                                 <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
                                 </Link>
                                 <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-buttons">
+                                <div className="profile-action">
                                     <button className="profile-edit">Edit</button>
                                     <button className="profile-delete">Delete</button>
                                 </div>
@@ -78,7 +78,7 @@ export default function Profile() {
                                 <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
                                 </Link>
                                 <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-buttons">
+                                <div className="profile-action">
                                     <button className="profile-edit">Edit</button>
                                     <button className="profile-delete">Delete</button>
                                 </div>

@@ -2,13 +2,19 @@ import './Carousel.css'
 
 import { useEffect, useState } from 'react';
 import Slide from './Slide/Slide';
+import { getAllCategories } from '../../api/data';
 
 
-export default function Carousel(props) {
-  const categories = props.categories
+export default function Carousel() {
+  const [categories, setCategories] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+      // Fetch all categories
+      (async () => {
+        const data = await getAllCategories()
+        setCategories(cat => Object.entries(data));
+    })();
 
     // start slideshow
     const interval = setInterval(() => {
@@ -17,6 +23,11 @@ export default function Carousel(props) {
 
     // clear slideshow
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+
+
   }, [])
 
   useEffect(() => {

@@ -5,19 +5,21 @@ import { useState } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 
 import Header from './componets/Header/Header';
-import Home from './componets/Home/Home';
 import Modal from './componets/Modal/Modal';
-
+import Results from './componets/Results/Results';
 import Profile from './componets/Profile/Profile';
 import NotFound from './componets/NotFound/NotFound';
 import Messages from './componets/Profile/Messages/Messages';
+import OfferDetails from './componets/OfferDetails/OfferDetails';
+import Carousel from './componets/Carousel/Carousel';
+import CategoryList from './componets/CategoryList/CategoryList';
 
 function App() {
     const [modal, setModal] = useState(null);
 
     function navClickHandler(e) {
         e.preventDefault();
-        setModal(modal => e.target.textContent);
+        setModal(m => e.target.textContent);
     }
 
     function closeModal() {
@@ -31,17 +33,19 @@ function App() {
             {/* Main Content */}
             <main>
                 <Routes>
-                    
-                    <Route path='/' element={<Home />} />
+
+                    <Route path='/' element={<><Carousel /><CategoryList /></>} />
+                    <Route path='/listing/:offerId' element={<OfferDetails />} />
+                    <Route path='/category/:category' element={<Results />} />
                     <Route path='/user/profile' element={<Profile />} />
                     <Route path='/user/messages' element={<Messages />} />
                     <Route path='*' element={<NotFound />} />
-                    
+
                 </Routes>
-                
 
 
-            {/* Modal Window */}
+
+                {/* Modal Window */}
                 {modal && <Modal modal={modal} closeModal={closeModal} />}
             </main>
 

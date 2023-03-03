@@ -10,7 +10,7 @@ export default function Messages() {
                 <Message />
             </ul>
 
-            <h4 className='message-text'>You have no messages</h4>
+            <p className='no-offers'>You have no messages</p>
 
         </>
     )
