@@ -1,7 +1,7 @@
 import './Header.css';
 import logo from '../../logo.png';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Header(props) {
 
@@ -11,22 +11,24 @@ export default function Header(props) {
         setActive(state => !state);
     }
 
+    const activeStyle = ({isActive}) => isActive ? {color: 'var(--zomp)'}: undefined
+
     return (
         <header>
 
             <div className="header__nav-wrapper">
-                <Link to="/"><img className="header__logo" src={logo} alt="Shop open e-market" /></Link>
+                <NavLink to="/"><img className="header__logo" src={logo} alt="Shop open e-market" /></NavLink>
 
                 <nav className="header__nav">
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
-                        <li className={`nav__li ${active ? 'nav__active': ''}`}><Link to="/"><i className="fa-solid fa-list-ul"></i>Categories</Link></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
                         {/* <!-- USER --> */}
-                        <li className={`nav__li ${active ? 'nav__active': ''}`}><Link to="/user/profile"><i className="fa-solid fa-user"></i>Profile</Link></li>
-                        <li className={`nav__li ${active ? 'nav__active': ''}`}><Link to="/user"><i className="fa-solid fa-right-from-bracket"></i>Logout</Link></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/user/logout"><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
                         {/* <!-- GUEST --> */}
-                        <li className={`nav__li ${active ? 'nav__active': ''}`}><Link to="/" onClick={props.navClickHandler}><i className="fa-solid fa-user-check"></i>Login</Link></li>
-                        <li className={`nav__li ${active ? 'nav__active': ''}`}><Link to="/" onClick={props.navClickHandler} ><i className="fa-solid fa-file-signature"></i>Register</Link></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/" onClick={props.navClickHandler}><i className="fa-solid fa-user-check"></i>Login</NavLink></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/" onClick={props.navClickHandler} ><i className="fa-solid fa-file-signature"></i>Register</NavLink></li>
                     </ul>
                 </nav>
             </div>
