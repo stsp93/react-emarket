@@ -1,17 +1,22 @@
+import { Link } from 'react-router-dom';
+
 export default function Profile() {
     return (
         <section>
-            <h2 className="main-title">Your Listings</h2>
+            <div className="profile__title-wrapper">
+            <h2 className="title main-title">Your Listings</h2>
+            <Link className='profile__messages' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
+            </div>
             <ul className="offers-list">
                 <li>
                     <article className="offer-card">
                         <div className="offer-wrapper">
-                            <a href="" className="offer-link">
+                            <Link to="" className="offer-link">
                                 <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </a>
+                            </Link>
                             <div className="offer-text">
-                                <a className="offer-title offer-link" href="">Brand new Nice Thingy that's red
-                                </a>
+                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
+                                </Link>
                                 <p className="location">Burgas, Bulgaria</p>
                                 <div className="profile-buttons">
                                     <button className="profile-edit">Edit</button>
@@ -26,12 +31,12 @@ export default function Profile() {
                 <li>
                     <article className="offer-card">
                         <div className="offer-wrapper">
-                            <a href="" className="offer-link">
+                            <Link to="" className="offer-link">
                                 <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </a>
+                            </Link>
                             <div className="offer-text">
-                                <a className="offer-title offer-link" href="">Brand new Nice Thingy that's red
-                                </a>
+                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
+                                </Link>
                                 <p className="location">Burgas, Bulgaria</p>
                                 <div className="profile-buttons">
                                     <button className="profile-edit">Edit</button>
@@ -46,12 +51,12 @@ export default function Profile() {
                 <li>
                     <article className="offer-card">
                         <div className="offer-wrapper">
-                            <a href="" className="offer-link">
+                            <Link to="" className="offer-link">
                                 <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </a>
+                            </Link>
                             <div className="offer-text">
-                                <a className="offer-title offer-link" href="">Brand new Nice Thingy that's red
-                                </a>
+                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
+                                </Link>
                                 <p className="location">Burgas, Bulgaria</p>
                                 <div className="profile-buttons">
                                     <button className="profile-edit">Edit</button>
@@ -65,21 +70,21 @@ export default function Profile() {
 
                 <li>
                     <article className="offer-card">
-                        <a href="" className="offer-link"
-                        ><img className="offer-img" src="/images/clothing.jpg" alt=""
-                            /></a>
-
-                        <div className="offer-text">
-                            <a className="offer-title offer-link" href=""
-                            >Brand new Nice Thingy that's red</a
-                            >
-                            <p className="location">Burgas, Bulgaria</p>
-                            <p className="price"><strong>20.99</strong> $</p>
-                            <div className="profile-buttons">
-                                <button className="profile-edit">Edit</button>
-                                <button className="profile-delete">Delete</button>
+                        <div className="offer-wrapper">
+                            <Link to="" className="offer-link">
+                                <img className="offer-img" src="/images/clothing.jpg" alt="" />
+                            </Link>
+                            <div className="offer-text">
+                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
+                                </Link>
+                                <p className="location">Burgas, Bulgaria</p>
+                                <div className="profile-buttons">
+                                    <button className="profile-edit">Edit</button>
+                                    <button className="profile-delete">Delete</button>
+                                </div>
                             </div>
                         </div>
+                        <p className="price"><strong>20.99</strong> $</p>
                     </article>
                 </li>
             </ul>

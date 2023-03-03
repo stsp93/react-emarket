@@ -6,7 +6,7 @@ export default function CategoryList(props) {
         <>
             <h2 className="title main-title">Categories</h2>
             <ul className="categories-list">
-                {categories.map(category => <Category key={category[0]} category={category}></Category>)}
+                {categories.map(category => <Category key={category[0]} category={category} />)}
             </ul>
         </>
 

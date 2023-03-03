@@ -32,7 +32,7 @@ export default function Header(props) {
             </div>
             <form>
                 <div>
-                    <input className="search-box" type="text" maxLength="30" />
+                    <input className="search-box" type="text" maxLength="30" placeholder="Search anything..." />
                     <button className="search-box__button">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>

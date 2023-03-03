@@ -37,7 +37,7 @@ export default function Carousel(props) {
 
   return (
     <article className="carousel">
-      {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i===activeIndex} ></Slide>)}
+      {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i===activeIndex} />)}
 
       <button onClick={prevSlide} className="carousel__prev carousel__button">
         <i className="fa-solid fa-chevron-left"></i>

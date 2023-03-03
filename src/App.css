@@ -161,7 +161,7 @@ main {
   align-items: center;
 }
 
-.pagination-arrow, .pagination-arrow:active {
+.pagination-arrow {
   color: var(--gunmetal);
   font-size: 3.4rem;
 }
@@ -295,6 +295,20 @@ main {
 }
 
 /* Profile */
+.profile__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__messages {
+  font-size: 3rem;
+}
+
+.profile__messages:hover {
+  color: var(--zomp);
+  transform: translate(0, 5%);
+}
+
 .profile-buttons {
   display: flex;
   flex-direction: column;
@@ -318,6 +332,13 @@ main {
   background-color: var(--white);
   color: var(--gunmetal);
 }
+
+.profile-edit {
+  margin-bottom: 0.1rem;
+}
+
+
+
 
 /* Footer */
 

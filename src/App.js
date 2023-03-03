@@ -1,13 +1,16 @@
 import './App.css';
 
+import React from 'react';
+import { useState } from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
+
 import Header from './componets/Header/Header';
+import Home from './componets/Home/Home';
 import Modal from './componets/Modal/Modal';
 
-import { useState } from 'react';
-import Home from './componets/Home/Home';
-
-import { Link, Routes, Route } from 'react-router-dom';
 import Profile from './componets/Profile/Profile';
+import NotFound from './componets/NotFound/NotFound';
+import Messages from './componets/Profile/Messages/Messages';
 
 function App() {
     const [modal, setModal] = useState(null);
@@ -28,8 +31,11 @@ function App() {
             {/* Main Content */}
             <main>
                 <Routes>
+                    
                     <Route path='/' element={<Home />} />
                     <Route path='/user/profile' element={<Profile />} />
+                    <Route path='/user/messages' element={<Messages />} />
+                    <Route path='*' element={<NotFound />} />
                     
                 </Routes>
                 
