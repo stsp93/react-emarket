@@ -515,6 +515,7 @@ footer {
  .action-buttons {
   min-width: 12rem;
   width: 20%;
+  flex-direction: row;
  }
 
   

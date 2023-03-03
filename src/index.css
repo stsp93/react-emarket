@@ -60,5 +60,9 @@ body {
   color: var(--gunmetal);
 }
 
+i {
+  margin-right: 1rem;
+}
+
 
 
