@@ -15,10 +15,10 @@ export default function Modal(props) {
 
     return (
         <>
-        <div style={{opacity}} className="modal">
-            {props.modal === 'Register' && <Register {...props} />}
-            {props.modal === 'Login' && <Login {...props} />}
-        </div>
+            <div  style={{ opacity }} className="modal">
+                {props.modal === 'Register' && <Register {...props} />}
+                {props.modal === 'Login' && <Login {...props} />}
+            </div>
             <Overlay closeModal={props.closeModal} />
         </>
     )

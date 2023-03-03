@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import OfferCard from './OfferCard/OfferCard';
 import Carousel from './../Carousel/Carousel';
 
+
 export default function Category() {
     const { category } = useParams();
     const [results, setResults] = useState([]);
@@ -19,7 +20,7 @@ export default function Category() {
 
     return (
         <>
-            {results.length ? <h2 className="title main-title">Offers</h2> :
+            {results.length ? <h2 className="title main-title">{results.length} Offers found</h2> :
                 <>
                     <h2 className="title main-title">No Offers found...</h2>
                     <Carousel />
