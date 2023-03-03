@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import Carousel from '../Carousel/Carousel';
 
 export default function Profile() {
     return (
         <section>
+            <Carousel />
             <div className="profile__title-wrapper">
             <h2 className="title main-title">Your Listings</h2>
             <Link className='profile__messages' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>

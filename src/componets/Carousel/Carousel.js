@@ -10,25 +10,24 @@ export default function Carousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-      // Fetch all categories
-      (async () => {
-        const data = await getAllCategories()
-        setCategories(cat => Object.entries(data));
-    })();
+    
+    // Fetch all categories 
+    getAllCategories().then((res) => {
+      setCategories(cat => {
+        // Set random category to be shown
+        setActiveIndex(Math.floor(Math.random() * (Object.entries(res).length + 1)))
+        return Object.entries(res)
+      });
+    }).catch((error) => console.log(error))
 
     // start slideshow
     const interval = setInterval(() => {
       setActiveIndex(i => i + 1);
-    }, 3000)
+    }, 5000)
 
     // clear slideshow
     return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-
-
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (activeIndex >= categories.length) {
@@ -48,7 +47,7 @@ export default function Carousel() {
 
   return (
     <article className="carousel">
-      {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i===activeIndex} />)}
+      {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i === activeIndex} />)}
 
       <button onClick={prevSlide} className="carousel__prev carousel__button">
         <i className="fa-solid fa-chevron-left"></i>
