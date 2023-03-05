@@ -9,8 +9,8 @@ export default function Modal(props) {
     const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
-        setOpacity(o => 1);
-        return () => setOpacity(o => 0);
+        setOpacity(1);
+        return () => setOpacity(0);
     }, [])
 
     return (

@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom';
+import formatDate from '../../../utils/formatDate';
 
 export default function OfferCard(props) {
     const {_id, title, imageUrl, price, location, createdOn} = props
@@ -14,7 +15,7 @@ export default function OfferCard(props) {
                         <Link className="offer-title offer-link" to={`/listing/${_id}`}>{title}
                         </Link>
                         <div>
-                            <p className="created-at">{createdOn}</p>
+                            <p className="created-at">{formatDate(createdOn)}</p>
                             <p className="location">{location}</p>
                         </div>
                     </div>

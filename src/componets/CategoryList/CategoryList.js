@@ -8,7 +8,7 @@ export default function CategoryList() {
         // Fetch all categories
         (async () => {
             const data = await getAllCategories()
-            setCategories(cat => Object.entries(data));
+            setCategories(Object.entries(data));
         })();
 
     }, []);

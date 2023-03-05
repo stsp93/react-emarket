@@ -1,28 +1,44 @@
-import { useParams } from 'react-router-dom';
-import { getCategoryResults } from '../../api/data';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { getCategoryResults, searchItems } from '../../api/data';
 import { useState, useEffect } from 'react';
+
 import OfferCard from './OfferCard/OfferCard';
 import Carousel from './../Carousel/Carousel';
 
 
 export default function Category() {
     const { category } = useParams();
+    const [searchParams] = useSearchParams();
     const [results, setResults] = useState([]);
 
+    // On category show
     useEffect(() => {
         (async () => {
-            const categoryResults = await getCategoryResults(category);
-            setResults(res => categoryResults);
+            const categoryResults = await getCategoryResults(category || '');
+            setResults(categoryResults);
         })()
+    }, [category]);
 
 
-    }, [category])
+    // On Search
+    useEffect(() => {
+        const query = searchParams.get('q')
+        if (query) {
+            (async function () {
+                const res = await searchItems({ q: query });
+                setResults(res);
+            })()
+        }
+    }, [searchParams])
 
     return (
         <>
-            {results.length ? <h2 className="title main-title">{results.length} Offers found</h2> :
-                <>
-                    <h2 className="title main-title">No Offers found...</h2>
+            {results.length ?
+                <h2 className="title main-title">
+                    {results.length} Result{results.length === 1 ? '': 's'} {searchParams.get('q') && `for '${searchParams.get('q')}'`}
+                </h2>
+                : <>
+                    <h2 className="title main-title">No Results {searchParams.get('q') && `for '${searchParams.get('q')}'`}</h2>
                     <Carousel />
                 </>}
 

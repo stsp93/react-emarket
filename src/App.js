@@ -14,12 +14,13 @@ import OfferDetails from './componets/OfferDetails/OfferDetails';
 import Carousel from './componets/Carousel/Carousel';
 import CategoryList from './componets/CategoryList/CategoryList';
 
+
 function App() {
     const [modal, setModal] = useState(null);
 
     function navClickHandler(e) {
         e.preventDefault();
-        setModal(m => e.target.textContent);
+        setModal(e.target.textContent);
     }
 
     function closeModal() {
@@ -32,11 +33,12 @@ function App() {
 
             {/* Main Content */}
             <main>
-                <Routes>
 
+                <Routes>
                     <Route path='/' element={<><Carousel /><CategoryList /></>} />
                     <Route path='/listing/:offerId' element={<OfferDetails />} />
                     <Route path='/category/:category' element={<Results />} />
+                    <Route path='/search' element={<Results />} />
                     <Route path='/user/profile' element={<Profile />} />
                     <Route path='/user/messages' element={<Messages />} />
                     <Route path='*' element={<NotFound />} />

@@ -13,7 +13,7 @@ export default function Carousel() {
     
     // Fetch all categories 
     getAllCategories().then((res) => {
-      setCategories(cat => {
+      setCategories(() => {
         // Set random category to be shown
         setActiveIndex(Math.floor(Math.random() * (Object.entries(res).length + 1)))
         return Object.entries(res)
@@ -35,7 +35,7 @@ export default function Carousel() {
     } else if (activeIndex < 0) {
       setActiveIndex(i => categories.length - 1)
     }
-  }, [activeIndex]);
+  }, [activeIndex,categories]);
 
   function prevSlide() {
     setActiveIndex(i => i - 1)
