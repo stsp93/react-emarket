@@ -5,7 +5,7 @@
     padding-bottom: 1rem;
     border-bottom: 3px solid var(--zomp);
   
-    display: flex;
+    display: inline-flex;
     gap: 4rem;
   
   }
