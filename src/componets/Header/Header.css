@@ -101,12 +101,15 @@ header {
     padding: 0.2rem;
   }
 
-  .nav__li a {
+  .nav__link {
+    display: inline;
     font-weight: 600;
+    font-size: 2.4rem;
     color: var(--gunmetal);
+    font-family: inherit;
   }
 
-  .nav__li a:hover {
+  .nav__link:hover {
     color: var(--zomp);
     transform: translate(0, 5%);
   }

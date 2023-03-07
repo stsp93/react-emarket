@@ -69,20 +69,20 @@ export default function Header() {
                 <nav className="header__nav">
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
-                        <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
+                        <li className={liClassName(activeStatus)}><NavLink className='nav__link' style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
                         {auth ?
                             <>
                                 {/* <!-- USER --> */}
-                                <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
-                                <li className={liClassName(activeStatus)}><NavLink onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
+                                <li className={liClassName(activeStatus)}><NavLink className='nav__link' style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
+                                <li className={liClassName(activeStatus)}><NavLink className='nav__link' onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
                             </>
                             : <>
                                 {/* <!-- GUEST --> */}
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink to="#" onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</button>
                                 </li>
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink to="#" onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</button>
                                 </li>
                             </>
                         }
