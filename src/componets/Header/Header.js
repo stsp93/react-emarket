@@ -1,17 +1,16 @@
 import './Header.css';
-import logo from '../../logo.png';
-import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { ModalContext } from './../../context/ModalContext';
+import { useContext, useState } from 'react';
+import { ModalUserContext } from '../../context/ModalUserContext';
+import logo from '../../logo.png';
+
 
 export default function Header() {
-    const {updateModal} = useContext(ModalContext);
+    const { updateModal, user } = useContext(ModalUserContext);
 
-    
     // Active nav links styling
 
-    const [active, setActive] = useState(false);
+    const [activeStatus, setActive] = useState(false);
 
     function handleNavButton() {
         setActive(state => !state);
@@ -21,6 +20,9 @@ export default function Header() {
         ? { color: 'var(--zomp)' }
         : undefined;
 
+    const liClassName = (activeStatus) => {
+        return `nav__li ${activeStatus ? 'nav__active' : ''}`
+    }
 
     // Search logic
 
@@ -30,12 +32,15 @@ export default function Header() {
     function handleSearchClick(e) {
         e.preventDefault();
 
+        if (query === '') return navigate('/');
+
         navigate(`/search?q=${query}`);
     }
 
     function onSearchQueryChange(e) {
         setQuery(e.target.value);
     }
+
 
 
     return (
@@ -47,13 +52,24 @@ export default function Header() {
                 <nav className="header__nav">
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
-                        {/* <!-- USER --> */}
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/user/logout"><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
-                        {/* <!-- GUEST --> */}
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink onClick={updateModal}><i className="fa-solid fa-user-check"></i>Login</NavLink></li>
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink onClick={updateModal} ><i className="fa-solid fa-file-signature"></i>Register</NavLink></li>
+                        <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
+                        {user ?
+                            <>
+                                {/* <!-- USER --> */}
+                                <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
+                                <li className={liClassName(activeStatus)}><NavLink to="/user/logout"><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
+                            </>
+                            : <>
+                                {/* <!-- GUEST --> */}
+                                <li className={liClassName(activeStatus)}>
+                                    <NavLink onClick={updateModal.bind(this,'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
+                                </li>
+                                <li className={liClassName(activeStatus)}>
+                                    <NavLink onClick={updateModal.bind(this,'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
+                                </li>
+                            </>
+                        }
+
                     </ul>
                 </nav>
             </div>

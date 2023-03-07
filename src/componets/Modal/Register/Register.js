@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import {ModalContext} from "../../../context/ModalContext"
+import {ModalUserContext} from "../../../context/ModalUserContext"
 
 export default function Register() {
 
-    const {closeModal} = useContext(ModalContext);
+    const {closeModal} = useContext(ModalUserContext);
 
     return (
         <>

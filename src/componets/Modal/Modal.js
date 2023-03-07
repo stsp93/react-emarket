@@ -2,6 +2,7 @@ import Register from "./Register/Register";
 import Login from './Login/Login';
 import { useState, useEffect } from 'react';
 import Overlay from "./Overlay";
+import Success from "./Success/Success";
 
 
 export default function Modal(props) {
@@ -14,7 +15,8 @@ export default function Modal(props) {
 
     const modalMapper = {
         'Register': <Register />,
-        'Login': <Login />
+        'Login': <Login />,
+        'Success': <Success />
     }
 
 

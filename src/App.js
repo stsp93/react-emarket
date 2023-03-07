@@ -11,15 +11,14 @@ import Messages from './componets/Profile/Messages/Messages';
 import OfferDetails from './componets/OfferDetails/OfferDetails';
 import Carousel from './componets/Carousel/Carousel';
 import CategoryList from './componets/CategoryList/CategoryList';
-import { ModalProvider } from './context/ModalContext';
+import { ModalUserProvider } from './context/ModalUserContext';
 
 function App() {
-
 
     return (
         <>
 
-            <ModalProvider> {/*Modal Provider wrapping the app*/}
+            <ModalUserProvider> {/*Modal Provider wrapping the app*/}
                 <Header />
 
                 {/* Main Content */}
@@ -36,7 +35,7 @@ function App() {
                     </Routes>
 
                 </main>
-            </ModalProvider>
+            </ModalUserProvider>
 
             <footer>
                 <Link target="_blank" to="https://github.com/stsp93">2023 Steliyan Petkov - github.com/stsp93</Link>
