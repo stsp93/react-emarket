@@ -1,0 +1,11 @@
+.success {
+    display: flex;
+    align-items: center;
+    font-size: 4rem;
+    padding: 2rem;
+}
+
+.success i {
+
+    color: green;
+}
