@@ -302,8 +302,11 @@ main {
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.1);
 }
 
-.input-group p {
+.input-error {
   color: var(--red);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .form-title {
