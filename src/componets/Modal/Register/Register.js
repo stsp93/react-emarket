@@ -1,32 +1,55 @@
-import { useContext, useState } from "react"
-import {ModalContext} from "../../../context/ModalContext"
-// import * as userService from "../../../services/api/user";
-import showSuccess from './../../../utils/showSuccess';
+import { useContext, useState, useEffect } from "react"
+import { ModalContext } from "../../../context/ModalContext"
+import * as userService from "../../../services/api/user";
+import showLoading from './../../../utils/showLoading';
+import validationApi from "../../../utils/validationApi";
+import { AuthContext } from './../../../context/AuthContext';
+
+
 
 export default function Register() {
-    const {closeModal, updateModal} = useContext(ModalContext);
-    const [error, setError] = useState({});
-    const [payload, setPayload] = useState({});
+    const { closeModal, updateModal } = useContext(ModalContext);
+    const {setAuth} = useContext(AuthContext)
+    const [errors, setErrors] = useState({});
+    const [disable, setDisable] = useState(true);
+    const [payload, setPayload] = useState({
+        email: '',
+        username: '',
+        password: '',
+        repeatPassword: '',
+    });
 
+    useEffect(() => {
+       if(Object.values(errors).some(v => v !== null)) {
+        setDisable(true)
+       } else {
+        setDisable(false)
+       }
+       console.log(Object.values(errors).some(v => v !== null));
+    },[errors])
 
-    function onBlur(e) {
-        console.log(e.target.name);
-        // setPayload(x => ({...x, e.target.name: }))
+    function onChange(e) {
+        setPayload(x => ({ ...x, [e.target.name]: e.target.value }))
+    }
+
+    function minLength(e) {
+        const key = e.target.name;
+        validationApi.minLength(payload, key, 3, setErrors)
+    }
+    function passwordsMatch() {
+        validationApi.passwordsMatch(payload, setErrors)
     }
 
     async function onSubmit(e) {
         e.preventDefault();
         try {
-            // TODO: validations
-            
-
-            // await userService.register(email, username, password);
-
-            // Show Success
-            showSuccess(updateModal, closeModal);
-        } catch(error) {
-
-            console.log(error);
+            const {email, username, password} = payload
+            const user =await userService.register(email, username, password);
+            setAuth(user);
+            // Show Loading
+            showLoading(updateModal, closeModal);
+        } catch (error) {
+            setErrors(error)
         }
 
     }
@@ -36,15 +59,17 @@ export default function Register() {
             <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form  className="user-form" onSubmit={onSubmit}>
+            <form className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Register</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email</label>
-                    <p className="input-error">* Mandatory fields</p>
+                    {errors.email && <p className="input-error">{errors.email}</p>}
+
                     <i className="fa-solid fa-envelope"></i>
                     <input
                         value={payload.email}
-                        onBlur={onBlur}
+                        onChange={onChange}
+                        onBlur={minLength}
                         id="email"
                         name="email"
                         type="email"
@@ -53,9 +78,12 @@ export default function Register() {
                 </article>
                 <article className="input-group">
                     <label htmlFor="username">Username</label>
-                    <p className="input-error">* Mandatory fields</p>
+                    {errors.username && <p className="input-error">{errors.username}</p>}
                     <i className="fa-solid fa-user"></i>
                     <input
+                        value={payload.username}
+                        onChange={onChange}
+                        onBlur={minLength}
                         id="username"
                         name="username"
                         type="text"
@@ -64,9 +92,12 @@ export default function Register() {
                 </article>
                 <article className="input-group">
                     <label htmlFor="password">Password</label>
-                <p className="input-error">* Mandatory fields</p>
+                    {errors.password && <p className="input-error">{errors.password}</p>}
                     <i className="fa-sharp fa-solid fa-key"></i>
                     <input
+                        value={payload.password}
+                        onChange={onChange}
+                        onBlur={minLength}
                         id="password"
                         type="password"
                         name="password"
@@ -75,17 +106,21 @@ export default function Register() {
                 </article>
                 <article className="input-group">
                     <label htmlFor="repeatPassword">Repeat Password</label>
-                    <p className="input-error">* Mandatory fields</p>
+                    {errors.repeatPassword && <p className="input-error">{errors.repeatPassword}</p>}
                     <i className="fa-solid fa-repeat"></i>
                     <input
+                        value={payload.repeatPassword}
+                        onChange={onChange}
+                        onBlur={passwordsMatch}
                         id="repeatPassword"
                         type="password"
                         name="repeatPassword"
                         placeholder="********"
                     />
                 </article>
+                {errors.message && <p className="input-error">{errors.message}</p>}
                 <article className="input-group">
-                    <button className="action-button" >Register</button>
+                    <button disabled={disable} className="action-button" >Register</button>
                 </article>
             </form>
         </>

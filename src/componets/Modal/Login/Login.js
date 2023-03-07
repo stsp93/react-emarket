@@ -1,7 +1,7 @@
 import {ModalContext} from "../../../context/ModalContext";
 import { useContext, useState } from 'react';
 import { login } from "../../../services/api/user";
-import showSuccess from './../../../utils/showSuccess';
+import showLoading from './../../../utils/showLoading';
 import { AuthContext } from './../../../context/AuthContext';
 
 export default function Login() {
@@ -17,11 +17,10 @@ export default function Login() {
             // TODO: validations
             const user = await login(email, password);
             setAuth(user)
-            // Show Success window and remove it after 2s
-            showSuccess(updateModal, closeModal);
+            // Show Loading window and remove it after 2s
+            showLoading(updateModal, closeModal);
         }catch(error) {
-            console.log(error);
-            setError('Username or Passoword are incorrect')
+            setError('Email or Password are incorrect')
         }
     }
 
@@ -33,6 +32,7 @@ export default function Login() {
             <form className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Login</h2>
                 <article className="input-group">
+                {error && <p className="input-error">{error}</p>}
                     <label htmlFor="email">Email</label>
                     <i className="fa-solid fa-envelope"></i>
                     <input
@@ -52,7 +52,6 @@ export default function Login() {
                         placeholder="********"
                     />
                 </article>
-                {error && <p className="input-error">{error}</p>}
                 <article className="input-group">
                     <input className="action-button" type="submit" value="Login"/>
                 </article>

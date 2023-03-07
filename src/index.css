@@ -33,18 +33,13 @@ input {
 
 :root {
   --white: #fff;
+  --gray: #888;
   --honeydew: #e2f8edff;
   --gunmetal: #1d2f36ff;
   --red: #dc0000;
 
   --aquamarine: #a0eec8ff;
   --zomp: #56a386ff;
-
-  --blue-gradient90deg: linear-gradient(
-    90deg,
-    var(--aquamarine) 0%,
-    rgba(86, 163, 133, 0.5) 80%
-  );
 }
 
 html {
