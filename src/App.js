@@ -1,11 +1,9 @@
 import './App.css';
 
 import React from 'react';
-import { useState } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 
 import Header from './componets/Header/Header';
-import Modal from './componets/Modal/Modal';
 import Results from './componets/Results/Results';
 import Profile from './componets/Profile/Profile';
 import NotFound from './componets/NotFound/NotFound';
@@ -13,22 +11,18 @@ import Messages from './componets/Profile/Messages/Messages';
 import OfferDetails from './componets/OfferDetails/OfferDetails';
 import Carousel from './componets/Carousel/Carousel';
 import CategoryList from './componets/CategoryList/CategoryList';
+import Modal from './componets/Modal/Modal';
+import ModalContext from './context/ModalContext';
+import useModal from './hooks/useModal';
 
 
 function App() {
-    const [modal, setModal] = useState(null);
 
-    function navClickHandler(e) {
-        e.preventDefault();
-        setModal(e.target.textContent);
-    }
-
-    function closeModal() {
-        setModal(null)
-    }
+    const {modal, navClickHandler, closeModal} = useModal();
 
     return (
         <>
+
             <Header navClickHandler={navClickHandler} />
 
             {/* Main Content */}
@@ -42,13 +36,12 @@ function App() {
                     <Route path='/user/profile' element={<Profile />} />
                     <Route path='/user/messages' element={<Messages />} />
                     <Route path='*' element={<NotFound />} />
-
                 </Routes>
 
-
-
+        <ModalContext.Provider value={ closeModal}>
                 {/* Modal Window */}
-                {modal && <Modal modal={modal} closeModal={closeModal} />}
+                {modal && <Modal modal={modal}/>}
+        </ModalContext.Provider>
             </main>
 
             <footer>

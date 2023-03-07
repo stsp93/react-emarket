@@ -1,7 +1,13 @@
-export default function Register(props) {
+import { useContext } from "react"
+import ModalContext from "../../../context/ModalContext"
+
+export default function Register() {
+
+    const closeModal = useContext(ModalContext);
+
     return (
         <>
-            <button onClick={props.closeModal} className="close-modal">
+            <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
             <form  className="user-form" method="POST">

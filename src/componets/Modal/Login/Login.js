@@ -1,7 +1,11 @@
-export default function Login(props) {
+import ModalContext from "../../../context/ModalContext";
+import { useContext } from 'react';
+
+export default function Login() {
+    const closeModal = useContext(ModalContext)
     return (
         <>
-            <button onClick={props.closeModal} className="close-modal">
+            <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
             <form className="user-form" method="POST">

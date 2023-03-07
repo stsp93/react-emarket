@@ -5,21 +5,25 @@ import Overlay from "./Overlay";
 
 
 export default function Modal(props) {
-
     const [opacity, setOpacity] = useState(0);
-
+    
     useEffect(() => {
         setOpacity(1);
         return () => setOpacity(0);
     }, [])
 
+    const modalMapper = {
+        'Register': <Register />,
+        'Login': <Login />
+    }
+
+
     return (
         <>
             <div  style={{ opacity }} className="modal">
-                {props.modal === 'Register' && <Register {...props} />}
-                {props.modal === 'Login' && <Login {...props} />}
+                {modalMapper[props.modal]}
             </div>
-            <Overlay closeModal={props.closeModal} />
+            <Overlay />
         </>
     )
 }
