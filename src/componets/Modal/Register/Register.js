@@ -1,16 +1,34 @@
 import { useContext } from "react"
 import {ModalUserContext} from "../../../context/ModalUserContext"
+import * as userService from "../../../services/api/user";
+import showSuccess from './../../../utils/showSuccess';
 
 export default function Register() {
+    const {closeModal, updateModal} = useContext(ModalUserContext);
 
-    const {closeModal} = useContext(ModalUserContext);
+    async function onSubmit(e) {
+        e.preventDefault();
+        const {email, username, password, repeatPassword} = Object.fromEntries(new FormData(e.target));
+        try {
+            // TODO: validations
+
+            await userService.register(email, username, password);
+
+            // Show Success
+            showSuccess(updateModal, closeModal);
+        } catch(error) {
+
+            console.log(error);
+        }
+
+    }
 
     return (
         <>
             <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form  className="user-form" method="POST">
+            <form  className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Register</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email*</label>

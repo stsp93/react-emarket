@@ -11,8 +11,8 @@ export default function Login() {
         e.preventDefault();
 
         const {email, password} = Object.fromEntries(new FormData(e.target));
-
         try {
+            // TODO: validations
             await login(email, password);
 
 

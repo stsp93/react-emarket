@@ -15,6 +15,7 @@ export async function login(email, password) {
 
 export async function register(email,username, password) {
     const res = await api.post(endpoints.register,{email, username,password});
+    saveUserSession(res)
     return res;
 }
 
