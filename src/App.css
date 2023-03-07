@@ -326,16 +326,33 @@ main {
 }
 
 /* Profile */
-.profile__title-wrapper {
+
+.profile__links {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
 }
 
-.profile__messages {
+.profile__link {
+  position: relative;
   font-size: 3rem;
 }
 
-.profile__messages:hover {
+.profile__new-message::before {
+  content: "!";
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.6rem;
+  
+  position: absolute;
+  left: -5%;
+
+  text-align: center;
+  color: var(--white);
+  background-color: rgb(220, 0, 0);
+  border-radius: 5px;
+}
+
+.profile__link:hover {
   color: var(--zomp);
   transform: translate(0, 5%);
 }
