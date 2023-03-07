@@ -32,10 +32,10 @@ input {
 /* Core */
 
 :root {
-  --honeydew: #e2f8edff;
   --white: #fff;
+  --honeydew: #e2f8edff;
   --gunmetal: #1d2f36ff;
-  -asd: rgb(29, 47, 54);
+  --red: #dc0000;
 
   --aquamarine: #a0eec8ff;
   --zomp: #56a386ff;
