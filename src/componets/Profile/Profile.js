@@ -5,10 +5,11 @@ export default function Profile() {
     return (
         <section>
             <Carousel />
-            <div className="profile__title-wrapper">
-            <h2 className="title main-title">Your Listings</h2>
-            <Link className='profile__messages' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
+            <div className="profile__links">
+                <Link className='profile__link profile__new-message' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
+                <Link className='profile__link' to="/user/messages"><i className="fa-solid fa-file-circle-plus"></i>Create Listing</Link>
             </div>
+            <h2 className="title main-title">Your Listings</h2>
             <ul className="offers-list">
                 <li>
                     <article className="offer-card">
