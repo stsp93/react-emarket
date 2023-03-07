@@ -1,6 +1,6 @@
 import Category from "./Category/Category"
 import { useEffect, useState } from 'react';
-import { getAllCategories } from '../../api/data';
+import { getAllCategories } from '../../services/api/data';
 
 export default function CategoryList() {
     const [categories, setCategories] = useState([]);

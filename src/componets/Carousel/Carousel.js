@@ -2,7 +2,7 @@ import './Carousel.css'
 
 import { useEffect, useState } from 'react';
 import Slide from './Slide/Slide';
-import { getAllCategories } from '../../api/data';
+import { getAllCategories } from '../../services/api/data';
 
 
 export default function Carousel() {

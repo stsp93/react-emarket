@@ -1,5 +1,5 @@
 import { useParams, useSearchParams } from 'react-router-dom';
-import { getCategoryResults, searchItems } from '../../api/data';
+import { getCategoryResults, searchItems } from '../../services/api/data';
 import { useState, useEffect } from 'react';
 
 import OfferCard from './OfferCard/OfferCard';
