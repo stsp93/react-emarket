@@ -1,14 +1,36 @@
-import {ModalContext} from "../../../context/ModalContext";
+import {ModalUserContext} from "../../../context/ModalUserContext";
 import { useContext } from 'react';
+import { login } from "../../../services/api/user";
 
 export default function Login() {
-    const {closeModal} = useContext(ModalContext)
+    const {closeModal, updateModal} = useContext(ModalUserContext);
+
+
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        const {email, password} = Object.fromEntries(new FormData(e.target));
+
+        try {
+            await login(email, password);
+
+            // Show Success and remove it after 2s
+            updateModal('Success');
+
+            setTimeout(() => {
+                closeModal()
+            }, 2000)
+        }catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
             <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form className="user-form" method="POST">
+            <form className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Login</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email</label>
