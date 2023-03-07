@@ -1,8 +1,8 @@
-import ModalContext from "../../../context/ModalContext";
+import {ModalContext} from "../../../context/ModalContext";
 import { useContext } from 'react';
 
 export default function Login() {
-    const closeModal = useContext(ModalContext)
+    const {closeModal} = useContext(ModalContext)
     return (
         <>
             <button onClick={closeModal} className="close-modal">

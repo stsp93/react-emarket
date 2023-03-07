@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import ModalContext from '../../context/ModalContext';
+import {ModalContext} from '../../context/ModalContext';
 
 
 export default function Overlay(props) {
-    const closeModal = useContext(ModalContext);
+    const {closeModal} = useContext(ModalContext);
     const [opacity, setOpacity] = useState(0);
 
     

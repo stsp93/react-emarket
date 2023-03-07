@@ -2,10 +2,13 @@ import './Header.css';
 import logo from '../../logo.png';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ModalContext } from './../../context/ModalContext';
 
-export default function Header(props) {
-    const { navClickHandler } = props;
+export default function Header() {
+    const {updateModal} = useContext(ModalContext);
 
+    
     // Active nav links styling
 
     const [active, setActive] = useState(false);
@@ -49,8 +52,8 @@ export default function Header(props) {
                         <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
                         <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/user/logout"><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
                         {/* <!-- GUEST --> */}
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/" onClick={navClickHandler}><i className="fa-solid fa-user-check"></i>Login</NavLink></li>
-                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink to="/" onClick={navClickHandler} ><i className="fa-solid fa-file-signature"></i>Register</NavLink></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink onClick={updateModal}><i className="fa-solid fa-user-check"></i>Login</NavLink></li>
+                        <li className={`nav__li ${active ? 'nav__active' : ''}`}><NavLink onClick={updateModal} ><i className="fa-solid fa-file-signature"></i>Register</NavLink></li>
                     </ul>
                 </nav>
             </div>
