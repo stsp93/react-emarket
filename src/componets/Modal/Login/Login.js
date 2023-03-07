@@ -1,6 +1,7 @@
 import {ModalUserContext} from "../../../context/ModalUserContext";
 import { useContext } from 'react';
 import { login } from "../../../services/api/user";
+import showSuccess from './../../../utils/showSuccess';
 
 export default function Login() {
     const {closeModal, updateModal} = useContext(ModalUserContext);
@@ -14,12 +15,9 @@ export default function Login() {
         try {
             await login(email, password);
 
-            // Show Success and remove it after 2s
-            updateModal('Success');
 
-            setTimeout(() => {
-                closeModal()
-            }, 2000)
+            // Show Success window and remove it after 2s
+            showSuccess(updateModal, closeModal);
         }catch(error) {
             console.log(error);
         }

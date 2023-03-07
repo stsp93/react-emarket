@@ -3,10 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ModalUserContext } from '../../context/ModalUserContext';
 import logo from '../../logo.png';
+import * as userService from '../../services/api/user';
+import showSuccess from './../../utils/showSuccess';
 
 
 export default function Header() {
-    const { updateModal, user } = useContext(ModalUserContext);
+    const { updateModal, closeModal, user } = useContext(ModalUserContext);
 
     // Active nav links styling
 
@@ -41,6 +43,17 @@ export default function Header() {
         setQuery(e.target.value);
     }
 
+    // Logout 
+    async function onLogout() {
+        try {
+            userService.logout()
+
+            // Show Success window and remove it after 2s
+            showSuccess(updateModal, closeModal)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
@@ -57,15 +70,15 @@ export default function Header() {
                             <>
                                 {/* <!-- USER --> */}
                                 <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
-                                <li className={liClassName(activeStatus)}><NavLink to="/user/logout"><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
+                                <li className={liClassName(activeStatus)}><NavLink onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
                             </>
                             : <>
                                 {/* <!-- GUEST --> */}
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink onClick={updateModal.bind(this,'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
+                                    <NavLink onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
                                 </li>
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink onClick={updateModal.bind(this,'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
+                                    <NavLink onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
                                 </li>
                             </>
                         }

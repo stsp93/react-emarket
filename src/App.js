@@ -14,7 +14,6 @@ import CategoryList from './componets/CategoryList/CategoryList';
 import { ModalUserProvider } from './context/ModalUserContext';
 
 function App() {
-
     return (
         <>
 
