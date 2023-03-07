@@ -1,11 +1,13 @@
-import {ModalUserContext} from "../../../context/ModalUserContext";
-import { useContext } from 'react';
+import {ModalContext} from "../../../context/ModalContext";
+import { useContext, useState } from 'react';
 import { login } from "../../../services/api/user";
 import showSuccess from './../../../utils/showSuccess';
+import { AuthContext } from './../../../context/AuthContext';
 
 export default function Login() {
-    const {closeModal, updateModal} = useContext(ModalUserContext);
-
+    const {closeModal, updateModal} = useContext(ModalContext);
+    const {setAuth} = useContext(AuthContext)
+    const [error, setError] = useState('')
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -13,13 +15,13 @@ export default function Login() {
         const {email, password} = Object.fromEntries(new FormData(e.target));
         try {
             // TODO: validations
-            await login(email, password);
-
-
+            const user = await login(email, password);
+            setAuth(user)
             // Show Success window and remove it after 2s
             showSuccess(updateModal, closeModal);
         }catch(error) {
             console.log(error);
+            setError('Username or Passoword are incorrect')
         }
     }
 
@@ -50,9 +52,7 @@ export default function Login() {
                         placeholder="********"
                     />
                 </article>
-                <article className="input-group">
-                    <p className="message-field"></p>
-                </article>
+                {error && <p className="input-error">{error}</p>}
                 <article className="input-group">
                     <input className="action-button" type="submit" value="Login"/>
                 </article>

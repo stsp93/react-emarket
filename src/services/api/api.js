@@ -1,5 +1,3 @@
-import { getUser,removeUserSession } from "./auth.js"
-
 const host = 'http://localhost:3030'
 
 async function request(method, url, payload) {
@@ -9,9 +7,9 @@ async function request(method, url, payload) {
             'Content-Type': 'application/json'
         }
     }
-
-    if(getUser()) {
-        const token = getUser().token;
+    const user =  JSON.parse(sessionStorage.getItem('session')) 
+    if(user) {
+        const token = user.token;
         options.headers['authorization'] = token
     }
     if(payload !== undefined) {
@@ -24,7 +22,7 @@ async function request(method, url, payload) {
         if(!res.ok) {
             const error = await res.json();
             if(res.status === 403) {
-                removeUserSession();
+                sessionStorage.removeItem('session');
             }
             throw new Error(error.errors)
         }

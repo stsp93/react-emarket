@@ -1,18 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Carousel from '../Carousel/Carousel';
-import { useContext, useEffect } from 'react';
-import { ModalUserContext } from './../../context/ModalUserContext';
 
-
-export default function Profile() {
-    const navigate = useNavigate()
-    const {user} = useContext(ModalUserContext);
-    
-    useEffect(() => {
-        if(!user) return navigate('/404', {replace:true});
-
-    }, []);
-
+export default function Profile() {  
 
     return (
         <section>

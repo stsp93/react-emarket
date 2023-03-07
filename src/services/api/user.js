@@ -1,5 +1,4 @@
 import * as api from './api.js';
-import { removeUserSession,saveUserSession } from './auth.js';
 
 const endpoints = {
     'register' : '/users/register',
@@ -9,18 +8,15 @@ const endpoints = {
 
 export async function login(email, password) {
     const res = await api.post(endpoints.login,{email, password});
-    saveUserSession(res)
     return res;
 }
 
 export async function register(email,username, password) {
     const res = await api.post(endpoints.register,{email, username,password});
-    saveUserSession(res)
     return res;
 }
 
 export async function logout() {
     const res = await api.get(endpoints.logout);
-    removeUserSession();
     return res;
 }

@@ -1,14 +1,16 @@
 import './Header.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import { ModalUserContext } from '../../context/ModalUserContext';
+import { ModalContext } from '../../context/ModalContext';
 import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
 import showSuccess from './../../utils/showSuccess';
+import { AuthContext } from './../../context/AuthContext';
 
 
 export default function Header() {
-    const { updateModal, closeModal, user } = useContext(ModalUserContext);
+    const { updateModal, closeModal } = useContext(ModalContext);
+    const { auth, setAuth } = useContext(AuthContext)
 
     // Active nav links styling
 
@@ -34,7 +36,9 @@ export default function Header() {
     function handleSearchClick(e) {
         e.preventDefault();
 
-        if (query === '') return navigate('/');
+        if (query === '') {
+            return navigate('/');
+        }
 
         navigate(`/search?q=${query}`);
     }
@@ -47,7 +51,7 @@ export default function Header() {
     async function onLogout() {
         try {
             userService.logout()
-
+            setAuth(null)
             // Show Success window and remove it after 2s
             showSuccess(updateModal, closeModal)
         } catch (error) {
@@ -66,7 +70,7 @@ export default function Header() {
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
                         <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
-                        {user ?
+                        {auth ?
                             <>
                                 {/* <!-- USER --> */}
                                 <li className={liClassName(activeStatus)}><NavLink style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
@@ -75,10 +79,10 @@ export default function Header() {
                             : <>
                                 {/* <!-- GUEST --> */}
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
+                                    <NavLink to="#" onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</NavLink>
                                 </li>
                                 <li className={liClassName(activeStatus)}>
-                                    <NavLink onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
+                                    <NavLink to="#" onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</NavLink>
                                 </li>
                             </>
                         }

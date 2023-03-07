@@ -11,13 +11,18 @@ import Messages from './componets/Profile/Messages/Messages';
 import OfferDetails from './componets/OfferDetails/OfferDetails';
 import Carousel from './componets/Carousel/Carousel';
 import CategoryList from './componets/CategoryList/CategoryList';
-import { ModalUserProvider } from './context/ModalUserContext';
+import { ModalProvider } from './context/ModalContext';
+import useSessionStorage from './hooks/useSessionStorage';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
+    const [auth, setAuth] = useSessionStorage();
+
     return (
         <>
+        <AuthContext.Provider value={{auth, setAuth}}>
 
-            <ModalUserProvider> {/*Modal Provider wrapping the app*/}
+            <ModalProvider> {/*Modal Provider wrapping the app*/}
                 <Header />
 
                 {/* Main Content */}
@@ -28,14 +33,15 @@ function App() {
                         <Route path='/listing/:offerId' element={<OfferDetails />} />
                         <Route path='/category/:category' element={<Results />} />
                         <Route path='/search' element={<Results />} />
-                        <Route path='/user/profile' element={<Profile />} />
-                        <Route path='/user/messages' element={<Messages />} />
+                        <Route path='/user/profile'  element={auth ? <Profile /> : <NotFound />} />
+                        <Route path='/user/messages' element={auth ? <Messages /> : <NotFound />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
 
                 </main>
-            </ModalUserProvider>
+            </ModalProvider>
 
+        </AuthContext.Provider>
             <footer>
                 <Link target="_blank" to="https://github.com/stsp93">2023 Steliyan Petkov - github.com/stsp93</Link>
             </footer>

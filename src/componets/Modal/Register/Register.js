@@ -1,18 +1,26 @@
-import { useContext } from "react"
-import {ModalUserContext} from "../../../context/ModalUserContext"
-import * as userService from "../../../services/api/user";
+import { useContext, useState } from "react"
+import {ModalContext} from "../../../context/ModalContext"
+// import * as userService from "../../../services/api/user";
 import showSuccess from './../../../utils/showSuccess';
 
 export default function Register() {
-    const {closeModal, updateModal} = useContext(ModalUserContext);
+    const {closeModal, updateModal} = useContext(ModalContext);
+    const [error, setError] = useState({});
+    const [payload, setPayload] = useState({});
+
+
+    function onBlur(e) {
+        console.log(e.target.name);
+        // setPayload(x => ({...x, e.target.name: }))
+    }
 
     async function onSubmit(e) {
         e.preventDefault();
-        const {email, username, password, repeatPassword} = Object.fromEntries(new FormData(e.target));
         try {
             // TODO: validations
+            
 
-            await userService.register(email, username, password);
+            // await userService.register(email, username, password);
 
             // Show Success
             showSuccess(updateModal, closeModal);
@@ -31,9 +39,12 @@ export default function Register() {
             <form  className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Register</h2>
                 <article className="input-group">
-                    <label htmlFor="email">Email*</label>
+                    <label htmlFor="email">Email</label>
+                    <p className="input-error">* Mandatory fields</p>
                     <i className="fa-solid fa-envelope"></i>
                     <input
+                        value={payload.email}
+                        onBlur={onBlur}
                         id="email"
                         name="email"
                         type="email"
@@ -41,7 +52,8 @@ export default function Register() {
                     />
                 </article>
                 <article className="input-group">
-                    <label htmlFor="username">Username*</label>
+                    <label htmlFor="username">Username</label>
+                    <p className="input-error">* Mandatory fields</p>
                     <i className="fa-solid fa-user"></i>
                     <input
                         id="username"
@@ -51,7 +63,8 @@ export default function Register() {
                     />
                 </article>
                 <article className="input-group">
-                    <label htmlFor="password">Password*</label>
+                    <label htmlFor="password">Password</label>
+                <p className="input-error">* Mandatory fields</p>
                     <i className="fa-sharp fa-solid fa-key"></i>
                     <input
                         id="password"
@@ -61,7 +74,8 @@ export default function Register() {
                     />
                 </article>
                 <article className="input-group">
-                    <label htmlFor="repeatPassword">Repeat Password*</label>
+                    <label htmlFor="repeatPassword">Repeat Password</label>
+                    <p className="input-error">* Mandatory fields</p>
                     <i className="fa-solid fa-repeat"></i>
                     <input
                         id="repeatPassword"
@@ -69,9 +83,6 @@ export default function Register() {
                         name="repeatPassword"
                         placeholder="********"
                     />
-                </article>
-                <article className="input-group">
-                    <p className="message-field">* Mandatory fields</p>
                 </article>
                 <article className="input-group">
                     <button className="action-button" >Register</button>
