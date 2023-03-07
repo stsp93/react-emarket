@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getItemDetails } from '../../api/data';
+import { getItemDetails } from '../../services/api/data';
 import { useParams } from 'react-router-dom';
 import formatDate from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
