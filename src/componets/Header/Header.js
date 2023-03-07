@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
-import showSuccess from './../../utils/showSuccess';
+import showSuccess from '../../utils/showLoading';
 import { AuthContext } from './../../context/AuthContext';
 
 
@@ -74,7 +74,7 @@ export default function Header() {
                             <>
                                 {/* <!-- USER --> */}
                                 <li className={liClassName(activeStatus)}><NavLink className='nav__link' style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
-                                <li className={liClassName(activeStatus)}><NavLink className='nav__link' onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</NavLink></li>
+                                <li className={liClassName(activeStatus)}><button className='nav__link' onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</button></li>
                             </>
                             : <>
                                 {/* <!-- GUEST --> */}
