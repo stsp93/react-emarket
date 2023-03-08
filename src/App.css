@@ -276,7 +276,10 @@ main {
   padding-left: 5rem;
   border-radius: 5px;
   width: 100%;
+  resize: none;
 }
+
+
 
 .input-group .action-button {
   width: 20rem;
