@@ -1,26 +1,39 @@
 import { Link } from 'react-router-dom';
 import Carousel from '../Carousel/Carousel';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ModalContext } from './../../context/ModalContext';
-import OwnOffer from './OwnOffer/OwnOffer';
+import OfferCard from '../OfferCard/OfferCard';
+import { getProfile } from '../../services/api/data';
 
-export default function Profile() {  
-    const {updateModal} = useContext(ModalContext)
+export default function Profile() {
+    const { updateModal } = useContext(ModalContext);
+    const [profile, setProfile] = useState();
+
+    console.log(profile);
+
+    useEffect(() => {
+        (async () => {
+            const res = await getProfile();
+            setProfile(res);
+        })();
+    },[])
+
     return (
         <section>
             <Carousel />
             {/* Profile links */}
             <div className="profile__links">
-                <Link className='profile__link profile__new-message' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
+                <Link className={`profile__link ${profile?.hasNewReplies && 'profile__new-message'} `} to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
                 <button onClick={() => updateModal('Create')} className='profile__link' to="/user/messages"><i className="fa-solid fa-file-circle-plus"></i>Create Listing</button>
             </div>
 
             {/* Listings Content */}
             <h2 className="title main-title">Your Listings</h2>
             <ul className="offers-list">
-                <OwnOffer />
+                {profile?.ownListings && profile.ownListings.map(offer => <OfferCard key={offer._id} {...offer} />)}
             </ul>
 
+            {/* Pagination */}
             <div className="pagination">
                 <button className="pagination-arrow"><i className="fa-solid fa-chevron-left"></i></button>
                 <p className="page">1/2</p>
