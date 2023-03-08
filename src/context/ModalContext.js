@@ -6,9 +6,14 @@ export const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
 
     const [modal, setModal] = useState(null);
+    const [modalProps, setModalProps] = useState({})
 
     function updateModal(nextModal) {
         setModal(nextModal);
+    }
+
+    function updateModalProps(modalProps) {
+        setModalProps(modalProps);
     }
 
     function closeModal() {
@@ -19,6 +24,8 @@ export const ModalProvider = ({ children }) => {
         {
             modal,
             updateModal,
+            updateModalProps,
+            modalProps,
             closeModal,
         }
     }

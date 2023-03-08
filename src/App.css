@@ -47,7 +47,7 @@ main {
 /* Modal */
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 5vh;
   left: 50%;
   transform: translate(-50%, 0);
@@ -57,7 +57,7 @@ main {
   border: 3px solid var(--zomp);
   border-radius: 10px;
 
-  z-index: 10;
+  z-index: 12;
 }
 
 .overlay {
@@ -348,6 +348,7 @@ main {
 .profile__link {
   position: relative;
   font-size: 3rem;
+  color: inherit;
 }
 
 .profile__new-message::before {

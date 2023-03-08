@@ -1,96 +1,24 @@
 import { Link } from 'react-router-dom';
 import Carousel from '../Carousel/Carousel';
+import { useContext } from 'react';
+import { ModalContext } from './../../context/ModalContext';
+import OwnOffer from './OwnOffer/OwnOffer';
 
 export default function Profile() {  
-
+    const {updateModal} = useContext(ModalContext)
     return (
         <section>
             <Carousel />
+            {/* Profile links */}
             <div className="profile__links">
                 <Link className='profile__link profile__new-message' to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
-                <Link className='profile__link' to="/user/messages"><i className="fa-solid fa-file-circle-plus"></i>Create Listing</Link>
+                <button onClick={() => updateModal('Create')} className='profile__link' to="/user/messages"><i className="fa-solid fa-file-circle-plus"></i>Create Listing</button>
             </div>
+
+            {/* Listings Content */}
             <h2 className="title main-title">Your Listings</h2>
             <ul className="offers-list">
-                <li>
-                    <article className="offer-card">
-                        <div className="offer-wrapper">
-                            <Link to="" className="offer-link">
-                                <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </Link>
-                            <div className="offer-text">
-                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
-                                </Link>
-                                <p className="location">Burgas, Bulgaria</p>
-                                <div className="action-buttons">
-                                    <button className="profile-edit">Edit</button>
-                                    <button className="profile-delete">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="price"><strong>20.99</strong> $</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article className="offer-card">
-                        <div className="offer-wrapper">
-                            <Link to="" className="offer-link">
-                                <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </Link>
-                            <div className="offer-text">
-                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
-                                </Link>
-                                <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-action">
-                                    <button className="profile-edit">Edit</button>
-                                    <button className="profile-delete">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="price"><strong>20.99</strong> $</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article className="offer-card">
-                        <div className="offer-wrapper">
-                            <Link to="" className="offer-link">
-                                <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </Link>
-                            <div className="offer-text">
-                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
-                                </Link>
-                                <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-action">
-                                    <button className="profile-edit">Edit</button>
-                                    <button className="profile-delete">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="price"><strong>20.99</strong> $</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article className="offer-card">
-                        <div className="offer-wrapper">
-                            <Link to="" className="offer-link">
-                                <img className="offer-img" src="/images/clothing.jpg" alt="" />
-                            </Link>
-                            <div className="offer-text">
-                                <Link className="offer-title offer-link" to="">Brand new Nice Thingy that's red
-                                </Link>
-                                <p className="location">Burgas, Bulgaria</p>
-                                <div className="profile-action">
-                                    <button className="profile-edit">Edit</button>
-                                    <button className="profile-delete">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="price"><strong>20.99</strong> $</p>
-                    </article>
-                </li>
+                <OwnOffer />
             </ul>
 
             <div className="pagination">

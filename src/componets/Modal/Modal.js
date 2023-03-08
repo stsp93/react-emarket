@@ -3,6 +3,8 @@ import Login from './Login/Login';
 import { useState, useEffect } from 'react';
 import Overlay from "./Overlay";
 import Loading from "./Loading/Loading";
+import Edit from "./Edit/Edit";
+import Create from './Create/Create';
 
 
 export default function Modal(props) {
@@ -16,7 +18,9 @@ export default function Modal(props) {
     const modalMapper = {
         'Register': <Register />,
         'Login': <Login />,
-        'Loading': <Loading />
+        'Loading': <Loading />,
+        'Edit': <Edit />,
+        'Create': <Create />
     }
 
 
