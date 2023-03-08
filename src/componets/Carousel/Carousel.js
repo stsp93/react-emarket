@@ -3,6 +3,7 @@ import './Carousel.css'
 import { useEffect, useState } from 'react';
 import Slide from './Slide/Slide';
 import { getAllCategories } from '../../services/api/data';
+import Dot from './Dot/Dot';
 
 
 export default function Carousel() {
@@ -44,10 +45,16 @@ export default function Carousel() {
     setActiveIndex(i => i + 1)
   }
 
+  function indexUpdate(i) {
+    setActiveIndex(i)
+  }
 
   return (
     <article className="carousel">
       {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i === activeIndex} />)}
+      <ul className='carousel__dots'>
+      {categories && categories.map((category, i) => <Dot key={category[0]} indexHandle={{indexUpdate, i}} active={i === activeIndex} />)}
+      </ul>
 
       <button onClick={prevSlide} className="carousel__prev carousel__button">
         <i className="fa-solid fa-chevron-left"></i>

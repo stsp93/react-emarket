@@ -69,6 +69,25 @@
     transform: translate(10%, -110%);
   }
 
+  .carousel__dots{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top:100%;
+    transform: translate(-50%, -150%);
+    z-index: 12;
+
+    color: var(--honeydew);
+  }
+
+  .carousel__dot {
+    /* z-index: 12; */
+  }
+
+  .carousel__dot:hover {
+    cursor: pointer;
+  }
+
 
   @media screen and (min-width: 1100px) {
   
