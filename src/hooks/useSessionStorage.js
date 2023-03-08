@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-export default function useSessionStorage() {
-    const [value, setValue] = useState(() =>  JSON.parse(sessionStorage.getItem('session')));
+export default function useSessionStorage(key) {
+    const [value, setValue] = useState(() =>  JSON.parse(sessionStorage.getItem(key)));
 
     function setSessionStorage(newValue) {
         if(newValue){
-            sessionStorage.setItem('session', JSON.stringify(newValue))
+            sessionStorage.setItem(key, JSON.stringify(newValue))
             setValue(newValue);
         } else {
-            sessionStorage.removeItem('session');
+            sessionStorage.removeItem(key);
             setValue(null);
         }
     }
