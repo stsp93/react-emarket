@@ -78,14 +78,13 @@
     z-index: 12;
 
     color: var(--honeydew);
+
   }
 
-  .carousel__dot {
-    /* z-index: 12; */
-  }
 
   .carousel__dot:hover {
     cursor: pointer;
+    color: var(--zomp);
   }
 
 

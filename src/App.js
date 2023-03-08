@@ -16,7 +16,7 @@ import useSessionStorage from './hooks/useSessionStorage';
 import { AuthContext } from './context/AuthContext';
 
 function App() {
-    const [auth, setAuth] = useSessionStorage();
+    const [auth, setAuth] = useSessionStorage('session');
 
     return (
         <>
