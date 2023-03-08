@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import formatDate from '../../../utils/formatDate';
+import formatDate from '../../utils/formatDate';
 
 export default function OfferCard(props) {
     const {_id, title, imageUrl, price, location, createdOn} = props

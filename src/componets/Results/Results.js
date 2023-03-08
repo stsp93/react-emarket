@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { getCategoryResults, searchItems } from '../../services/api/data';
 import { useState, useEffect } from 'react';
 
-import OfferCard from './OfferCard/OfferCard';
+import OfferCard from '../OfferCard/OfferCard';
 import Carousel from './../Carousel/Carousel';
 
 
