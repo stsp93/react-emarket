@@ -33,11 +33,19 @@
   
     font-size: 4rem;
     color: var(--white);
+    width: 5rem;
+    border-radius: 20%;
+    border: 2px solid var(--honeydew);
     z-index: 5;
+  }
+
+  .carousel__button i {
+    margin: auto;
   }
   
   .carousel__button:hover {
     color: var(--zomp);
+    border-color: var(--zomp);
   }
   .carousel__link {
     height: 100%;
@@ -59,14 +67,14 @@
   }
   
   .carousel__next {
-    top: 100%;
+    top: 50%;
     left: 100%;
-    transform: translate(-110%, -110%);
+    transform: translate(-110%, 0%);
   }
   .carousel__prev {
-    top: 100%;
+    top: 50%;
     left: 0;
-    transform: translate(10%, -110%);
+    transform: translate(10%, 0%);
   }
 
   .carousel__dots{
