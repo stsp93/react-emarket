@@ -9,9 +9,10 @@ import { AuthContext } from './../../../context/AuthContext';
 
 export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
-    const {setAuth} = useContext(AuthContext)
+    const { setAuth } = useContext(AuthContext)
     const [errors, setErrors] = useState({});
-    const [disable, setDisable] = useState(true);
+    const [disable, setDisable] = useState({});
+ 
     const [payload, setPayload] = useState({
         email: '',
         username: '',
@@ -20,18 +21,32 @@ export default function Register() {
     });
 
     useEffect(() => {
-       if(Object.values(errors).some(v => v !== null)) {
-        setDisable(true)
-       } else {
-        setDisable(false)
-       }
-       console.log(Object.values(errors).some(v => v !== null));
-    },[errors])
+        if (Object.values(errors).some(v => v !== null)) {
+            setDisable(true)
+        } else {
+            setDisable(false)
+        }
+        console.log(Object.values(errors).some(v => v !== null));
+    }, [errors])
 
     function onChange(e) {
         setPayload(x => ({ ...x, [e.target.name]: e.target.value }))
     }
+    
+    async function onSubmit(e) {
+        e.preventDefault();
+        try {
+            const { email, username, password } = payload
+            const user = await userService.register(email, username, password);
+            setAuth(user);
+            // Show Loading
+            showLoading(updateModal, closeModal);
+        } catch (error) {
+            setErrors(error)
+        }
+    }
 
+    // Validations 
     function minLength(e) {
         const key = e.target.name;
         validationApi.minLength(payload, key, 3, setErrors)
@@ -40,19 +55,6 @@ export default function Register() {
         validationApi.passwordsMatch(payload, setErrors)
     }
 
-    async function onSubmit(e) {
-        e.preventDefault();
-        try {
-            const {email, username, password} = payload
-            const user =await userService.register(email, username, password);
-            setAuth(user);
-            // Show Loading
-            showLoading(updateModal, closeModal);
-        } catch (error) {
-            setErrors(error)
-        }
-
-    }
 
     return (
         <>
@@ -97,7 +99,7 @@ export default function Register() {
                     <input
                         value={payload.password}
                         onChange={onChange}
-                        onBlur={minLength}
+                        onBlur={minLength && passwordsMatch}
                         id="password"
                         type="password"
                         name="password"

@@ -11,6 +11,7 @@ import { AuthContext } from './../../context/AuthContext';
 export default function Header() {
     const { updateModal, closeModal } = useContext(ModalContext);
     const { auth, setAuth } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     // Active nav links styling
 
@@ -30,7 +31,6 @@ export default function Header() {
 
     // Search logic
 
-    const navigate = useNavigate()
     const [query, setQuery] = useState('');
 
     function handleSearchClick(e) {
@@ -51,9 +51,9 @@ export default function Header() {
     async function onLogout() {
         try {
             userService.logout()
-            setAuth(null)
+            setAuth(null);
             // Show Success window and remove it after 2s
-            showSuccess(updateModal, closeModal)
+            showSuccess(updateModal, closeModal);
         } catch (error) {
             console.log(error);
         }

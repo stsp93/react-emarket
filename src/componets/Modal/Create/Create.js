@@ -1,63 +1,142 @@
 import { ModalContext } from './../../../context/ModalContext';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import validationApi from './../../../utils/validationApi';
+import CategorySelect from '../CategorySelect/CategorySelect';
+import * as itemService from '../../../services/api/data';
 
 export default function Create() {
+    const { closeModal,modalProps:addOwnListing } = useContext(ModalContext)
+    const [payload, setPayload] = useState({ title: '', description: '', price: '', imageUrl: '', category:'Electronics'});
+    const [disable, setDisable] = useState(true);
+    const [errors, setErrors] = useState({});
 
-    const { closeModal } = useContext(ModalContext)
+
+    useEffect(() => {
+        if (Object.values(errors).some(v => v !== null)) {
+            setDisable(true)
+        } else {
+            setDisable(false)
+        }
+    }, [errors])
+
+    function onChange(e) {
+        const name = e.target.name
+        setPayload(x => ({ ...x, [name]: e.target.value }));
+        console.log(payload);
+        
+    }
+
+    // Validations
+    function minLength(e) {
+        validationApi.minLength(payload, 'title', 3, setErrors)
+    }
+
+    function isEmpty(e) {
+        const key = e.target.name
+        validationApi.isEmpty(key, payload, setErrors);
+    }
+
+    function validImgUrl() {
+        validationApi.validImageUrl(payload, setErrors)
+    }
+
+    function isPositiveNumber() {
+        validationApi.positiveNumber(payload, setErrors)
+    }
+
+    // on Submitting
+
+    async function onSubmit(e) {
+        e.preventDefault()
+
+        try {
+            const res = await itemService.createListing(payload);
+            addOwnListing(res);
+            closeModal()
+        } catch (error) {
+            console.log(payload);
+            setErrors(error);
+        }
+
+    }
+
     return (
         <>
             <button onClick={closeModal} className="close-modal">
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
-            <form class="user-form" method="POST">
-                <h2 class="title form-title">Create</h2>
-                <article class="input-group">
-                    <label for="title">Title*</label>
-                    <p className="input-error">Error lorem</p>
-                    <i class="fa-solid fa-tag"></i>
+            <form onSubmit={onSubmit} className="user-form">
+                <h2 className="title form-title">Create</h2>
+                <article className="input-group">
+                    <label htmlFor="title">Title</label>
+                    {errors && <p className="input-error">{errors.title}</p>}
+                    <i className="fa-solid fa-tag"></i>
                     <input
+                        value={payload.title}
+                        onChange={onChange}
+                        onBlur={minLength}
                         id="title"
                         name="title"
                         type="text"
                         placeholder="Red Hat"
                     />
                 </article>
-                <article class="input-group">
-                    <label for="category">Category*</label>
-                    <p className="input-error">Error lorem</p>
-                    <i class="fa-solid fa-list-ul"></i>
-                    <select name="category" id="category">
-                        <option value="Clothing">Clothing</option>
-                        <option value="Electronics">Electronics</option>
-                        <option value="Deals">Deals</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Hobbies">Hobbies</option>
-                        <option value="Housing">Housing</option>
-                    </select>
+                <article className="input-group">
+                    <label htmlFor="category">Category</label>
+                    <i className="fa-solid fa-list-ul"></i>
+                    <CategorySelect value={payload.category} onChange={onChange} />
                 </article>
-                <article class="input-group">
-                    <label for="description">Description*</label>
-                    <textarea name="description" id="description" cols="30" rows="5" placeholder="Describe the item"></textarea>
-                    <i class="fa-solid fa-pencil"></i>
+                <article className="input-group">
+                    <label htmlFor="description">Description</label>
+                    {errors && <p className="input-error">{errors.description}</p>}
+                    <textarea
+                        value={payload.description}
+                        onChange={onChange}
+                        onBlur={isEmpty}
+                        name="description"
+                        id="description"
+                        cols="30" rows="5"
+                        placeholder="Describe the item" />
+                    <i className="fa-solid fa-pencil"></i>
                 </article>
 
 
-                <article class="input-group">
-                    <label for="price">Price*</label>
-                    <p className="input-error">Error lorem</p>
-                    <i class="fa-solid fa-money-check-dollar"></i>
+                <article className="input-group">
+                    <label htmlFor="price">Price</label>
+                    {errors && <p className="input-error">{errors.price}</p>}
+                    <i className="fa-solid fa-money-check-dollar"></i>
                     <input
+                        value={payload.price}
+                        onChange={onChange}
+                        onBlur={isPositiveNumber}
                         id="price"
                         type="text"
                         name="price"
                         placeholder="20.99"
                     />
                 </article>
-                <article class="input-group">
-                    <label for="imageUrl">Image Url</label>
-                    <p className="input-error">Error lorem</p>
-                    <i class="fa-solid fa-image"></i>
+                <article className="input-group">
+                    <label htmlFor="location">Location</label>
+                    {errors && <p className="input-error">{errors.location}</p>}
+                    <i className="fa-solid fa-money-check-dollar"></i>
                     <input
+                        value={payload.location}
+                        onChange={onChange}
+                        onBlur={isEmpty}
+                        id="location"
+                        type="text"
+                        name="location"
+                        placeholder="New York City, NY"
+                    />
+                </article>
+                <article className="input-group">
+                    <label htmlFor="imageUrl">Image Url</label>
+                    {errors && <p className="input-error">{errors.imageUrl}</p>}
+                    <i className="fa-solid fa-image"></i>
+                    <input
+                        value={payload.imageUrl}
+                        onChange={onChange}
+                        onBlur={validImgUrl}
                         id="imageUrl"
                         type="text"
                         name="imageUrl"
@@ -65,10 +144,10 @@ export default function Create() {
                     />
                 </article>
 
-                <p className="input-error">Error lorem</p>
+                {errors.message && <p className="input-error">{errors.message}</p>}
 
-                <article class="input-group">
-                    <button disabled class="action-button">Create</button>
+                <article className="input-group">
+                    <button disabled={disable} className="action-button">Create</button>
                 </article>
             </form>
         </>

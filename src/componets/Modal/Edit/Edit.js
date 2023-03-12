@@ -1,10 +1,13 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ModalContext } from './../../../context/ModalContext';
 
 export default function Edit() {
-    const { closeModal,modalProps } = useContext(ModalContext);
-
+    const { closeModal,modalProps, updateModalProps } = useContext(ModalContext);
     const [payload, setPayload] = useState(modalProps);
+
+    useEffect(() => {
+        return () => updateModalProps({})
+    },[updateModalProps])
 
     function onChange(e) {
         setPayload(x => ({ ...x, [e.target.name]: e.target.value }))

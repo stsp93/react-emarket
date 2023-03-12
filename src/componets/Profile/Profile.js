@@ -6,17 +6,26 @@ import OfferCard from '../OfferCard/OfferCard';
 import { getProfile } from '../../services/api/data';
 
 export default function Profile() {
-    const { updateModal } = useContext(ModalContext);
+    const { updateModal, updateModalProps } = useContext(ModalContext);
     const [profile, setProfile] = useState();
-
-    console.log(profile);
+    const [results, setResults] = useState([])
 
     useEffect(() => {
         (async () => {
             const res = await getProfile();
             setProfile(res);
+            setResults(res.ownListings)
         })();
-    },[])
+    },[]);
+
+    function addOwnListing(listing) {
+        setResults(s => [...s, listing])
+    }
+
+    function onCreateClick() {
+        updateModal('Create');
+        updateModalProps(() => addOwnListing);
+    }
 
     return (
         <section>
@@ -24,13 +33,13 @@ export default function Profile() {
             {/* Profile links */}
             <div className="profile__links">
                 <Link className={`profile__link ${profile?.hasNewReplies && 'profile__new-message'} `} to="/user/messages"><i className="fa-solid fa-message"></i>Messages</Link>
-                <button onClick={() => updateModal('Create')} className='profile__link' to="/user/messages"><i className="fa-solid fa-file-circle-plus"></i>Create Listing</button>
+                <button onClick={onCreateClick} className='profile__link' ><i className="fa-solid fa-file-circle-plus"></i>Create Listing</button>
             </div>
 
             {/* Listings Content */}
             <h2 className="title main-title">Your Listings</h2>
             <ul className="offers-list">
-                {profile?.ownListings && profile.ownListings.map(offer => <OfferCard key={offer._id} {...offer} />)}
+                {results.length && results.map(offer => <OfferCard key={offer._id} {...offer} />)}
             </ul>
 
             {/* Pagination */}

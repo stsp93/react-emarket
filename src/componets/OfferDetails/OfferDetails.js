@@ -34,7 +34,7 @@ useEffect(() => {
                             <p className="details-owner">Posted by: <em>{offer.owner}</em></p>
                     </div>
                     <div className="details-buttons">
-                        <button className="details-button">Edit</button>
+                        <Link to="/listing/123/edit" className="details-button">Edit</Link>
                         <button className="details-button">Delete</button>
                         <button className="details-button cta">Contact</button>
                         <button className="details-button">Back</button>
