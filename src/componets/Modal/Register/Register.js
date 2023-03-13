@@ -4,6 +4,7 @@ import * as userService from "../../../services/api/user";
 import showLoading from './../../../utils/showLoading';
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 
 
@@ -123,6 +124,9 @@ export default function Register() {
                 {errors.message && <p className="input-error">{errors.message}</p>}
                 <article className="input-group">
                     <button disabled={disable} className="action-button" >Register</button>
+                </article>
+                <article className="input-group">
+                    <p >Alreaady have account? <button onClick={() => updateModal('Login')} className="additional-button">Sign in</button></p>
                 </article>
             </form>
         </>

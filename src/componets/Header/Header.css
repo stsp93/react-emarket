@@ -102,6 +102,10 @@ header {
     display: none;
   }
 
+  .nav__link {
+    display: block;
+  }
+
   .header__nav ul {
     font-size: 3rem;
 

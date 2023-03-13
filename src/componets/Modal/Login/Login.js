@@ -55,6 +55,9 @@ export default function Login() {
                 <article className="input-group">
                     <input className="action-button" type="submit" value="Login"/>
                 </article>
+                <article className="input-group">
+                    <p>Don't have an account? <button onClick={() => updateModal('Register')} className="additional-button">Sign up</button></p>
+                </article>
             </form>
         </>
     )

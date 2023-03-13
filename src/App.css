@@ -322,6 +322,18 @@ main {
   background-color: var(--honeydew);
 }
 
+.additional-button {
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--dark-gray);
+  text-decoration: underline;
+}
+
+.additional-button:hover {
+  color: var(--gray);
+}
+
+
 /* input icons */
 
 .input-group i {
