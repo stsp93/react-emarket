@@ -123,7 +123,7 @@ export default function Register() {
                     <button disabled={disable} className="action-button" >Register</button>
                 </article>
                 <article className="input-group">
-                    <p >Alreaady have account? <button onClick={() => updateModal('Login')} className="additional-button">Sign in</button></p>
+                    <p >Already have account? <button onClick={() => updateModal('Login')} className="additional-button">Sign in</button></p>
                 </article>
             </form>
         </>
