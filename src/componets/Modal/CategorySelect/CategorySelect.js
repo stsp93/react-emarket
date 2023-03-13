@@ -17,7 +17,7 @@ export default function CategorySelect(props) {
         })()
     }, []);
     return (
-        <select value={value} onChange={onChange} name="category" id="category">
+        <select value={value || 'Electronics'} onChange={onChange} name="category" id="category">
             {categories.length && categories.map(c => <option key={c[0]} value={c[0]}>{c[0]}</option>)}
         </select>
     )

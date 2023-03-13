@@ -17,12 +17,14 @@ export default function Create() {
         } else {
             setDisable(false)
         }
+
+
     }, [errors])
 
     function onChange(e) {
         const name = e.target.name
         setPayload(x => ({ ...x, [name]: e.target.value }));
-        
+                console.log(payload);
     }
 
     // Validations

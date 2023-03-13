@@ -23,10 +23,16 @@ export default function OfferDetails() {
     }, [offerId, auth])
 
 
+    function editListing(newOffer) {
+        setOffer(newOffer)
+    }
+
     // onClick functions
+
 
     function onEdit() {
         updateModal('Edit');
+        updateModalProps({offer, editListing})
     }
     
     function onDelete() {
@@ -35,7 +41,8 @@ export default function OfferDetails() {
     }
 
     function onContact() {
-
+        updateModal('SendMessage');
+        updateModalProps(offer.owner)
     }
 
     return (
