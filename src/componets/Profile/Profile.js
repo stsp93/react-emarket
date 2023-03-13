@@ -9,14 +9,16 @@ export default function Profile() {
     const { updateModal, updateModalProps } = useContext(ModalContext);
     const [profile, setProfile] = useState();
     const [results, setResults] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         (async () => {
             const res = await getProfile();
             setProfile(res);
-            setResults(res.ownListings)
+            setResults(res.ownListings);
+            setLoading(false)
         })();
-    },[]);
+    }, []);
 
     function addOwnListing(listing) {
         setResults(s => [...s, listing])
@@ -36,20 +38,27 @@ export default function Profile() {
                 <button onClick={onCreateClick} className='profile__link' ><i className="fa-solid fa-file-circle-plus"></i>Create Listing</button>
             </div>
 
-            {/* Listings Content */}
-            <h2 className="title main-title">Your Listings</h2>
-            <ul className="offers-list">
-                {results.length && results.map(offer => <OfferCard key={offer._id} {...offer} />)}
-            </ul>
 
-            {/* Pagination */}
-            <div className="pagination">
-                <button className="pagination-arrow"><i className="fa-solid fa-chevron-left"></i></button>
-                <p className="page">1/2</p>
-                <button className="pagination-arrow"><i className="fa-solid fa-chevron-right"></i></button>
-            </div>
-            {/* <!--  if 0 offers  --> */}
-            <p>No offers found...</p>
+            {/* Listings Content */}
+            {loading ? <h2>Loading...</h2>
+                : <>
+                    <h2 className="title main-title">Your Listings</h2>
+                    <ul className="offers-list">
+                        {results.map(offer => <OfferCard key={offer._id} {...offer} />)}
+                    </ul>
+
+                    {results.length ?
+                        <div className="pagination">
+                            <button className="pagination-arrow"><i className="fa-solid fa-chevron-left"></i></button>
+                            <p className="page">1/2</p>
+                            <button className="pagination-arrow"><i className="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        :
+                        <h3>No offers found...</h3>
+                    }
+
+                </>}
+
         </section>
 
     )
