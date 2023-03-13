@@ -54,6 +54,7 @@ export default function OfferDetails() {
                     <h3 className="details-title">
                         {offer.title}
                     </h3>
+                    <p className="location">{offer.location}</p>
                     <p className="details-date">{formatDate(offer.createdOn)}</p>
                     <p className="price">Price: <strong>{offer.price}</strong> $</p>
                     <p className="details-description"><strong>Description: </strong>
