@@ -2,7 +2,7 @@ import { ModalContext } from './../../../context/ModalContext';
 import { useContext, useState, useEffect } from 'react';
 import validationApi from './../../../utils/validationApi';
 import CategorySelect from '../CategorySelect/CategorySelect';
-import * as itemService from '../../../services/api/data';
+import * as apiService from '../../../services/api/data';
 
 export default function Create() {
     const { closeModal,modalProps:addOwnListing } = useContext(ModalContext)
@@ -22,7 +22,6 @@ export default function Create() {
     function onChange(e) {
         const name = e.target.name
         setPayload(x => ({ ...x, [name]: e.target.value }));
-        console.log(payload);
         
     }
 
@@ -50,7 +49,7 @@ export default function Create() {
         e.preventDefault()
 
         try {
-            const res = await itemService.createListing(payload);
+            const res = await apiService.createListing(payload);
             addOwnListing(res);
             closeModal()
         } catch (error) {

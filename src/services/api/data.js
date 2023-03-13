@@ -6,7 +6,8 @@ const endpoints = {
     'create': '/items',
     'byId': (id)  => `/items/${id}`,
     'search': (query, category) => `/items?q=${query}&cat=${category}`,
-    'profile': '/users/profile'
+    'profile': '/users/profile',
+    'messages': '/users/replies'
 }
 
 export async function getAllCategories() {
@@ -46,5 +47,10 @@ export async function searchItems(query) {
 
 export async function getProfile() {
     const res = await api.get(endpoints.profile);
+    return res;
+}
+
+export async function getMessages() {
+    const res = await api.get(endpoints.messages);
     return res;
 }
