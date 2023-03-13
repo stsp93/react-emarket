@@ -5,9 +5,11 @@ import Overlay from "./Overlay";
 import Loading from "./Loading/Loading";
 import Edit from "./Edit/Edit";
 import Create from './Create/Create';
+import Confirm from './Confirm/Confirm';
 
 
 export default function Modal(props) {
+    const {modal} = props
     const [opacity, setOpacity] = useState(0);
     
     useEffect(() => {
@@ -18,16 +20,21 @@ export default function Modal(props) {
     const modalMapper = {
         'Register': <Register />,
         'Login': <Login />,
-        'Loading': <Loading />,
         'Edit': <Edit />,
-        'Create': <Create />
+        'Loading': <Loading />,
+        'Create': <Create />,
+        'Confirm': <Confirm />
     }
 
+    function showModal() {
+        window.scrollTo(0, 0)
+        return modalMapper[modal]
+    }
 
     return (
         <>
             <div  style={{ opacity }} className="modal">
-                {modalMapper[props.modal]}
+                {modal && showModal()}
             </div>
             <Overlay />
         </>

@@ -4,9 +4,6 @@ import * as userService from "../../../services/api/user";
 import showLoading from './../../../utils/showLoading';
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
-import { Link } from 'react-router-dom';
-
-
 
 export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
