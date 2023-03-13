@@ -24,8 +24,17 @@ header {
     flex-direction: column;
   }
   
-  .header__nav li {
+  .nav__link {
+    display: inline;
+    font-weight: 600;
     font-size: 2.4rem;
+    color: var(--gunmetal);
+    font-family: inherit;
+  }
+
+  .nav__link:hover {
+    color: var(--zomp);
+    transform: translate(0, 5%);
   }
   
   .nav__li {
@@ -101,18 +110,7 @@ header {
     padding: 0.2rem;
   }
 
-  .nav__link {
-    display: inline;
-    font-weight: 600;
-    font-size: 2.4rem;
-    color: var(--gunmetal);
-    font-family: inherit;
-  }
 
-  .nav__link:hover {
-    color: var(--zomp);
-    transform: translate(0, 5%);
-  }
   
   .nav__li {
     height: 3.2rem;
