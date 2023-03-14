@@ -3,17 +3,18 @@ import { useContext } from 'react';
 import { ModalContext } from './../../../context/ModalContext';
 import * as apiService from '../../../services/api/data';
 import { useNavigate } from 'react-router-dom';
-import showLoading from './../../../utils/showLoading';
+import {useLoading} from '../../../hooks/useLoading';
 
 
 
 export default function Confirm() {
-    const {closeModal,updateModal, modalData} = useContext(ModalContext);
+    const {closeModal, modalData} = useContext(ModalContext);
     const navigate = useNavigate();
+    const showLoading = useLoading()
 
     async function onConfirm() {
         await apiService.deleteItemListing(modalData);
-        showLoading(updateModal, closeModal);
+        showLoading();
         navigate('/user/profile');
     }
 

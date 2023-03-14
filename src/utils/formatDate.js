@@ -1,3 +1,8 @@
+
+/**
+ * @param {String} dateString 
+ * @returns {String} `dd.mm.yyyy at hh:mm`
+ */
 export default function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');

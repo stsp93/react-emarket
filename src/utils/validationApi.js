@@ -1,4 +1,3 @@
-// TODO Rearange arguments like (payload, key, minLength, setError) to be (key, payload, minLength, setError)
 
 function minLength(payload, key, minLength, setError) {
 

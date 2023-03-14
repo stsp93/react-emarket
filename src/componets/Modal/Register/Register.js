@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import { ModalContext } from "../../../context/ModalContext"
 import * as userService from "../../../services/api/user";
-import showLoading from './../../../utils/showLoading';
+import  { useLoading } from '../../../hooks/useLoading';
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
 
@@ -10,6 +10,7 @@ export default function Register() {
     const { setAuth } = useContext(AuthContext)
     const [errors, setErrors] = useState({});
     const [disable, setDisable] = useState({});
+    const showLoading = useLoading()
  
     const [payload, setPayload] = useState({
         email: '',
@@ -38,7 +39,7 @@ export default function Register() {
             const user = await userService.register(email, username, password);
             setAuth(user);
             // Show Loading
-            showLoading(updateModal, closeModal);
+            showLoading();
         } catch (error) {
             setErrors(error)
         }

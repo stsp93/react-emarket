@@ -4,17 +4,17 @@ import { useContext, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
-import showSuccess from '../../utils/showLoading';
+import {useLoading} from '../../hooks/useLoading';
 import { AuthContext } from './../../context/AuthContext';
 
 
 export default function Header() {
-    const { updateModal, closeModal } = useContext(ModalContext);
-    const { auth, setAuth } = useContext(AuthContext)
-    const navigate = useNavigate()
+    const { updateModal } = useContext(ModalContext);
+    const { auth, setAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const showLoading = useLoading();
 
     // Active nav links styling
-
     const [activeStatus, setActive] = useState(false);
 
     function handleNavButton() {
@@ -26,11 +26,11 @@ export default function Header() {
         : undefined;
 
     const liClassName = (activeStatus) => {
+        // return `nav__li ${activeStatus ? 'nav__active' : ''}`
         return `nav__li ${activeStatus ? 'nav__active' : ''}`
     }
 
     // Search logic
-
     const [query, setQuery] = useState('');
 
     function handleSearchClick(e) {
@@ -39,7 +39,6 @@ export default function Header() {
         if (query === '') {
             return navigate('/');
         }
-
         navigate(`/search?q=${query}`);
     }
 
@@ -47,13 +46,13 @@ export default function Header() {
         setQuery(e.target.value);
     }
 
-    // Logout 
+    // Logout logic
     async function onLogout() {
         try {
             userService.logout()
             setAuth(null);
             // Show Success window and remove it after 2s
-            showSuccess(updateModal, closeModal);
+            showLoading();
         } catch (error) {
             console.log(error);
         }
@@ -65,10 +64,11 @@ export default function Header() {
 
             <div className="header__nav-wrapper">
                 <NavLink to="/"><img className="header__logo" src={logo} alt="Shop open e-market" /></NavLink>
-
                 <nav className="header__nav">
+                        
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
+                <em className='nav__link'>{auth && auth.email}</em>
                         <li className={liClassName(activeStatus)}><NavLink className='nav__link' style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
                         {auth ?
                             <>

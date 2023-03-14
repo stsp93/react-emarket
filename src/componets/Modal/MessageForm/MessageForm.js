@@ -1,14 +1,15 @@
 
 import { useContext, useState, useEffect } from 'react';
-import showLoading from '../../../utils/showLoading';
+import {useLoading} from '../../../hooks/useLoading';
 import validationApi from '../../../utils/validationApi';
 import { ModalContext } from '../../../context/ModalContext';
 import * as apiService from'../../../services/api/data'
 
 export default function SendMessage() {
-    const { closeModal, updateModal,updateModalData, modalData } = useContext(ModalContext)
+    const { closeModal,updateModalData, modalData } = useContext(ModalContext)
     const [payload, setPayload] = useState({username: typeof modalData === 'string' ? modalData : '', messageText:''});
     const [errors, setErrors] = useState({});
+    const showLoading = useLoading()
 
     useEffect(() => {
         return () => updateModalData(null)
@@ -31,7 +32,7 @@ export default function SendMessage() {
 
         try {
             await apiService.sendMessage(payload.username, payload.messageText);
-            showLoading(updateModal, closeModal);
+            showLoading();
         } catch (error) {
             setErrors(error)
         }

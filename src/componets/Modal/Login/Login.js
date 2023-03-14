@@ -1,24 +1,24 @@
 import {ModalContext} from "../../../context/ModalContext";
 import { useContext, useState } from 'react';
 import { login } from "../../../services/api/user";
-import showLoading from './../../../utils/showLoading';
+import {useLoading} from '../../../hooks/useLoading';
 import { AuthContext } from './../../../context/AuthContext';
 
 export default function Login() {
     const {closeModal, updateModal} = useContext(ModalContext);
     const {setAuth} = useContext(AuthContext)
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const showLoading = useLoading()
 
     async function onSubmit(e) {
         e.preventDefault();
 
         const {email, password} = Object.fromEntries(new FormData(e.target));
         try {
-            // TODO: validations
             const user = await login(email, password);
             setAuth(user)
             // Show Loading window and remove it after 2s
-            showLoading(updateModal, closeModal);
+            showLoading();
         }catch(error) {
             setError('Email or Password are incorrect')
         }
