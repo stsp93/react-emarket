@@ -15,6 +15,6 @@ export function useLoading() {
 
         setTimeout(() => {
             closeModal()
-        }, 2000)
+        }, 1000)
     }
 }

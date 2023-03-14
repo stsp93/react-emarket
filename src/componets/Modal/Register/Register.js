@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import { ModalContext } from "../../../context/ModalContext"
 import * as userService from "../../../services/api/user";
-import  { useLoading } from '../../../hooks/useLoading';
+import { useLoading } from '../../../hooks/useLoading';
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
 
@@ -9,9 +9,9 @@ export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
     const { setAuth } = useContext(AuthContext)
     const [errors, setErrors] = useState({});
-    const [disable, setDisable] = useState({});
+    const [disable, setDisable] = useState(true);
     const showLoading = useLoading()
- 
+
     const [payload, setPayload] = useState({
         email: '',
         username: '',
@@ -25,13 +25,12 @@ export default function Register() {
         } else {
             setDisable(false)
         }
-        console.log(Object.values(errors).some(v => v !== null));
     }, [errors])
 
     function onChange(e) {
         setPayload(x => ({ ...x, [e.target.name]: e.target.value }))
     }
-    
+
     async function onSubmit(e) {
         e.preventDefault();
         try {
@@ -98,7 +97,10 @@ export default function Register() {
                     <input
                         value={payload.password}
                         onChange={onChange}
-                        onBlur={minLength && passwordsMatch}
+                        onBlur={(e) => {
+                            minLength(e);
+                            passwordsMatch()
+                        }}
                         id="password"
                         type="password"
                         name="password"
@@ -112,7 +114,10 @@ export default function Register() {
                     <input
                         value={payload.repeatPassword}
                         onChange={onChange}
-                        onBlur={passwordsMatch}
+                        onBlur={(e) => {
+                            minLength(e);
+                            passwordsMatch()
+                        }}
                         id="repeatPassword"
                         type="password"
                         name="repeatPassword"

@@ -28,7 +28,7 @@ export default function Create() {
     }
 
     // Validations
-    function minLength(e) {
+    function minLength() {
         validationApi.minLength(payload, 'title', 3, setErrors)
     }
 
