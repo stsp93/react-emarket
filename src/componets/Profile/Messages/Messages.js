@@ -27,7 +27,7 @@ export default function Messages() {
     return (
         <>
         <Carousel />
-        <button onClick={() => updateModal('SendMessage')} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send a Message</button>
+        <button onClick={() => updateModal('MessageForm')} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send a Message</button>
             <h2 className="title main-title">Messages</h2>
 
             {messages.length ?
