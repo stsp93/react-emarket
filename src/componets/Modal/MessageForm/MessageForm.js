@@ -1,15 +1,18 @@
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import showLoading from '../../../utils/showLoading';
 import validationApi from '../../../utils/validationApi';
 import { ModalContext } from '../../../context/ModalContext';
 import * as apiService from'../../../services/api/data'
 
 export default function SendMessage() {
-    const { closeModal, updateModal, modalData } = useContext(ModalContext)
-    const [payload, setPayload] = useState({username: modalData || '', messageText:''});
+    const { closeModal, updateModal,updateModalData, modalData } = useContext(ModalContext)
+    const [payload, setPayload] = useState({username: typeof modalData === 'string' ? modalData : '', messageText:''});
     const [errors, setErrors] = useState({});
 
+    useEffect(() => {
+        return () => updateModalData(null)
+    })
 
     function onChange(e) {
         setPayload(p => ({...p, [e.target.name]: e.target.value}))
