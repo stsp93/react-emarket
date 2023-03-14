@@ -21,9 +21,7 @@ export default function Messages() {
     }, []);
 
     function removeComment(id) {
-        const deleteIndex = messages.findIndex(e => e._id === id);
-        console.log(deleteIndex);
-        setMessages(m => [m.slice(0,deleteIndex), m.slice(deleteIndex + 1)]);
+        setMessages(m => m.filter(x => x._id !== id));
     }
 
     return (

@@ -1,6 +1,7 @@
 import formatDate from "../../../../utils/formatDate"
 import { useContext } from 'react';
 import { ModalContext } from './../../../../context/ModalContext';
+import * as apiService from './../../../../services/api/data'
 
 export default function Message({username, reply, date, _id, removeComment}) {
     const {updateModal, updateModalData} = useContext(ModalContext);
@@ -8,6 +9,15 @@ export default function Message({username, reply, date, _id, removeComment}) {
     function onReply() {
         updateModal('MessageForm');
         updateModalData(username);
+    }
+
+    async function onDelete() {
+        try {
+            await apiService.deleteMessage(_id);
+            removeComment(_id)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -18,7 +28,7 @@ export default function Message({username, reply, date, _id, removeComment}) {
                 <p className="message-text"><strong>Message:</strong> <em>{reply}</em></p>
                 <div className="message-buttons action-buttons">
                     <button onClick={onReply} className="message-reply">Reply</button>
-                    <button onClick={removeComment.bind(null, _id)} className="message-delete">Delete</button>
+                    <button onClick={onDelete} className="message-delete">Delete</button>
                 </div>
             </div>
         </li>

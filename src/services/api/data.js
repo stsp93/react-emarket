@@ -8,7 +8,7 @@ const endpoints = {
     'search': (query, category) => `/items?q=${query}&cat=${category}`,
     'profile': '/users/profile',
     'messages': '/users/replies',
-    'messageById': (id) => `/users/reply/${id}`
+    'messageById': (id) => `/users/replies/${id}`
 }
 
 export async function getAllCategories() {
