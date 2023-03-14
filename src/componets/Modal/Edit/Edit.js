@@ -6,8 +6,8 @@ import * as apiService from './../../../services/api/data';
 
 
 export default function Edit() {
-    const { closeModal, modalProps } = useContext(ModalContext);
-    const {offer, editListing} = modalProps;
+    const { closeModal, modalData } = useContext(ModalContext);
+    const {offer, editListing} = modalData;
     const [payload, setPayload] = useState(offer);
     const [errors, setErrors] = useState({});
     const [disable, setDisable] = useState(true);

@@ -7,7 +7,8 @@ const endpoints = {
     'byId': (id)  => `/items/${id}`,
     'search': (query, category) => `/items?q=${query}&cat=${category}`,
     'profile': '/users/profile',
-    'messages': '/users/replies'
+    'messages': '/users/replies',
+    'messageById': (id) => `/users/reply/${id}`
 }
 
 export async function getAllCategories() {
@@ -52,5 +53,15 @@ export async function getProfile() {
 
 export async function getMessages() {
     const res = await api.get(endpoints.messages);
+    return res;
+}
+
+export async function sendMessage(username, message) {
+    const res = await api.post(endpoints.messages, {username, reply: message} );
+    return res;
+}
+
+export async function deleteMessage(messageId) {
+    const res = await api.del(endpoints.messageById(messageId));
     return res;
 }

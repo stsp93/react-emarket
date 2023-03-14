@@ -6,6 +6,7 @@ import Loading from "./Loading/Loading";
 import Edit from "./Edit/Edit";
 import Create from './Create/Create';
 import Confirm from './Confirm/Confirm';
+import MessageForm from "./MessageForm/MessageForm";
 
 
 export default function Modal(props) {
@@ -23,7 +24,8 @@ export default function Modal(props) {
         'Edit': <Edit />,
         'Loading': <Loading />,
         'Create': <Create />,
-        'Confirm': <Confirm />
+        'Confirm': <Confirm />,
+        'MessageForm': <MessageForm />
     }
 
     function showModal() {

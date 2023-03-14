@@ -5,7 +5,7 @@ import CategorySelect from '../CategorySelect/CategorySelect';
 import * as apiService from '../../../services/api/data';
 
 export default function Create() {
-    const { closeModal,modalProps:addOwnListing } = useContext(ModalContext)
+    const { closeModal,modalData:addOwnListing } = useContext(ModalContext)
     const [payload, setPayload] = useState({ title: '', description: '', price: '', imageUrl: '', category:'Electronics'});
     const [disable, setDisable] = useState(true);
     const [errors, setErrors] = useState({});

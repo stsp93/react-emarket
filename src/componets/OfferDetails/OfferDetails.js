@@ -8,7 +8,7 @@ import { ModalContext } from './../../context/ModalContext';
 
 export default function OfferDetails() {
     const { auth } = useContext(AuthContext)
-    const {updateModal, updateModalProps} = useContext(ModalContext)
+    const {updateModal, updateModalData} = useContext(ModalContext)
     const { offerId } = useParams()
     const [offer, setOffer] = useState({});
     const [isOwner, setIsOwner] = useState(false)
@@ -32,17 +32,17 @@ export default function OfferDetails() {
 
     function onEdit() {
         updateModal('Edit');
-        updateModalProps({offer, editListing})
+        updateModalData({offer, editListing})
     }
     
     function onDelete() {
         updateModal('Confirm');
-        updateModalProps(offer._id)
+        updateModalData(offer._id)
     }
 
     function onContact() {
-        updateModal('SendMessage');
-        updateModalProps(offer.owner)
+        updateModal('MessageForm');
+        updateModalData(offer.owner)
     }
 
     return (

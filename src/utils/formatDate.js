@@ -5,5 +5,5 @@ export default function formatDate(dateString) {
     const year = date.getFullYear().toString();
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `Listed on ${day}.${month}.${year} at ${hours}:${minutes}`;
+    return `${day}.${month}.${year} at ${hours}:${minutes}`;
   }

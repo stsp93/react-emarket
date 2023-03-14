@@ -1,11 +1,10 @@
 /* Messages */
 
 .message {
-    /* margin: auto; */
     padding-bottom: 1rem;
     border-bottom: 3px solid var(--zomp);
   
-    display: inline-flex;
+    display: flex;
     gap: 4rem;
   
   }

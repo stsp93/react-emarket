@@ -6,7 +6,7 @@ import OfferCard from '../OfferCard/OfferCard';
 import { getProfile } from '../../services/api/data';
 
 export default function Profile() {
-    const { updateModal, updateModalProps } = useContext(ModalContext);
+    const { updateModal, updateModalData } = useContext(ModalContext);
     const [profile, setProfile] = useState();
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(true)
@@ -26,7 +26,7 @@ export default function Profile() {
 
     function onCreateClick() {
         updateModal('Create');
-        updateModalProps(() => addOwnListing);
+        updateModalData(() => addOwnListing);
     }
 
     return (
