@@ -45,7 +45,7 @@ header {
     overflow: hidden;
     display: block;
   }
-  .nav__active {
+  .nav__visible {
     height: 3.5rem;
     opacity: 100%;
   }
