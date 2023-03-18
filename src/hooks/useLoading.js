@@ -4,6 +4,7 @@
 // }
 import { useContext } from 'react';
 import { ModalContext } from '../context/ModalContext';
+import { modals } from '../utils/modalUtils';
 
 
 
@@ -11,7 +12,7 @@ export function useLoading() {
     const { updateModal, closeModal } = useContext(ModalContext)
 
     return () => {
-        updateModal('Loading');
+        updateModal(modals.loading);
 
         setTimeout(() => {
             closeModal()

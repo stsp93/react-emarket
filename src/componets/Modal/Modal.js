@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Overlay from "./Overlay";
-import { modalMapper } from './modalMapper';
+import { modalMapper } from '../../utils/modalUtils';
 
 export default function Modal(props) {
     const {modal} = props

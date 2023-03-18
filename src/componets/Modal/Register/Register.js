@@ -4,6 +4,7 @@ import * as userService from "../../../services/api/user";
 import { useLoading } from '../../../hooks/useLoading';
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
+import { modals } from "../../../utils/modalUtils";
 
 export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
@@ -129,7 +130,7 @@ export default function Register() {
                     <button disabled={disable} className="action-button" >Register</button>
                 </article>
                 <article className="input-group">
-                    <p >Already have account? <button onClick={() => updateModal('Login')} className="additional-button">Sign in</button></p>
+                    <p >Already have account? <button onClick={() => updateModal(modals.login)} className="additional-button">Sign in</button></p>
                 </article>
             </form>
         </>

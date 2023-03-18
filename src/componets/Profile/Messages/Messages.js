@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import * as apiService from '../../../services/api/data';
 import Carousel from '../../Carousel/Carousel';
 import { ModalContext } from './../../../context/ModalContext';
+import { modals } from '../../../utils/modalUtils';
 
 export default function Messages() {
     const [messages, setMessages] = useState([]);
@@ -27,7 +28,7 @@ export default function Messages() {
     return (
         <>
         <Carousel />
-        <button onClick={() => updateModal('MessageForm')} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send a Message</button>
+        <button onClick={() => updateModal(modals.message)} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send a Message</button>
             <h2 className="title main-title">Messages</h2>
 
             {messages.length ?

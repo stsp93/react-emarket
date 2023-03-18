@@ -5,6 +5,7 @@ import formatDate from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './../../context/AuthContext';
 import { ModalContext } from './../../context/ModalContext';
+import { modals } from '../../utils/modalUtils';
 
 export default function OfferDetails() {
     const { auth } = useContext(AuthContext)
@@ -31,17 +32,17 @@ export default function OfferDetails() {
 
 
     function onEdit() {
-        updateModal('Edit');
+        updateModal(modals.edit);
         updateModalData({offer, editListing})
     }
     
     function onDelete() {
-        updateModal('Confirm');
+        updateModal(modals.confirm);
         updateModalData(offer._id)
     }
 
     function onContact() {
-        updateModal('MessageForm');
+        updateModal(modals.message);
         updateModalData(offer.owner)
     }
 

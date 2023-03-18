@@ -5,6 +5,7 @@ import { ModalContext } from './../../context/ModalContext';
 import OfferCard from '../OfferCard/OfferCard';
 import { getProfile } from '../../services/api/data';
 import Pagination from '../Pagination/Pagination';
+import { modals } from '../../utils/modalUtils';
 
 export default function Profile() {
     const { updateModal, updateModalData } = useContext(ModalContext);
@@ -26,7 +27,7 @@ export default function Profile() {
     }
 
     function onCreateClick() {
-        updateModal('Create');
+        updateModal(modals.create);
         updateModalData(() => addOwnListing);
     }
 

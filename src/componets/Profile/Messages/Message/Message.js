@@ -2,12 +2,13 @@ import formatDate from "../../../../utils/formatDate"
 import { useContext } from 'react';
 import { ModalContext } from './../../../../context/ModalContext';
 import * as apiService from './../../../../services/api/data'
+import { modals } from "../../../../utils/modalUtils";
 
 export default function Message({username, reply, date, _id, removeComment}) {
     const {updateModal, updateModalData} = useContext(ModalContext);
 
     function onReply() {
-        updateModal('MessageForm');
+        updateModal(modals.message);
         updateModalData(username);
     }
 

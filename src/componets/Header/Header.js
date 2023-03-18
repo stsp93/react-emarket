@@ -6,6 +6,7 @@ import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
 import {useLoading} from '../../hooks/useLoading';
 import { AuthContext } from './../../context/AuthContext';
+import { modals } from '../../utils/modalUtils';
 
 
 export default function Header() {
@@ -84,10 +85,10 @@ export default function Header() {
                             : <>
                                 {/* <!-- GUEST LINKS --> */}
                                 <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, 'Login')}><i className="fa-solid fa-user-check"></i>Login</button>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.login)}><i className="fa-solid fa-user-check"></i>Login</button>
                                 </li>
                                 <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, 'Register')} ><i className="fa-solid fa-file-signature"></i>Register</button>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.register)} ><i className="fa-solid fa-file-signature"></i>Register</button>
                                 </li>
                             </>
                         }

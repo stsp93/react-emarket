@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { login } from "../../../services/api/user";
 import {useLoading} from '../../../hooks/useLoading';
 import { AuthContext } from './../../../context/AuthContext';
+import { modals } from "../../../utils/modalUtils";
 
 export default function Login() {
     const {closeModal, updateModal} = useContext(ModalContext);
@@ -56,7 +57,7 @@ export default function Login() {
                     <input className="action-button" type="submit" value="Login"/>
                 </article>
                 <article className="input-group">
-                    <p>Don't have an account? <button onClick={() => updateModal('Register')} className="additional-button">Sign up</button></p>
+                    <p>Don't have an account? <button onClick={() => updateModal(modals.register)} className="additional-button">Sign up</button></p>
                 </article>
             </form>
         </>
