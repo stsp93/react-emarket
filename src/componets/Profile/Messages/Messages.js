@@ -13,7 +13,7 @@ export default function Messages() {
         (async function () {
             try {
                 const res = await apiService.getMessages();
-                setMessages(res);
+                setMessages(res.reverse());
             } catch (error) {
                 console.log(error);
             }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import OfferCard from '../OfferCard/OfferCard';
 import Carousel from './../Carousel/Carousel';
+import Pagination from '../Pagination/Pagination';
 
 
 export default function Category() {
@@ -18,7 +19,7 @@ export default function Category() {
             // Start fetch
             setLoading(true);
             const categoryResults = await getCategoryResults(category || '');
-            setResults(categoryResults);
+            setResults(categoryResults.reverse());
 
             // End fetch
             setLoading(false);
@@ -34,7 +35,7 @@ export default function Category() {
                 // Start fetch
                 setLoading(true);
                 const res = await searchItems({ q: query });
-                setResults(res);
+                setResults(res.reverse());
 
                 // End fetch
                 setLoading(false);
@@ -67,11 +68,7 @@ export default function Category() {
             </ul>
 
             {/* <!-- check if 0 offers  --> */}
-            <div className="pagination">
-                <button className="pagination-arrow"><i className="fa-solid fa-chevron-left"></i></button>
-                <p className="page">1/2</p>
-                <button className="pagination-arrow"><i className="fa-solid fa-chevron-right"></i></button>
-            </div>
+            <Pagination />
         </>
     )
 }
