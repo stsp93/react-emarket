@@ -19,7 +19,7 @@ export default function Category() {
             // Start fetch
             setLoading(true);
             const categoryResults = await getCategoryResults(category || '');
-            setResults(categoryResults.reverse());
+            setResults(categoryResults);
 
             // End fetch
             setLoading(false);
@@ -35,7 +35,7 @@ export default function Category() {
                 // Start fetch
                 setLoading(true);
                 const res = await searchItems({ q: query });
-                setResults(res.reverse());
+                setResults(res);
 
                 // End fetch
                 setLoading(false);
