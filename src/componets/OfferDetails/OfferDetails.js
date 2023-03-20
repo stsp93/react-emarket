@@ -18,7 +18,7 @@ export default function OfferDetails() {
         (async () => {
             const result = await getItemDetails(offerId);
             setOffer(result);
-            setIsOwner(auth.username === result.owner)
+            setIsOwner(auth?.username === result.owner)
         })()
 
     }, [offerId, auth])

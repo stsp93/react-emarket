@@ -2,7 +2,7 @@ import './Messages.css'
 import Message from './Message/Message';
 import { useState, useEffect, useContext } from 'react';
 import * as apiService from '../../../services/api/data';
-import Carousel from '../../Carousel/Carousel';
+import Carousel from '../../common/Carousel/Carousel';
 import { ModalContext } from './../../../context/ModalContext';
 import { modals } from '../../../utils/modalUtils';
 

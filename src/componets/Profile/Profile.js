@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import Carousel from '../Carousel/Carousel';
+import Carousel from '../common/Carousel/Carousel';
 import { useContext, useEffect, useState } from 'react';
 import { ModalContext } from './../../context/ModalContext';
-import OfferCard from '../OfferCard/OfferCard';
+import OfferCard from '../common/OfferList/OfferCard/OfferCard';
 import { getProfile } from '../../services/api/data';
-import Pagination from '../Pagination/Pagination';
+import Pagination from '../common/OfferList/Pagination/Pagination';
 import { modals } from '../../utils/modalUtils';
 
 export default function Profile() {

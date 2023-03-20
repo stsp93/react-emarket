@@ -9,7 +9,7 @@ import Profile from './componets/Profile/Profile';
 import NotFound from './componets/NotFound/NotFound';
 import Messages from './componets/Profile/Messages/Messages';
 import OfferDetails from './componets/OfferDetails/OfferDetails';
-import Carousel from './componets/Carousel/Carousel';
+import Carousel from './componets/common/Carousel/Carousel';
 import CategoryList from './componets/CategoryList/CategoryList';
 import { ModalProvider } from './context/ModalContext';
 import useSessionStorage from './hooks/useSessionStorage';

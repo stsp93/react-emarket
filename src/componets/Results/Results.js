@@ -2,9 +2,9 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { getCategoryResults, searchItems } from '../../services/api/data';
 import { useState, useEffect } from 'react';
 
-import OfferCard from '../OfferCard/OfferCard';
-import Carousel from './../Carousel/Carousel';
-import Pagination from '../Pagination/Pagination';
+import OfferCard from '../common/OfferList/OfferCard/OfferCard';
+import Carousel from '../common/Carousel/Carousel';
+import Pagination from '../common/OfferList/Pagination/Pagination';
 
 
 export default function Category() {
