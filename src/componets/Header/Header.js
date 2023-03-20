@@ -55,7 +55,7 @@ export default function Header() {
     // Logout logic
     async function onLogout() {
         try {
-            userService.logout()
+            await userService.logout()
             setAuth(null);
             // Show Success window and remove it after 2s
             showLoading();
