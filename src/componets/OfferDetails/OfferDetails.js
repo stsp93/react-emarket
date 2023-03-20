@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { getItemDetails } from '../../services/api/data';
+import * as apiService from '../../services/api/data';
 import { useParams } from 'react-router-dom';
 import formatDate from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ export default function OfferDetails() {
 
     useEffect(() => {
         (async () => {
-            const result = await getItemDetails(offerId);
+            const result = await apiService.getItemDetails(offerId);
             setOffer(result);
             setIsOwner(auth?.username === result.owner)
         })()
@@ -38,7 +38,7 @@ export default function OfferDetails() {
     
     function onDelete() {
         updateModal(modals.confirm);
-        updateModalData(offer._id)
+        updateModalData(() => () => apiService.deleteItemListing(offer._id))
     }
 
     function onContact() {

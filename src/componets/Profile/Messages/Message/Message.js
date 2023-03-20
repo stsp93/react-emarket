@@ -12,10 +12,15 @@ export default function Message({username, reply, date, _id, removeComment}) {
         updateModalData(username);
     }
 
+    const deleteFunction = () => {
+        apiService.deleteMessage(_id);
+        removeComment(_id);
+    }
     async function onDelete() {
         try {
-            await apiService.deleteMessage(_id);
-            removeComment(_id)
+            updateModal(modals.confirm);
+            updateModalData(() =>  deleteFunction);
+            
         } catch (error) {
             console.log(error);
         }

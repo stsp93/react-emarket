@@ -1,7 +1,7 @@
 import './Confirm.css'
 import { useContext } from 'react';
 import { ModalContext } from './../../../context/ModalContext';
-import * as apiService from '../../../services/api/data';
+
 import { useNavigate } from 'react-router-dom';
 import {useLoading} from '../../../hooks/useLoading';
 
@@ -13,9 +13,11 @@ export default function Confirm() {
     const showLoading = useLoading()
 
     async function onConfirm() {
-        await apiService.deleteItemListing(modalData);
+        await modalData();
         showLoading();
-        navigate('/user/profile');
+        if(window.location.pathname !== '/user/messages'){
+            navigate('/user/profile');
+        }
     }
 
     return (
