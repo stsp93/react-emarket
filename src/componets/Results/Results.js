@@ -2,12 +2,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { getCategoryResults, searchItems } from '../../services/api/data';
 import { useState, useEffect } from 'react';
 
-import OfferCard from '../common/OfferList/OfferCard/OfferCard';
 import Carousel from '../common/Carousel/Carousel';
-import Pagination from '../common/OfferList/Pagination/Pagination';
+import OfferList from '../common/OfferList/OfferList';
 
 
-export default function Category() {
+export default function Results() {
     const { category } = useParams();
     const [searchParams] = useSearchParams();
     const [results, setResults] = useState([]);
@@ -63,12 +62,7 @@ export default function Category() {
     return (
         <>
             {showTitle(results, loading)}
-            <ul className="offers-list">
-                {results.map(res => <OfferCard key={res._id} {...res} />)}
-            </ul>
-
-            {/* <!-- check if 0 offers  --> */}
-            <Pagination />
+            <OfferList results={results} />
         </>
     )
 }

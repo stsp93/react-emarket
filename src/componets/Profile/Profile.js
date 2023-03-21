@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import Carousel from '../common/Carousel/Carousel';
 import { useContext, useEffect, useState } from 'react';
 import { ModalContext } from './../../context/ModalContext';
-import OfferCard from '../common/OfferList/OfferCard/OfferCard';
 import { getProfile } from '../../services/api/data';
-import Pagination from '../common/OfferList/Pagination/Pagination';
 import { modals } from '../../utils/modalUtils';
+import OfferList from '../common/OfferList/OfferList';
 
 export default function Profile() {
     const { updateModal, updateModalData } = useContext(ModalContext);
@@ -45,11 +44,7 @@ export default function Profile() {
             {loading ? <h2>Loading...</h2>
                 : <>
                     <h2 className="title main-title">Your Listings</h2>
-                    <ul className="offers-list">
-                        {results.map(offer => <OfferCard key={offer._id} {...offer} />)}
-                    </ul>
-
-                    {results.length ? <Pagination /> : <h3>No offers found...</h3>}
+                    <OfferList results={results} />
 
                 </>}
 
