@@ -17,7 +17,9 @@ export default function OfferList({ results }) {
         setTotalPages(Math.ceil(results.length / resPerPage))
         setCurResults(results.slice((curPage - 1) * resPerPage, curPage * resPerPage));
         setPage(curPage)
-    }, [results, curPage, resPerPage]);
+
+        if(totalPages >= 1 && curPage > totalPages) setCurPage(1);
+    }, [results, curPage, resPerPage, totalPages, setPage]);
 
     return (
         <>

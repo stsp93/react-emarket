@@ -61,7 +61,7 @@ export default function Register() {
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
             <form className="user-form" onSubmit={onSubmit}>
-                <h2 className="title form-title">Register</h2>
+                <h2 className="title form-title">Sign up</h2>
                 <article className="input-group">
                     <label htmlFor="email">Email</label>
                     {errors.email && <p className="input-error">{errors.email}</p>}

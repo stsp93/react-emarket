@@ -69,6 +69,7 @@ export default function Header() {
         <header>
             <div className="header__top">
                 <p className="header__top-text">Welcome to e-market / Sell your stuff or check the recent offers</p>
+                {auth && <p>Logged in with {auth && auth.email}</p>}
             </div>
 
             <div className="header__nav-wrapper">
@@ -77,7 +78,7 @@ export default function Header() {
 
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
-                        <em className='nav__link'>{auth && auth.email}</em>
+                        
                         <li className={liClassName(visible)}><NavLink className='nav__link' style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
                         {auth ?
                             <>

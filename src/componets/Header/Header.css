@@ -8,9 +8,8 @@ header {
 }
 
 .header__top{
-  color: var(--white);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--honeydew);
+  display: none;
+
 }
 
 .header__nav::after {
@@ -125,6 +124,16 @@ em.nav__link {
 /******* Responsive  ***********/
 
 @media screen and (min-width: 860px) {
+  /* header top */
+  .header__top{
+    display: flex;
+    justify-content: space-between;
+  
+    color: var(--white);
+    padding: 1rem 8rem;
+    border-bottom: 1px solid var(--honeydew);
+  }
+
   /* header */
 
   .header__logo {

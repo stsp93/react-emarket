@@ -31,7 +31,7 @@ export default function Login() {
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
             <form className="user-form" onSubmit={onSubmit}>
-                <h2 className="title form-title">Login</h2>
+                <h2 className="title form-title">Sign in</h2>
                 <article className="input-group">
                 {error && <p className="input-error">{error}</p>}
                     <label htmlFor="email">Email</label>

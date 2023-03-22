@@ -1,10 +1,10 @@
 
-import { useEffect } from 'react';
-
 export default function Pagination({props}) {
     const { totalPages, curPage, setCurPage } = props;
     
-    if(totalPages > 1 && curPage > totalPages) setCurPage(1)
+
+
+    
 
     function prevPage(e) {
         e.preventDefault();

@@ -66,7 +66,7 @@ export default function Create() {
                 <i className="fa-regular fa-circle-xmark"></i>
             </button>
             <form onSubmit={onSubmit} className="user-form">
-                <h2 className="title form-title">Create</h2>
+                <h2 className="title form-title">Create listing</h2>
                 <article className="input-group">
                     <label htmlFor="title">Title</label>
                     {errors && <p className="input-error">{errors.title}</p>}

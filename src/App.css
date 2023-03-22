@@ -382,7 +382,7 @@ main {
 }
 
 .profile__link:hover {
-  color: var(--zomp);
+  color: var(--orange);
   transform: translate(0, 5%);
 }
 
@@ -419,6 +419,8 @@ main {
 /* Footer */
 
 footer {
+  background-color: var(--gunmetal);
+  color: var(--white);
   border-top: 1px solid #ccc;
   padding: 1rem;
   text-align: center;
