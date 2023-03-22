@@ -38,13 +38,6 @@ export default function Carousel() {
     }
   }, [activeIndex,categories]);
 
-  function prevSlide() {
-    setActiveIndex(i => i - 1)
-  }
-  function nextSlide() {
-    setActiveIndex(i => i + 1)
-  }
-
   function indexUpdate(i) {
     setActiveIndex(i)
   }
@@ -55,14 +48,6 @@ export default function Carousel() {
       <ul className='carousel__dots'>
       {categories && categories.map((category, i) => <Dot key={category[0]} indexHandle={{indexUpdate, i}} active={i === activeIndex} />)}
       </ul>
-
-      <button onClick={prevSlide} className="carousel__prev carousel__button">
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
-
-      <button onClick={nextSlide} className="carousel__next carousel__button">
-        <i className="fa-solid fa-chevron-right"></i>
-      </button>
 
     </article >
   )

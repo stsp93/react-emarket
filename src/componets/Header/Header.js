@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
-import {useLoading} from '../../hooks/useLoading';
+import { useLoading } from '../../hooks/useLoading';
 import { AuthContext } from './../../context/AuthContext';
 import { modals } from '../../utils/modalUtils';
 
@@ -17,8 +17,8 @@ export default function Header() {
 
     //Setting active link
     const activeStyle = ({ isActive }) => isActive
-    ? { color: 'var(--zomp)' }
-    : undefined;
+        ? { color: 'var(--orange)' }
+        : undefined;
 
 
     // Mobile view logic
@@ -67,14 +67,17 @@ export default function Header() {
 
     return (
         <header>
+            <div className="header__top">
+                <p className="header__top-text">Welcome to e-market / Sell your stuff or check the recent offers</p>
+            </div>
 
             <div className="header__nav-wrapper">
                 <NavLink to="/"><img className="header__logo" src={logo} alt="Shop open e-market" /></NavLink>
                 <nav className="header__nav">
-                        
+
                     <button onClick={handleNavButton} className="nav__button"><i className="fa-solid fa-bars"></i></button>
                     <ul>
-                <em className='nav__link'>{auth && auth.email}</em>
+                        <em className='nav__link'>{auth && auth.email}</em>
                         <li className={liClassName(visible)}><NavLink className='nav__link' style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
                         {auth ?
                             <>
@@ -98,7 +101,13 @@ export default function Header() {
             </div>
             {/* Search bar */}
             <form>
-                <div>
+                <div className='search-wrapper'>
+                    <select className='search-categories'>
+                        <option value="Electronics">All categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Electronics">Electronics</option>
+                    </select>
                     <input value={query} onChange={onSearchQueryChange} className="search-box" type="text" maxLength="30" placeholder="Search anything..." />
                     <button onClick={handleSearchClick} className="search-box__button">
                         <i className="fa-solid fa-magnifying-glass"></i>
