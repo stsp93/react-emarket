@@ -10,7 +10,7 @@ export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
     const { setAuth } = useContext(AuthContext)
     const [errors, setErrors] = useState({});
-    const [disable, setDisable] = useState(true);
+    const [disable, setDisable] = useState(false);
     const showLoading = useLoading()
 
     const [payload, setPayload] = useState({

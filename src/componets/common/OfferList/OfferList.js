@@ -9,17 +9,19 @@ export default function OfferList({ results }) {
     const [curPage, setCurPage] = useState(page || 1);
     const [resPerPage, setResPerPage] = useState(5);
     const [curResults, setCurResults] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
 
 
     useEffect(() => {
         setTotalPages(Math.ceil(results.length / resPerPage))
         setCurResults(results.slice((curPage - 1) * resPerPage, curPage * resPerPage));
+        
+        if (totalPages && curPage > totalPages) setCurPage(1);
         setPage(curPage)
 
-        if(totalPages >= 1 && curPage > totalPages) setCurPage(1);
-    }, [results, curPage, resPerPage, totalPages, setPage]);
+
+    }, [results, page, curPage, totalPages]);
 
     return (
         <>
