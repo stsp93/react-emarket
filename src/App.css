@@ -164,15 +164,6 @@ main {
   font-size: 2rem;
 }
 
-/* pagination */
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 5rem;
-  align-items: center;
-}
-
 /* details */
 
 .details {
@@ -515,10 +506,12 @@ footer {
   /* offers page*/
   .offer-card {
     width: 80%;
+    height: 30rem;
   }
 
   .offer-img {
-    width: 30rem;
+    width: 24rem;
+    height: 100%;
   }
 
   .offer-title {

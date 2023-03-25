@@ -23,12 +23,19 @@ export default function OfferList({ results }) {
 
     }, [results, page, curPage, totalPages]);
 
+    function changePage(page) {
+        setCurPage(page);
+        window.scrollTo({top: 200,
+            behavior: "smooth"})
+    }
+
+
     return (
         <>
             <ul className="offers-list">
                 {curResults.map(res => <OfferCard key={res._id} {...res} />)}
             </ul>
-            <Pagination props={{ totalPages, curPage, setCurPage }} />
+            <Pagination props={{ totalPages, curPage, changePage }} />
         </>
     )
 }

@@ -28,12 +28,13 @@ export default function Results() {
 
     // On Search
     useEffect(() => {
-        const query = searchParams.get('q')
+        const query = searchParams.get('q');
+        const category = searchParams.get('cat');
         if (query) {
             (async function () {
                 // Start fetch
                 setLoading(true);
-                const res = await searchItems({ q: query });
+                const res = await searchItems({ q: query, cat:category });
                 setResults(res);
 
                 // End fetch
