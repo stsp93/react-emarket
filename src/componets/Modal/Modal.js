@@ -17,7 +17,8 @@ export default function Modal(props) {
      * @returns modal component 
      */
     function showModal() {
-        window.scrollTo(0, 0)
+        window.scrollTo({top: 0,
+            behavior: "smooth"})
         return modalMapper[modal]
     }
 

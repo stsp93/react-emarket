@@ -1,23 +1,26 @@
 /* Messages */
 
 .message {
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--zomp);
-  
-    display: flex;
-    gap: 4rem;
-  
-  }
-  
-  .message-buttons {
-    flex-direction: row;
-  }
-  
-  .message-username {
-    font-size: 2.2rem;
-  }
-  
-  .message-text {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-  }
+  padding-bottom: 1rem;
+  position: relative;
+
+  display: flex;
+  gap: 4rem;
+}
+
+.message:nth-of-type(odd) {
+  background-color: var(--honeydew);
+}
+
+.message-buttons {
+  flex-direction: row;
+}
+
+.message-username {
+  font-size: 2.2rem;
+}
+
+.message-text {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}

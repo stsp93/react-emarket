@@ -5,6 +5,7 @@ import * as apiService from '../../../services/api/data';
 import Carousel from '../../common/Carousel/Carousel';
 import { ModalContext } from './../../../context/ModalContext';
 import { modals } from '../../../utils/modalUtils';
+import { Link } from 'react-router-dom';
 
 export default function Messages() {
     const [messages, setMessages] = useState([]);
@@ -28,8 +29,11 @@ export default function Messages() {
     return (
         <>
         <Carousel />
-        <button onClick={() => updateModal(modals.message)} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send a Message</button>
-            <h2 className="title main-title">Messages</h2>
+        <div className="profile__links">
+        <button onClick={() => updateModal(modals.message)} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send Message</button>
+        <Link to={`/user/profile`} className='profile__link' ><i class="fa-solid fa-file"></i>Back to Listings</Link>
+        </div>
+            <h2 className="title main-title">Your Inbox</h2>
 
             {messages.length ?
                 <ul className="messages-list">

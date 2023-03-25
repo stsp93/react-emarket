@@ -42,6 +42,9 @@ export default function OfferDetails() {
     }
 
     function onContact() {
+        if(!auth) {
+           return updateModal(modals.login);
+        }
         updateModal(modals.message);
         updateModalData(offer.owner)
     }

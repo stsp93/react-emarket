@@ -72,10 +72,10 @@ export default function Header() {
                             : <>
                                 {/* <!-- GUEST LINKS --> */}
                                 <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.login)}><i className="fa-solid fa-user-check"></i>Login</button>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.login)}><i className="fa-solid fa-user-check"></i>Sign in</button>
                                 </li>
                                 <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.register)} ><i className="fa-solid fa-file-signature"></i>Register</button>
+                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.register)} ><i className="fa-solid fa-file-signature"></i>Sign up</button>
                                 </li>
                             </>
                         }

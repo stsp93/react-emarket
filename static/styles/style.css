@@ -84,7 +84,7 @@ header {
 
 .nav__button i {
   color: var(--gunmetal);
-  border: 2px solid var(--gunmetal);
+  border: 1px solid var(--gunmetal);
   border-radius: 50%;
   font-size: 2.4rem;
   padding: 1.6rem;
@@ -366,7 +366,7 @@ main {
 
 .details-buttons a {
   display: inline-block;
-  border: 2px solid var(--gunmetal);
+  border: 1px solid var(--gunmetal);
   border-radius: 15px;
   padding: 1rem 3rem;
 }
@@ -406,7 +406,7 @@ main {
 .input-group select {
   font-size: 1.8rem;
   border-radius: 5px;
-  border: 2px solid var(--zomp);
+  border: 1px solid var(--zomp);
   padding: 1.6rem;
   padding-left: 5rem;
   border-radius: 5px;
@@ -466,7 +466,7 @@ main {
   font-size: 1.8rem;
   padding: 0.6rem 1.6rem;
   border-radius: 5px;
-  border: 2px solid var(--gunmetal);
+  border: 1px solid var(--gunmetal);
 }
 
 .profile-buttons a:hover {
@@ -502,7 +502,7 @@ footer {
 .go-home {
   font-size: 3rem;
   padding: 1rem;
-  border: 2px solid var(--zomp);
+  border: 1px solid var(--zomp);
   border-radius: 40px;
 }
 
