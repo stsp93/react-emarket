@@ -5,11 +5,10 @@ import CategorySelect from '../CategorySelect/CategorySelect';
 import * as apiService from '../../../services/api/data';
 
 export default function Create() {
-    const { closeModal,modalData:addOwnListing } = useContext(ModalContext)
-    const [payload, setPayload] = useState({ title: '', description: '', price: '', imageUrl: '', category:'Electronics'});
+    const { closeModal, modalData: addOwnListing } = useContext(ModalContext)
+    const [payload, setPayload] = useState({ title: '', description: '', price: '', imageUrl: '', category: 'Electronics' , images: []});
     const [disable, setDisable] = useState(true);
     const [errors, setErrors] = useState({});
-
 
     useEffect(() => {
         if (Object.values(errors).some(v => v !== null)) {
@@ -24,6 +23,17 @@ export default function Create() {
     function onChange(e) {
         const name = e.target.name
         setPayload(x => ({ ...x, [name]: e.target.value }));
+    }
+
+    function onUpload(e) {
+        const images = Array.from(e.target.files)
+        // TODO: File type, size validations
+        if(images.length > 3) return setErrors(x => ({...x,images: 'Maximum 3 images allowed'}))
+        if(images.some(i => !i.type.startsWith('image'))) return setErrors(x => ({...x,images: 'Only images allowed for upload'}))
+        setErrors(x => ({...x,images: null}))
+        
+        setPayload(x => ({ ...x, images:[...images] }));
+        
     }
 
     // Validations
@@ -141,6 +151,19 @@ export default function Create() {
                         type="text"
                         name="imageUrl"
                         placeholder="http://example.com"
+                    />
+                </article>
+                <article className="input-group">
+                    <label htmlFor="imageFile">Upload Image</label>
+                    {errors && <p className="input-error">{errors.images}</p>}
+                    <i className="fa-solid fa-image"></i>
+                    <input
+                        onChange={onUpload}
+                        id="imageFile"
+                        type="file"
+                        name="imageFile"
+                        placeholder="http://example.com"
+                        multiple={true}
                     />
                 </article>
 
