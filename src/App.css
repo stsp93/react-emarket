@@ -173,13 +173,16 @@ main {
   align-items: center;
 }
 
+.details-image__wrapper {
+  position: relative;
+}
+
 .details-text {
   margin-bottom: 3rem;
 }
 
-.main-image {
-  width: 90%;
-  max-width: 80rem;
+.details-image {
+  max-width: 100vw;
   border-radius: 5px;
 }
 
@@ -189,7 +192,6 @@ main {
 
 .details-buttons {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -536,6 +538,8 @@ footer {
   .profile__links {
     flex-direction: row;
   }
+
+
 }
 
 
@@ -582,4 +586,18 @@ footer {
   flex-direction: row;
  }
 
+}
+
+@media screen and (min-width: 1400px) {
+  /* details */
+
+  .details {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .details-image {
+    max-width: 50vw;
+  }
 }
