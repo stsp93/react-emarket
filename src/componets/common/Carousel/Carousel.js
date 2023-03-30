@@ -45,7 +45,7 @@ export default function Carousel() {
   return (
     <article className="carousel">
       {categories && categories.map((category, i) => <Slide key={category[0]} category={category} active={i === activeIndex} />)}
-      <ul className='carousel__dots'>
+      <ul className='slider__dots'>
       {categories && categories.map((category, i) => <Dot key={category[0]} indexHandle={{indexUpdate, i}} active={i === activeIndex} />)}
       </ul>
 
