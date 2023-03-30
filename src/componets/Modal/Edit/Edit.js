@@ -36,7 +36,7 @@ export default function Edit() {
     }
 
     function validImgUrl() {
-        validationApi.validImageUrl(payload, setErrors)
+        validationApi.imagesValidation(payload, setErrors)
     }
 
     function isPositiveNumber() {

@@ -9,7 +9,11 @@ import { modals } from "../../../utils/modalUtils";
 export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
     const { setAuth } = useContext(AuthContext)
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({
+        email: 'Enter email',
+        username: 'Enter username',
+        password: 'Enter password',
+    });
     const [disable, setDisable] = useState(false);
     const showLoading = useLoading()
 

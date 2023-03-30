@@ -4,11 +4,18 @@ const endpoints = {
     'allCategories': '/items/categories',
     'allInCategory': (category) => `/items?cat=${category}`,
     'create': '/items',
-    'byId': (id)  => `/items/${id}`,
+    'byId': (id) => `/items/${id}`,
     'search': (query, category) => `/items?q=${query}&cat=${category}`,
     'profile': '/users/profile',
     'messages': '/users/replies',
-    'messageById': (id) => `/users/replies/${id}`
+    'messageById': (id) => `/users/replies/${id}`,
+    'image-upload': '/items/image-upload'
+}
+
+export async function uploadImages(payload) {
+    // TODO : Dropbox API request
+    const res = await api.post(endpoints['image-upload'], payload)
+    return res;
 }
 
 export async function getAllCategories() {
@@ -57,7 +64,7 @@ export async function getMessages() {
 }
 
 export async function sendMessage(username, message) {
-    const res = await api.post(endpoints.messages, {username, reply: message} );
+    const res = await api.post(endpoints.messages, { username, reply: message });
     return res;
 }
 

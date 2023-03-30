@@ -3,12 +3,13 @@ import { useContext, useState, useEffect } from 'react';
 import validationApi from './../../../utils/validationApi';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import * as apiService from '../../../services/api/data';
+import * as dropboxApi from '../../../services/dropboxApi';
 
 export default function Create() {
     const { closeModal, modalData: addOwnListing } = useContext(ModalContext)
-    const [payload, setPayload] = useState({ title: '', description: '', price: '', imageUrl: '', category: 'Electronics' , images: []});
+    const [payload, setPayload] = useState({ title: '', description: '', price: '',location:'' , images: '', category: 'Electronics' });
     const [disable, setDisable] = useState(true);
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({ title: 'Enter title', description: 'Enter description',location:'Enter location',  price: 'Enter price' });
 
     useEffect(() => {
         if (Object.values(errors).some(v => v !== null)) {
@@ -16,8 +17,6 @@ export default function Create() {
         } else {
             setDisable(false)
         }
-
-
     }, [errors])
 
     function onChange(e) {
@@ -25,15 +24,21 @@ export default function Create() {
         setPayload(x => ({ ...x, [name]: e.target.value }));
     }
 
-    function onUpload(e) {
-        const images = Array.from(e.target.files)
-        // TODO: File type, size validations
-        if(images.length > 3) return setErrors(x => ({...x,images: 'Maximum 3 images allowed'}))
-        if(images.some(i => !i.type.startsWith('image'))) return setErrors(x => ({...x,images: 'Only images allowed for upload'}))
-        setErrors(x => ({...x,images: null}))
+    // on images uploading
+    async function onUpload(e) {
+        const images = Array.from(e.target.files);
+        // File count, type, size validations
+        const valid = validationApi.imagesValidation(images, setErrors);
+        console.log(valid);
+        if (!valid) return;
+
+        const links = await Promise.all(images.map(async i => {
+            const res = await dropboxApi.uploadImage(i);
+            return (await dropboxApi.createLink(res)).url + '&raw=1';
+        }))
         
-        setPayload(x => ({ ...x, images:[...images] }));
-        
+        setPayload(x=> ({...x, images: links}));
+        console.log(payload);
     }
 
     // Validations
@@ -46,9 +51,9 @@ export default function Create() {
         validationApi.isEmpty(key, payload, setErrors);
     }
 
-    function validImgUrl() {
-        validationApi.validImageUrl(payload, setErrors)
-    }
+    // function validImgUrl() {
+    //     validationApi.validImageUrl(payload, setErrors)
+    // }
 
     function isPositiveNumber() {
         validationApi.positiveNumber(payload, setErrors)
@@ -63,6 +68,7 @@ export default function Create() {
             const res = await apiService.createListing(payload);
             addOwnListing(res);
             closeModal()
+            console.log(res);
         } catch (error) {
             console.log(payload);
             setErrors(error);
@@ -139,7 +145,7 @@ export default function Create() {
                         placeholder="New York City, NY"
                     />
                 </article>
-                <article className="input-group">
+                {/* <article className="input-group">
                     <label htmlFor="imageUrl">Image Url</label>
                     {errors && <p className="input-error">{errors.imageUrl}</p>}
                     <i className="fa-solid fa-image"></i>
@@ -152,7 +158,7 @@ export default function Create() {
                         name="imageUrl"
                         placeholder="http://example.com"
                     />
-                </article>
+                </article> */}
                 <article className="input-group">
                     <label htmlFor="imageFile">Upload Image</label>
                     {errors && <p className="input-error">{errors.images}</p>}
