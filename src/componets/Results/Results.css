@@ -1,0 +1,19 @@
+.title__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.results__sort {
+    font-size: 1.6rem;
+    padding:1rem 2rem;
+    background-color: var(--zomp);
+    color: var(--white);
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    border: none;
+}
+
+.results__sort:hover {
+    /* background-color: var(--zomp); */
+}
