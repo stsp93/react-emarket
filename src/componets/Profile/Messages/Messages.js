@@ -31,7 +31,7 @@ export default function Messages() {
         <Carousel />
         <div className="profile__links">
         <button onClick={() => updateModal(modals.message)} className='profile__link' ><i className="fa-solid fa-paper-plane"></i>Send Message</button>
-        <Link to={`/user/profile`} className='profile__link' ><i class="fa-solid fa-file"></i>Back to Listings</Link>
+        <Link to={`/user/profile`} className='profile__link' ><i className="fa-solid fa-file"></i>Back to Listings</Link>
         </div>
             <h2 className="title main-title">Your Inbox</h2>
 

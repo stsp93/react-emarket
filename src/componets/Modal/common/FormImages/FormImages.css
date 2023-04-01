@@ -1,0 +1,34 @@
+.form-images__wrapper {
+  position: relative;
+}
+
+.form-images {
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+
+  margin: 1.6rem 0;
+}
+
+.form-image {
+  width: 8rem;
+  height: 8rem;
+}
+
+.form-image__delete {
+  color: var(--zomp);
+
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  z-index: 2;
+}
+
+.form-image__delete:hover + .form-image {
+    opacity: 0.5;
+}
+
+.form-image__delete:hover {
+    color: var(--orange);
+}
+

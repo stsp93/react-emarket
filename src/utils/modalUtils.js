@@ -3,7 +3,7 @@ import Login from '../componets/Modal/Login/Login';
 import Loading from "../componets/Modal/Loading/Loading";
 import Edit from "../componets/Modal/Edit/Edit";
 import Create from '../componets/Modal/Create/Create';
-import Confirm from '../componets/Modal/Confirm/Confirm';
+import Confirm from '../componets/Modal/common/Confirm/Confirm';
 import MessageForm from "../componets/Modal/MessageForm/MessageForm";
 
 /**

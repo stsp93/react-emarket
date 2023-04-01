@@ -4,12 +4,15 @@ import validationApi from './../../../utils/validationApi';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import * as apiService from '../../../services/api/data';
 import * as dropboxApi from '../../../services/dropboxApi';
+import Loading from '../Loading/Loading';
+import FormImages from './../common/FormImages/FormImages';
 
 export default function Create() {
     const { closeModal, modalData: addOwnListing } = useContext(ModalContext)
-    const [payload, setPayload] = useState({ title: '', description: '', price: '',location:'' , images: '', category: 'Electronics' });
+    const [payload, setPayload] = useState({ title: '', description: '', price: '', location: '', images: [], category: 'Electronics' });
     const [disable, setDisable] = useState(true);
-    const [errors, setErrors] = useState({ title: 'Enter title', description: 'Enter description',location:'Enter location',  price: 'Enter price' });
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({ title: 'Enter title', description: 'Enter description', location: 'Enter location', price: 'Enter price' });
 
     useEffect(() => {
         if (Object.values(errors).some(v => v !== null)) {
@@ -24,21 +27,38 @@ export default function Create() {
         setPayload(x => ({ ...x, [name]: e.target.value }));
     }
 
-    // on images uploading
+    // images logic 
     async function onUpload(e) {
         const images = Array.from(e.target.files);
         // File count, type, size validations
+        if(images.length + payload.images.length > 3) return setErrors(x => ({...x, images: 'Max 3 images allowed'}))
         const valid = validationApi.imagesValidation(images, setErrors);
         console.log(valid);
         if (!valid) return;
 
-        const links = await Promise.all(images.map(async i => {
+        setLoading(true)
+        let links = await Promise.all(images.map(async i => {
             const res = await dropboxApi.uploadImage(i);
             return (await dropboxApi.createLink(res)).url + '&raw=1';
         }))
-        
-        setPayload(x=> ({...x, images: links}));
-        console.log(payload);
+
+        // remove duplicates and set new imgs
+        links = links.filter(l => !payload.images.includes(l))
+        setPayload(x => ({ ...x, images: [...payload.images,...links] }));
+        setLoading(false)
+    }
+
+    async function deleteImage(imgUrl) {
+
+        setLoading(true)
+        try {
+            await dropboxApi.deleteImage(imgUrl);
+            setPayload(x => ({ ...x, images: payload.images.filter(img => img !== imgUrl) }));
+
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false)
     }
 
     // Validations
@@ -51,18 +71,14 @@ export default function Create() {
         validationApi.isEmpty(key, payload, setErrors);
     }
 
-    // function validImgUrl() {
-    //     validationApi.validImageUrl(payload, setErrors)
-    // }
-
     function isPositiveNumber() {
         validationApi.positiveNumber(payload, setErrors)
     }
 
     // on Submitting
-
     async function onSubmit(e) {
         e.preventDefault()
+        if (loading) return;
 
         try {
             const res = await apiService.createListing(payload);
@@ -145,23 +161,11 @@ export default function Create() {
                         placeholder="New York City, NY"
                     />
                 </article>
-                {/* <article className="input-group">
-                    <label htmlFor="imageUrl">Image Url</label>
-                    {errors && <p className="input-error">{errors.imageUrl}</p>}
-                    <i className="fa-solid fa-image"></i>
-                    <input
-                        value={payload.imageUrl}
-                        onChange={onChange}
-                        onBlur={validImgUrl}
-                        id="imageUrl"
-                        type="text"
-                        name="imageUrl"
-                        placeholder="http://example.com"
-                    />
-                </article> */}
                 <article className="input-group">
-                    <label htmlFor="imageFile">Upload Image</label>
+                    <label htmlFor="imageFile">Upload Images</label>
                     {errors && <p className="input-error">{errors.images}</p>}
+                    {loading && <Loading />}
+                    {payload.images && <FormImages deleteImage={deleteImage} images={payload.images} />}
                     <i className="fa-solid fa-image"></i>
                     <input
                         onChange={onUpload}

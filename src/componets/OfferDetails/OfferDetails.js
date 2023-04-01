@@ -31,14 +31,12 @@ export default function OfferDetails() {
         setOffer(newOffer)
     }
 
-    // Image button logic
-
+    // Image index logic
     function indexUpdate(i) {
         setImageIndex(i);
     }
 
-    // onClick functions
-
+    // onClick action buttons
     function onEdit() {
         updateModal(modals.edit);
         updateModalData({ offer, editListing })
@@ -65,7 +63,7 @@ export default function OfferDetails() {
                     {/* <img src={(offer.images && offer.images[imageIndex]) || offer.imageUrl} alt="" className="details-image" ></img> */}
                     {offer.images && offer.images.map((img, i) => <OfferImage key={img} img={img} active={i === imageIndex} />)}
                     <ul className='slider__dots'>
-                        {offer.images && offer.images.map((img, i) => <Dot active={i === imageIndex} key={img} indexHandle={{ indexUpdate, i }} />)}
+                        {offer.images && offer.images.length > 1 ? offer.images.map((img, i) => <Dot active={i === imageIndex} key={img} indexHandle={{ indexUpdate, i }} />): ''}
                     </ul>
                 </div>
                 <div>

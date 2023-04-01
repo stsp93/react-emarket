@@ -1,9 +1,9 @@
 import './Confirm.css'
 import { useContext } from 'react';
-import { ModalContext } from './../../../context/ModalContext';
+import { ModalContext } from '../../../../context/ModalContext';
 
 import { useNavigate } from 'react-router-dom';
-import {useLoading} from '../../../hooks/useLoading';
+import {useLoading} from '../../../../hooks/useLoading';
 
 
 

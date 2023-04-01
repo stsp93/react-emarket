@@ -21,7 +21,7 @@ export default function OfferList({ results }) {
         setPage(curPage)
 
 
-    }, [results, page, curPage, totalPages]);
+    }, [results, page, curPage, totalPages, resPerPage]);
 
     function changePage(page) {
         setCurPage(page);

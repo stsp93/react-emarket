@@ -86,7 +86,7 @@ main {
 }
 
 .close-modal:hover {
-  color: var(--red);
+  color: var(--orange);
 }
 
 /* offers */
@@ -302,10 +302,10 @@ main {
 }
 
 .input-error {
-  color: var(--red);
+  color: var(--orange);
   font-style: italic;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .form-title {

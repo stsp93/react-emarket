@@ -21,7 +21,8 @@ export default function Login() {
             // Show Loading window and remove it after 2s
             showLoading();
         }catch(error) {
-            setError('Email or Password are incorrect')
+            console.log(error);
+            setError(error)
         }
     }
 

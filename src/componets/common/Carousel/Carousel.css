@@ -87,17 +87,20 @@
   .slider__dots{
     display: flex;
     gap: 1rem;
-    font-size: 5rem;
+    
+    font-size: 6rem;
     position: absolute;
     left: 50%;
     top:100%;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -40%);
     z-index: 8;
 
     color: var(--gunmetal);
-
   }
 
+  .slider__dot i {
+    margin: auto;
+  }
 
   .active-dot {
     color: var(--orange);
