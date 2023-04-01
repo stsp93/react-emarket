@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import formatDate from '../../../../utils/formatDate';
 
 export default function OfferCard(props) {
-    const {_id, title, images,imageUrl, price, location, createdOn} = props
+    const {_id, title, images, price, location, createdOn} = props
     return (
         <li>
             <article className="offer-card">
                 <div className="offer-wrapper">
                     <Link to={`/listing/${_id}`} className="offer-link">
-                        <img className="offer-img" src={images[0] || imageUrl} alt={title} />
+                        <img className="offer-img skeleton" src={images[0]} alt={title} />
                     </Link>
                     <div className="offer-text">
                         <Link className="offer-title offer-link" to={`/listing/${_id}`}>{title}

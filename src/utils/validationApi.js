@@ -25,14 +25,6 @@ function isEmpty(key, payload, setErrors) {
     }
 }
 
-function validImageUrl(payload, setErrors) {
-    if(!payload.imageUrl.match(/https?:\/\//i)) {
-        setErrors(x => ({...x,imageUrl: 'Invalid Image URL'}))
-    } else {
-        setErrors(x => ({...x,imageUrl: null}))
-    }
-}
-
 function positiveNumber(payload, setErrors) {
     if(!Number(payload.price) || payload.price <= 0) {
         setErrors(x => ({...x,price: 'Price must be positive number'}))
@@ -44,7 +36,7 @@ function positiveNumber(payload, setErrors) {
 function imagesValidation(payload, setErrors) {
     if (payload.length > 3) return setErrors(x => ({ ...x, images: 'Maximum 3 images allowed' }))
     if (payload.some(i => !i.type.startsWith('image'))) return setErrors(x => ({ ...x, images: 'Only images allowed for upload' }))
-    if (payload.some(i => i.size > 1048576 )) return setErrors(x => ({ ...x, images: 'Maximum allowed size is 1 MB' }))
+    if (payload.some(i => i.size > 2097152 )) return setErrors(x => ({ ...x, images: 'Maximum allowed size is 1 MB' }))
 
     setErrors(x => ({ ...x, images: null }))
     return true;
@@ -54,7 +46,6 @@ const validationApi = {
     minLength,
     passwordsMatch,
     isEmpty,
-    validImageUrl,
     positiveNumber,
     imagesValidation
 }

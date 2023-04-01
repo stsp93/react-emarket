@@ -6,6 +6,7 @@ main {
   position: relative;
   padding-bottom: 2rem;
   max-width: 1600px;
+  min-height: 75vh;
   margin: 0 auto;
 }
 
@@ -98,7 +99,8 @@ main {
 .offer-card {
   width: 100%;
   display: flex;
-  gap: 3rem;
+  /* gap: 3rem; */
+  justify-content: space-between;
 
   padding: 1rem;
   margin-bottom: 1rem;
@@ -175,6 +177,16 @@ main {
 
 .details-image__wrapper {
   position: relative;
+  margin-bottom: 2rem;
+}
+
+.title a {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.title a:hover {
+  color: var(--orange);
 }
 
 .details-text {
@@ -188,6 +200,11 @@ main {
 
 .details-title {
   font-size: 3rem;
+}
+
+.details-description {
+  font-size: 1.8rem;
+  line-height: 1.5;
 }
 
 .details-buttons {
@@ -567,6 +584,11 @@ footer {
 
   .offer-card {
     width: 90%;
+  }
+
+  .offer-img {
+    width: 30rem;
+    height: 30rem;
   }
   
  .offer-wrapper {

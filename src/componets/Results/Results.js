@@ -22,7 +22,6 @@ export default function Results() {
             setLoading(true);
             const categoryResults = await getCategoryResults(category || '');
             setResults(categoryResults);
-            console.log(results);
             // End fetch
             setLoading(false);
         })()
@@ -68,7 +67,7 @@ export default function Results() {
             return (
                 <div className='title__wrapper'>
                     <h2 className="title main-title">
-                        {results.length} Result{results.length === 1 ? '' : 's'} {searchParams.get('q') && `for '${searchParams.get('q')}'`}
+                        {results.length} Result{results.length === 1 ? '' : 's'} found {searchParams.get('q') && `for '${searchParams.get('q')}'`}
                     </h2>
                     <select onChange={sortBy} className='results__sort' name="sort-by" id="sort-by">
                         <option value="newest">Show newest</option>

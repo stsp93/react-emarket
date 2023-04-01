@@ -60,7 +60,6 @@ export default function OfferDetails() {
             <h2 className="title main-title">Category: <Link to={`/category/${offer.category}`}>{offer.category}</Link></h2>
             <article className="details">
                 <div className="details-image__wrapper">
-                    {/* <img src={(offer.images && offer.images[imageIndex]) || offer.imageUrl} alt="" className="details-image" ></img> */}
                     {offer.images && offer.images.map((img, i) => <OfferImage key={img} img={img} active={i === imageIndex} />)}
                     <ul className='slider__dots'>
                         {offer.images && offer.images.length > 1 ? offer.images.map((img, i) => <Dot active={i === imageIndex} key={img} indexHandle={{ indexUpdate, i }} />): ''}

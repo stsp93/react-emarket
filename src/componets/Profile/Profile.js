@@ -5,6 +5,7 @@ import { ModalContext } from './../../context/ModalContext';
 import { getProfile } from '../../services/api/data';
 import { modals } from '../../utils/modalUtils';
 import OfferList from '../common/OfferList/OfferList';
+import Loading from '../Modal/Loading/Loading';
 
 export default function Profile() {
     const { updateModal, updateModalData } = useContext(ModalContext);
@@ -15,7 +16,7 @@ export default function Profile() {
     useEffect(() => {
         (async () => {
             const res = await getProfile();
-            setResults(res.ownListings.reverse());
+            setResults(res.ownListings.sort((a,b) =>new Date(b.createdOn) -new Date(a.createdOn)));
             setNewMessage(res.hasNewReplies);
             setLoading(false)
         })();
@@ -41,7 +42,7 @@ export default function Profile() {
 
 
             {/* Listings Content */}
-            {loading ? <h2>Loading...</h2>
+            {loading ? <Loading />
                 : <>
                     <h2 className="title main-title">Your Listings</h2>
                     <OfferList results={results} />
