@@ -1,3 +1,5 @@
+import './Profile.css'
+
 import { Link } from 'react-router-dom';
 import Carousel from '../common/Carousel/Carousel';
 import { useContext, useEffect, useState } from 'react';

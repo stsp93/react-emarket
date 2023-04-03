@@ -1,0 +1,22 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .not-found__img {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .go-home {
+    font-size: 3rem;
+    padding: 1rem;
+    border: 1px solid var(--gunmetal);
+    border-radius: 40px;
+  }
+  
+  .go-home:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }

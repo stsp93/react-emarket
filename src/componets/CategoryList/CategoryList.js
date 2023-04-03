@@ -1,3 +1,5 @@
+import './CategoryList.css'
+
 import Category from "./Category/Category"
 import { useEffect, useState } from 'react';
 import { getAllCategories } from '../../services/api/data';

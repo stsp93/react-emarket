@@ -1,4 +1,6 @@
 
+import './OfferImage.css'
+
 export default function OfferImage({img, active}) {
 
     const hidden = active ? {} : {display: 'none'}

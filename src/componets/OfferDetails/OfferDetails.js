@@ -1,3 +1,5 @@
+import './OfferDetails.css'
+
 import { useState, useEffect, useContext } from 'react';
 import * as apiService from '../../services/api/data';
 import { useParams } from 'react-router-dom';

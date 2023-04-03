@@ -1,5 +1,3 @@
-/* Messages */
-
 .message {
   padding-bottom: 1rem;
   position: relative;
@@ -13,7 +11,21 @@
 }
 
 .message-buttons {
-  flex-direction: row;
+  display: flex;
+}
+
+.message-buttons button{
+  display: inline-block;
+  font-size: 1.8rem;
+  padding: 0.6rem 1.6rem;
+  margin-right: 1rem;
+  border-radius: 40px;
+  border: 1px solid var(--gunmetal);
+}
+
+.message-buttons button:hover {
+  background-color: var(--gunmetal);
+  color: var(--white);
 }
 
 .message-username {

@@ -1,3 +1,4 @@
+import './OfferCard.css'
 
 import { Link } from 'react-router-dom';
 import formatDate from '../../../../utils/formatDate';

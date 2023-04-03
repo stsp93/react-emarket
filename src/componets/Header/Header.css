@@ -140,6 +140,10 @@ em.nav__link {
     width: 25rem;
   }
 
+  .header__logo:hover {
+    opacity: 80%;
+  }
+
   /* navigation */
   .nav__button {
     display: none;
@@ -155,6 +159,16 @@ em.nav__link {
     display: flex;
     gap: 2rem;
     padding: 0.2rem;
+  }
+
+  .header__nav ul li {
+    font-weight: 600;
+    color: var(--gunmetal);
+  }
+
+  .header__nav ul li:hover {
+    color: var(--zomp);
+    transform: translate(0, 5%);
   }
 
   .nav__li {
@@ -182,5 +196,11 @@ em.nav__link {
 
   .header__nav::after {
     margin-bottom: 1rem;
+  }
+
+  .header__nav-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }

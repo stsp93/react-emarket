@@ -1,7 +1,7 @@
 .title__wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .results__sort {

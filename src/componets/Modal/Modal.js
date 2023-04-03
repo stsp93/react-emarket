@@ -1,3 +1,5 @@
+import './Modal.css'
+
 import { useState, useEffect } from 'react';
 import Overlay from "./Overlay";
 import { modalMapper } from '../../utils/modalUtils';

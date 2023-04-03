@@ -1,3 +1,5 @@
+import './OfferList.css'
+
 import Pagination from './Pagination/Pagination';
 import OfferCard from './OfferCard/OfferCard';
 import { useState, useEffect } from 'react';

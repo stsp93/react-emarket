@@ -1,0 +1,10 @@
+.details-image {
+    max-width: 100vw;
+    border-radius: 5px;
+  }
+
+@media screen and (min-width: 1400px) {
+    .details-image {
+      max-width: 50vw;
+    }
+}

@@ -1,0 +1,40 @@
+.categories-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 3rem;
+  text-align: center;
+
+  justify-items: center;
+}
+
+.category {
+  font-size: 2rem;
+}
+.category:hover p {
+  border-bottom: 1px solid var(--orange);
+  color: var(--orange);
+}
+
+.category img {
+  display: block;
+
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 860px) {
+  /* homepage categories */
+  .categories-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  /* homepage categories */
+  .categories-list {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+  }
+}

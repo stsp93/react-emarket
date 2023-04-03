@@ -1,0 +1,4 @@
+.offers-list li {
+    display: flex;
+    justify-content: center;
+  }

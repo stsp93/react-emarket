@@ -162,7 +162,7 @@ export default function Create() {
                     />
                 </article>
                 <article className="input-group">
-                    <label htmlFor="imageFile">Upload Images</label>
+                    <label htmlFor="imageFile">Uploaded Images:</label>
                     {errors && <p className="input-error">{errors.images}</p>}
                     {loading && <Loading />}
                     {payload.images && <FormImages deleteImage={deleteImage} images={payload.images} />}

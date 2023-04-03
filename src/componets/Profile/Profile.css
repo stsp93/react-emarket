@@ -1,0 +1,47 @@
+.profile__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+}
+
+.profile__link {
+  border: 1px solid var(--gunmetal);
+  border-radius: 40px;
+  padding: 1rem 2rem;
+  position: relative;
+  font-size: 3rem;
+  color: inherit;
+}
+
+.profile__new-message::before {
+  content: "!";
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.6rem;
+
+  position: absolute;
+  left: 5%;
+
+  text-align: center;
+  color: var(--white);
+  background-color: var(--red);
+  border-radius: 5px;
+}
+
+.profile__link:hover {
+  color: var(--orange);
+  transform: translate(0, 5%);
+}
+
+.profile-edit {
+  margin-bottom: 0.1rem;
+}
+
+@media screen and (min-width: 860px) {
+  .profile__links {
+    flex-direction: row;
+  }
+}
