@@ -13,6 +13,7 @@ export default function Results() {
     const { category } = useParams();
     const [searchParams] = useSearchParams();
     const [results, setResults] = useState([]);
+    const [resPerPage, setResPerPage] = useState(5);
     const [loading, setLoading] = useState(false);
 
     // On category show
@@ -58,6 +59,10 @@ export default function Results() {
         sortingMap[e.target.value]()
     }
 
+    function resultsCountChange(e) {
+        setResPerPage(e.target.value)
+    }
+
     // Title with Results count
     function showTitle(results, loading) {
         if (loading) {
@@ -69,12 +74,20 @@ export default function Results() {
                     <h2 className="title main-title">
                         {results.length} Result{results.length === 1 ? '' : 's'} found {searchParams.get('q') && `for '${searchParams.get('q')}'`}
                     </h2>
-                    <select onChange={sortBy} className='results__sort' name="sort-by" id="sort-by">
-                        <option value="newest">Show newest</option>
-                        <option value="oldest">Show oldest</option>
-                        <option value="cheap">Show cheapest</option>
-                        <option value="expensive">Show most expensive</option>
-                    </select>
+                    <div className='results__input-wrapper'>
+                        <select onChange={resultsCountChange} className='results__input results-per-page' name="sort-by" id="sort-by">
+                            <option value="5">Show 5</option>
+                            <option value="10">Show 10</option>
+                            <option value="15">Show 15</option>
+                            <option value="20">Show 20</option>
+                        </select>
+                        <select onChange={sortBy} className='results__input' name="sort-by" id="sort-by">
+                            <option value="newest">Show newest</option>
+                            <option value="oldest">Show oldest</option>
+                            <option value="cheap">Show cheapest</option>
+                            <option value="expensive">Show most expensive</option>
+                        </select>
+                    </div>
                 </div>)
         }
         // No Results
@@ -87,7 +100,7 @@ export default function Results() {
     return (
         <>
             {showTitle(results, loading)}
-            <OfferList results={results} />
+            <OfferList results={results} resPerPage={resPerPage} />
         </>
     )
 }

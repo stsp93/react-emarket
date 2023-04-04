@@ -46,8 +46,8 @@ export default function Profile() {
             {/* Listings Content */}
             {loading ? <Loading />
                 : <>
-                    <h2 className="title main-title">Your Listings</h2>
-                    <OfferList results={results} />
+                    {results.length ? <h2 className="title main-title">Your Listings</h2>: <h2 className="title main-title">You have no listings yet</h2>} 
+                    <OfferList results={results} resPerPage={5} />
 
                 </>}
 

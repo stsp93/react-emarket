@@ -4,19 +4,32 @@
     align-items: flex-start;
 }
 
-.results__sort {
+.results__input {
+    width: 45%;
     font-size: 1.6rem;
-    padding:1rem 2rem;
+    padding:1rem 1rem;
+    margin: 0 0.5rem;
     background-color: var(--orange);
     color: var(--white);
     border-bottom-left-radius: 10px ;
     border-bottom-right-radius: 10px ;
-    border: none;
+    border: 1px solid var(--orange);
 }
 
-.results__sort:hover {
+.results__input:hover {
     background-color: var(--white);
     color: var(--gunmetal);
     border: 1px solid var(--gunmetal);
     border-top: none;
+}
+
+.results-per-page {
+    background-color: var(--zomp);
+    border: 1px solid var(--zomp);
+}
+
+@media screen and (min-width: 860px)  {
+    .results__input {
+        width: unset;
+    }
 }

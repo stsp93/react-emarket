@@ -6,36 +6,38 @@ import { useState, useEffect } from 'react';
 import useSessionStorage from './../../../hooks/useSessionStorage';
 
 
-export default function OfferList({ results }) {
-    const [page, setPage] = useSessionStorage('page');
-    const [curPage, setCurPage] = useState(page || 1);
-    const [resPerPage, setResPerPage] = useState(5);
-    const [curResults, setCurResults] = useState([]);
+export default function OfferList({ results,resPerPage }) {
+    const [curPage, setPage] = useSessionStorage('page');
+
     const [totalPages, setTotalPages] = useState(0);
 
 
 
     useEffect(() => {
-        setTotalPages(Math.ceil(results.length / resPerPage))
-        setCurResults(results.slice((curPage - 1) * resPerPage, curPage * resPerPage));
+        if(!curPage) setPage(1);
+
+        setTotalPages(Math.ceil(results.length / resPerPage));
         
-        if (totalPages && curPage > totalPages) setCurPage(1);
-        setPage(curPage)
+        if (totalPages && curPage > totalPages) setPage(1);
 
-
-    }, [results, page, curPage, totalPages, resPerPage]);
+    }, [results, curPage,setPage, totalPages, resPerPage]);
 
     function changePage(page) {
-        setCurPage(page);
+        setPage(page);
         window.scrollTo({top: 200,
             behavior: "smooth"})
+    }
+
+
+    function resultsToShow(results) {
+        return results.slice((curPage - 1) * resPerPage, curPage * resPerPage)
     }
 
 
     return (
         <>
             <ul className="offers-list">
-                {curResults.map(res => <OfferCard key={res._id} {...res} />)}
+                {resultsToShow(results).map(res => <OfferCard key={res._id} {...res} />)}
             </ul>
             <Pagination props={{ totalPages, curPage, changePage }} />
         </>

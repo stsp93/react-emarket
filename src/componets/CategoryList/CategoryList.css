@@ -11,8 +11,12 @@
   font-size: 2rem;
 }
 .category:hover p {
-  border-bottom: 1px solid var(--orange);
-  color: var(--orange);
+  /* border-bottom: 1px solid var(--orange); */
+  background-color: var(--orange);
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  font-weight: 300;
+  color: var(--white);
 }
 
 .category img {

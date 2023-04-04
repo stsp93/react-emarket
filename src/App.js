@@ -9,11 +9,10 @@ import Profile from './componets/Profile/Profile';
 import NotFound from './componets/NotFound/NotFound';
 import Messages from './componets/Profile/Messages/Messages';
 import OfferDetails from './componets/OfferDetails/OfferDetails';
-import Carousel from './componets/common/Carousel/Carousel';
-import CategoryList from './componets/CategoryList/CategoryList';
 import { ModalProvider } from './context/ModalContext';
 import useSessionStorage from './hooks/useSessionStorage';
 import { AuthContext } from './context/AuthContext';
+import HomePage from './componets/HomePage/HomePage';
 
 function App() {
     const [auth, setAuth] = useSessionStorage('session');
@@ -29,12 +28,15 @@ function App() {
                 <main>
 
                     <Routes>
-                        <Route path='/' element={<><Carousel /><CategoryList /></>} />
+                        {/* User/Guest routes */}
+                        <Route path='/' element={<HomePage />} />
                         <Route path='/listing/:offerId' element={<OfferDetails />} />
                         <Route path='/category/:category' element={<Results />} />
                         <Route path='/search' element={<Results />} />
-                        <Route path='/user/profile'  element={auth ? <Profile /> : <NotFound />} />
-                        <Route path='/user/messages' element={auth ? <Messages /> : <NotFound />} />
+                        {/* User only routes */}
+                        <Route path='/user/profile'  element={auth ? <Profile /> : <HomePage />} />
+                        <Route path='/user/messages' element={auth ? <Messages /> : <HomePage />} />
+                        {/* 404 */}
                         <Route path='*' element={<NotFound />} />
                     </Routes>
 
