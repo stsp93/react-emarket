@@ -4,16 +4,14 @@ import { useContext, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import logo from '../../logo.png';
 import * as userService from '../../services/api/user';
-import { useLoading } from '../../hooks/useLoading';
 import { AuthContext } from './../../context/AuthContext';
 import { modals } from '../../utils/modalUtils';
 import SearchBar from './SearchBar/SearchBar';
 
 
 export default function Header() {
-    const { updateModal } = useContext(ModalContext);
+    const { updateModal, closeModal } = useContext(ModalContext);
     const { auth, setAuth } = useContext(AuthContext);
-    const showLoading = useLoading();
 
     //Setting active link
     const activeStyle = ({ isActive }) => isActive
@@ -38,10 +36,11 @@ export default function Header() {
     // Logout logic
     async function onLogout() {
         try {
+            updateModal(modals.loading)
             await userService.logout()
             setAuth(null);
             // Show Success window and remove it after 2s
-            showLoading();
+            closeModal();
         } catch (error) {
             console.log(error);
         }

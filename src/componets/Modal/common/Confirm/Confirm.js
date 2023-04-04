@@ -3,18 +3,18 @@ import { useContext } from 'react';
 import { ModalContext } from '../../../../context/ModalContext';
 
 import { useNavigate } from 'react-router-dom';
-import {useLoading} from '../../../../hooks/useLoading';
+import { modals } from '../../../../utils/modalUtils';
 
 
 
 export default function Confirm() {
-    const {closeModal, modalData} = useContext(ModalContext);
+    const {updateModal, closeModal, modalData} = useContext(ModalContext);
     const navigate = useNavigate();
-    const showLoading = useLoading()
 
     async function onConfirm() {
+        updateModal(modals.loading)
         await modalData();
-        showLoading();
+        closeModal();
         if(window.location.pathname !== '/user/messages'){
             navigate('/user/profile');
         }
