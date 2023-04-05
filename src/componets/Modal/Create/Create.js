@@ -11,6 +11,7 @@ export default function Create() {
     const { closeModal, modalData: addOwnListing } = useContext(ModalContext)
     const [payload, setPayload] = useState({ title: '', description: '', price: '', location: '', images: [], category: 'Electronics' });
     const [disable, setDisable] = useState(true);
+    const [imageLoading, setImageLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({ title: 'Enter title', description: 'Enter description', location: 'Enter location', price: 'Enter price' });
 
@@ -36,7 +37,7 @@ export default function Create() {
         console.log(valid);
         if (!valid) return;
 
-        setLoading(true)
+        setImageLoading(true)
         let links = await Promise.all(images.map(async i => {
             const res = await dropboxApi.uploadImage(i);
             return (await dropboxApi.createLink(res)).url + '&raw=1';
@@ -45,12 +46,12 @@ export default function Create() {
         // remove duplicates and set new imgs
         links = links.filter(l => !payload.images.includes(l))
         setPayload(x => ({ ...x, images: [...payload.images,...links] }));
-        setLoading(false)
+        setImageLoading(false)
     }
 
     async function deleteImage(imgUrl) {
 
-        setLoading(true)
+        setImageLoading(true)
         try {
             await dropboxApi.deleteImage(imgUrl);
             setPayload(x => ({ ...x, images: payload.images.filter(img => img !== imgUrl) }));
@@ -58,7 +59,7 @@ export default function Create() {
         } catch (error) {
             console.log(error);
         }
-        setLoading(false)
+        setImageLoading(false)
     }
 
     // Validations
@@ -78,14 +79,16 @@ export default function Create() {
     // on Submitting
     async function onSubmit(e) {
         e.preventDefault()
-        if (loading) return;
+        if (imageLoading) return;
 
         try {
+            setLoading(true)
             const res = await apiService.createListing(payload);
             addOwnListing(res);
+            setLoading(false);
             closeModal()
-            console.log(res);
         } catch (error) {
+            setLoading(false);
             console.log(payload);
             setErrors(error);
         }
@@ -164,7 +167,7 @@ export default function Create() {
                 <article className="input-group">
                     <label htmlFor="imageFile">Uploaded Images:</label>
                     {errors && <p className="input-error">{errors.images}</p>}
-                    {loading && <Loading />}
+                    {imageLoading && <Loading />}
                     {payload.images && <FormImages deleteImage={deleteImage} images={payload.images} />}
                     <i className="fa-solid fa-image"></i>
                     <input
@@ -176,11 +179,9 @@ export default function Create() {
                         multiple={true}
                     />
                 </article>
-
                 {errors.message && <p className="input-error">{errors.message}</p>}
-
                 <article className="input-group">
-                    <button disabled={disable} className="action-button">Create</button>
+                    {loading ? <Loading /> : <button disabled={disable} className="action-button">Create</button>}
                 </article>
             </form>
         </>

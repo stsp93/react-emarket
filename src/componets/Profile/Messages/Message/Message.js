@@ -29,7 +29,7 @@ export default function Message({username, reply, date, _id, removeComment}) {
     return (
         <li className="message">
             <div className="message-content">
-                <h3 className="message-username">User: {username}</h3>
+                <h3 className="message-username"><em>User:</em> {username}</h3>
                 <p className="message-text"><em>{formatDate(date)}</em></p>
                 <p className="message-text"><strong>Message:</strong> <em>{reply}</em></p>
                 <div className="message-buttons action-buttons">

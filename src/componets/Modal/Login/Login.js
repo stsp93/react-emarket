@@ -3,24 +3,28 @@ import { useContext, useState } from 'react';
 import { login } from "../../../services/api/user";
 import { AuthContext } from './../../../context/AuthContext';
 import { modals } from "../../../utils/modalUtils";
+import Loading from "../Loading/Loading";
 
 export default function Login() {
     const {closeModal, updateModal} = useContext(ModalContext);
-    const {setAuth} = useContext(AuthContext)
+    const {setAuth} = useContext(AuthContext);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     async function onSubmit(e) {
         e.preventDefault();
 
         const {email, password} = Object.fromEntries(new FormData(e.target));
         try {
-            updateModal(modals.loading)
+            setLoading(true);
             const user = await login(email, password);
             setAuth(user)
+            setLoading(false);
             closeModal();
         }catch(error) {
+            setLoading(false);
             console.log(error);
-            setError(error)
+            setError(error);
         }
     }
 
@@ -32,7 +36,7 @@ export default function Login() {
             <form className="user-form" onSubmit={onSubmit}>
                 <h2 className="title form-title">Sign in</h2>
                 <article className="input-group">
-                {error && <p className="input-error">{error}</p>}
+                {error.message && <p className="input-error">{error.message}</p>}
                     <label htmlFor="email">Email</label>
                     <i className="fa-solid fa-envelope"></i>
                     <input
@@ -53,7 +57,8 @@ export default function Login() {
                     />
                 </article>
                 <article className="input-group">
-                    <input className="action-button" type="submit" value="Login"/>
+                    {loading ? <Loading /> : <input className="action-button" type="submit" value="Login"/>}
+                    
                 </article>
                 <article className="input-group">
                     <p>Don't have an account? <button onClick={() => updateModal(modals.register)} className="additional-button">Sign up</button></p>

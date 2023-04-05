@@ -3,12 +3,13 @@ import { useContext, useState, useEffect } from 'react';
 import validationApi from '../../../utils/validationApi';
 import { ModalContext } from '../../../context/ModalContext';
 import * as apiService from'../../../services/api/data'
-import { modals } from '../../../utils/modalUtils';
+import Loading from '../Loading/Loading';
 
 export default function SendMessage() {
-    const {updateModal, closeModal,updateModalData, modalData } = useContext(ModalContext)
+    const { closeModal,updateModalData, modalData } = useContext(ModalContext)
     const [payload, setPayload] = useState({username: typeof modalData === 'string' ? modalData : '', messageText:''});
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         return () => updateModalData(null)
@@ -30,11 +31,13 @@ export default function SendMessage() {
         e.preventDefault();
 
         try {
-            updateModal(modals.loading)
+            setLoading(true);
             await apiService.sendMessage(payload.username, payload.messageText);
             closeModal();
+            setLoading(false);
         } catch (error) {
-            setErrors(error)
+            setLoading(false);
+            setErrors(error);
         }
     } 
 
@@ -73,13 +76,9 @@ export default function SendMessage() {
                         placeholder="Type here..." />
                     <i className="fa-solid fa-pencil"></i>
                 </article>
-
                 {errors.message && <p className="input-error">{errors.message}</p>}
-
-
-
                 <article className="input-group">
-                    <button onClick={onSubmit} className="action-button">Send</button>
+                    {loading ? <Loading /> : <button onClick={onSubmit} className="action-button">Send</button>}
                 </article>
             </form>
         </>

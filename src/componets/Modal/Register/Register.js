@@ -4,6 +4,7 @@ import * as userService from "../../../services/api/user";
 import validationApi from "../../../utils/validationApi";
 import { AuthContext } from './../../../context/AuthContext';
 import { modals } from "../../../utils/modalUtils";
+import Loading from "../Loading/Loading";
 
 export default function Register() {
     const { closeModal, updateModal } = useContext(ModalContext);
@@ -14,13 +15,13 @@ export default function Register() {
         password: 'Enter password',
     });
     const [disable, setDisable] = useState(false);
-
     const [payload, setPayload] = useState({
         email: '',
         username: '',
         password: '',
         repeatPassword: '',
     });
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (Object.values(errors).some(v => v !== null)) {
@@ -37,15 +38,15 @@ export default function Register() {
     async function onSubmit(e) {
         e.preventDefault();
         try {
-            //start loading
-            updateModal(modals.loading)
-            const { email, username, password } = payload
+            setLoading(true)
+            const { email, username, password } = payload;
             const user = await userService.register(email, username, password);
-            setAuth(user)
-            //remove loading
-            closeModal()
+            setAuth(user);
+            setLoading(false);
+            closeModal();
         } catch (error) {
-            setErrors(error)
+            setLoading(false);
+            setErrors(error);
         }
     }
 
@@ -131,7 +132,7 @@ export default function Register() {
                 </article>
                 {errors.message && <p className="input-error">{errors.message}</p>}
                 <article className="input-group">
-                    <button disabled={disable} className="action-button" >Register</button>
+                    {loading ? <Loading /> : <button disabled={disable} className="action-button" >Register</button>}
                 </article>
                 <article className="input-group">
                     <p >Already have account? <button onClick={() => updateModal(modals.login)} className="additional-button">Sign in</button></p>

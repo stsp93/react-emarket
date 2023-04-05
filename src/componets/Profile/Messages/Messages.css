@@ -28,6 +28,11 @@
   color: var(--white);
 }
 
+.message-username em {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
 .message-username {
   font-size: 2.2rem;
 }

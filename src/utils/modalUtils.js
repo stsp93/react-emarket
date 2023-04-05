@@ -1,6 +1,5 @@
 import Register from "../componets/Modal/Register/Register";
 import Login from '../componets/Modal/Login/Login';
-import Loading from "../componets/Modal/Loading/Loading";
 import Edit from "../componets/Modal/Edit/Edit";
 import Create from '../componets/Modal/Create/Create';
 import Confirm from '../componets/Modal/common/Confirm/Confirm';
@@ -13,7 +12,6 @@ export const modalMapper = {
     'Register': <Register />,
     'Login': <Login />,
     'Edit': <Edit />,
-    'Loading': <Loading />,
     'Create': <Create />,
     'Confirm': <Confirm />,
     'MessageForm': <MessageForm />
@@ -26,7 +24,6 @@ export const modals = {
     register:'Register',
     login:'Login',
     edit:'Edit',
-    loading:'Loading',
     create:'Create',
     confirm:'Confirm',
     message:'MessageForm',

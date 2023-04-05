@@ -14,6 +14,7 @@ export default function Edit() {
     const [payload, setPayload] = useState(offer);
     const [errors, setErrors] = useState({});
     const [disable, setDisable] = useState(true);
+    const [imageLoading, setImageLoading] = useState(false);
     const [loading, setLoading] = useState(false);
 
     // Check if no image
@@ -58,7 +59,7 @@ export default function Edit() {
         const valid = validationApi.imagesValidation(images, setErrors);
         if (!valid) return;
         
-        setLoading(true)
+        setImageLoading(true)
         try {
            let links = await Promise.all(images.map(async i => {
             const res = await dropboxApi.uploadImage(i);
@@ -71,12 +72,12 @@ export default function Edit() {
         } catch (error) {
             console.log(error);
         }
-        setLoading(false)
+        setImageLoading(false)
     }
 
     async function deleteImage(imgUrl) {
 
-        setLoading(true)
+        setImageLoading(true)
         try {
             await dropboxApi.deleteImage(imgUrl);
             setPayload(x=> ({...x, images: payload.images.filter(img => img !== imgUrl)}));
@@ -84,20 +85,23 @@ export default function Edit() {
         } catch(error) {
             console.log(error);
         }
-        setLoading(false)
+        setImageLoading(false)
     }
 
     //Submitting to server
 
     async function onSubmit(e) {
         e.preventDefault()
-        if(loading) return;
+        if(imageLoading) return;
 
         try {
+            setLoading(true);
             const edited = await apiService.editListing(payload._id, payload);
             editListing(edited);
+            setLoading(false);
             closeModal();
         } catch (error) {
+            setLoading(false);
             setErrors(error);
         }
     }
@@ -175,7 +179,7 @@ export default function Edit() {
                 <article className="input-group">
                     <label htmlFor="images">Images</label>
                     {errors && <p className="input-error">{errors.images}</p>}
-                    {loading && <Loading />}
+                    {imageLoading && <Loading />}
                     {payload.images && <FormImages deleteImage={deleteImage} images={payload.images} />}
                     <i className="fa-solid fa-image"></i>
                     <input
@@ -187,13 +191,9 @@ export default function Edit() {
                         multiple={true}
                     />
                 </article>
-
                 {errors.message && <p className="input-error">{errors.message}</p>}
-
-
-
                 <article className="input-group">
-                    <button onClick={onSubmit} disabled={disable} className="action-button">Edit</button>
+                    {loading ? <Loading /> : <button onClick={onSubmit} disabled={disable} className="action-button">Edit</button>}
                 </article>
             </form>
         </>
