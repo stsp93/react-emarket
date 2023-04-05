@@ -51,7 +51,7 @@ export default function Header() {
         <header>
             <div className="header__top">
                 <p className="header__top-text">Welcome to e-market / Sell your stuff or check the recent offers</p>
-                {auth && <p>Logged in with {auth && auth.email}</p>}
+                {auth && <p>Signed as {auth && auth.email}</p>}
             </div>
 
             <div className="header__nav-wrapper">
