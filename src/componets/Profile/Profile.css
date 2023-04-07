@@ -1,3 +1,37 @@
+.profile__title {
+  color: var(--gunmetal);
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 0.6rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.profile__title::after {
+  content: '';
+  height: 2px;
+  width: 20rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--zomp);
+}
+
+.profile__text {
+  max-width: 52rem;
+  font-size: 2rem;
+  margin: 0 auto;
+  color: var(--gunmetal);
+  background-color: var(--honeydew);
+  padding:2rem 5rem;
+  border-radius: 40px;
+  border-top-left-radius: 0;
+}
+
+
+
 .profile__links {
   display: flex;
   flex-direction: column;
