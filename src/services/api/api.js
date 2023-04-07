@@ -1,5 +1,4 @@
-// const host = 'https://emarket-rest-api.onrender.com';
-const host = 'http://localhost:3030'
+const host = process.env.REACT_APP_HOST || 'https://emarket-rest-api.onrender.com';
 
 async function request(method, url, payload) {
     const options = {
