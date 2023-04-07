@@ -3,6 +3,6 @@ import './Loading.css'
 export default function Loading() {
 
   return (
-    <div className="loading"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div> Loading...</div>
+    <div className="loading"><p>Loading</p><span class="loader"></span></div>
   )
 }
