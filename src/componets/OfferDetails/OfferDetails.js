@@ -10,6 +10,7 @@ import { ModalContext } from './../../context/ModalContext';
 import { modals } from '../../utils/modalUtils';
 import Dot from '../common/Carousel/Dot/Dot';
 import OfferImage from './OfferImage/OfferImage';
+import Loading from './../Modal/Loading/Loading';
 
 export default function OfferDetails() {
     const { auth } = useContext(AuthContext)
@@ -18,12 +19,14 @@ export default function OfferDetails() {
     const [offer, setOffer] = useState({});
     const [imageIndex, setImageIndex] = useState(0);
     const [isOwner, setIsOwner] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         (async () => {
             const result = await apiService.getItemDetails(offerId);
             setOffer(result);
-            setIsOwner(auth?.username === result.owner)
+            setIsOwner(auth?.username === result.owner);
+            setLoading(false);
         })()
 
     }, [offerId, auth])
@@ -58,41 +61,43 @@ export default function OfferDetails() {
     }
 
     return (
-        <>
-            <h2 className="title main-title">Category: <Link to={`/category/${offer.category}`}>{offer.category}</Link></h2>
-            <article className="details">
-                <div className="details-image__wrapper">
-                    {offer.images && offer.images.map((img, i) => <OfferImage key={img} img={img} active={i === imageIndex} />)}
-                    <ul className='slider__dots'>
-                        {offer.images && offer.images.length > 1 ? offer.images.map((img, i) => <Dot active={i === imageIndex} key={img} indexHandle={{ indexUpdate, i }} />): ''}
-                    </ul>
-                </div>
-                <div>
-                    <div className="details-text">
-                        <h3 className="details-title">
-                            {offer.title}
-                        </h3>
-                        <p className="location">{offer.location}</p>
-                        <p className="details-date">{formatDate(offer.createdOn)}</p>
-                        <p className="price">Price: <strong>{offer.price}</strong> $</p>
-                        <p className="details-description"><strong>Description: </strong>
-                            {offer.description}
-                        </p>
-                        <p className="details-owner">Posted by: <em>{offer.owner}</em></p>
+        loading ?
+            <Loading /> :
+            <>
+                <h2 className="title main-title">Category: <Link to={`/category/${offer.category}`}>{offer.category}</Link></h2>
+                <article className="details">
+                    <div className="details-image__wrapper">
+                        {offer.images && offer.images.map((img, i) => <OfferImage key={img} img={img} active={i === imageIndex} />)}
+                        <ul className='slider__dots'>
+                            {offer.images && offer.images.length > 1 ? offer.images.map((img, i) => <Dot active={i === imageIndex} key={img} indexHandle={{ indexUpdate, i }} />) : ''}
+                        </ul>
                     </div>
-                    <div className="details-buttons">
-                        {isOwner ? <>
-                            <button onClick={onEdit} className="details-button">Edit</button>
-                            <button onClick={onDelete} className="details-button">Delete</button>
-                        </>
-                            : <button onClick={onContact} className="details-button cta">Contact</button>}
+                    <div>
+                        <div className="details-text">
+                            <h3 className="details-title">
+                                {offer.title}
+                            </h3>
+                            <p className="location">{offer.location}</p>
+                            <p className="details-date">{formatDate(offer.createdOn)}</p>
+                            <p className="price">Price: <strong>{offer.price}</strong> $</p>
+                            <p className="details-description"><strong>Description: </strong>
+                                {offer.description}
+                            </p>
+                            <p className="details-owner">Posted by: <em>{offer.owner}</em></p>
+                        </div>
+                        <div className="details-buttons">
+                            {isOwner ? <>
+                                <button onClick={onEdit} className="details-button">Edit</button>
+                                <button onClick={onDelete} className="details-button">Delete</button>
+                            </>
+                                : <button onClick={onContact} className="details-button cta">Contact</button>}
 
-                        <button onClick={() => window.history.back()} className="details-button">Back</button>
+                            <button onClick={() => window.history.back()} className="details-button">Back</button>
+                        </div>
+
                     </div>
 
-                </div>
-
-            </article>
-        </>
+                </article>
+            </>
     )
 }
