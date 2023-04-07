@@ -13,6 +13,7 @@ export default function Header() {
     const { updateModal, closeModal } = useContext(ModalContext);
     const { auth, setAuth } = useContext(AuthContext);
 
+
     //Setting active link
     const activeStyle = ({ isActive }) => isActive
         ? { color: 'var(--orange)' }

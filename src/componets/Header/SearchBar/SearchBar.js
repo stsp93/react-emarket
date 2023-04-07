@@ -22,13 +22,13 @@ export default function SearchBar() {
         let queryString = `/search?q=${query}`
 
         if (query === '') {
-            return navigate('/');
+            return;
         }
         if(selectedCategory) {
-            queryString += `&cat=${selectedCategory}`
+            queryString += `&cat=${selectedCategory}`;
         }
 
-
+        setQuery('')
         navigate(queryString);
     }
 

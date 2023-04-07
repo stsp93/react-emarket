@@ -8,11 +8,13 @@ import { getProfile } from '../../services/api/data';
 import { modals } from '../../utils/modalUtils';
 import OfferList from '../common/OfferList/OfferList';
 import Loading from '../Modal/Loading/Loading';
+import useSessionStorage from '../../hooks/useSessionStorage';
 
 export default function Profile() {
     const { updateModal, updateModalData } = useContext(ModalContext);
     const [results, setResults] = useState([]);
     const [newMessage, setNewMessage] = useState(false);
+    const [curPage, setPage] = useSessionStorage('page');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -47,7 +49,7 @@ export default function Profile() {
             {loading ? <Loading />
                 : <>
                     {results.length ? <h2 className="title main-title">Your Listings</h2>: <h2 className="title main-title">You have no listings yet</h2>} 
-                    <OfferList results={results} resPerPage={5} />
+                    <OfferList results={results} resPerPage={5} curPage={curPage} setPage={setPage} />
 
                 </>}
 

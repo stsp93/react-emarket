@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import Carousel from '../common/Carousel/Carousel';
 import OfferList from '../common/OfferList/OfferList';
 import Loading from './../Modal/Loading/Loading';
+import useSessionStorage from '../../hooks/useSessionStorage';
 
 
 export default function Results() {
@@ -14,11 +15,13 @@ export default function Results() {
     const [searchParams] = useSearchParams();
     const [results, setResults] = useState([]);
     const [resPerPage, setResPerPage] = useState(5);
+    const [curPage, setPage] = useSessionStorage('page');
     const [loading, setLoading] = useState(false);
 
     // On category show
     useEffect(() => {
         (async () => {
+            if(!category) return;
             // Start fetch
             setLoading(true);
             const categoryResults = await getCategoryResults(category || '');
@@ -57,10 +60,12 @@ export default function Results() {
 
     function sortBy(e) {
         sortingMap[e.target.value]()
+        setPage(1);
     }
 
     function resultsCountChange(e) {
         setResPerPage(e.target.value)
+        setPage(1);
     }
 
     // Title with Results count
@@ -100,7 +105,7 @@ export default function Results() {
     return (
         <>
             {showTitle(results, loading)}
-            <OfferList results={results} resPerPage={resPerPage} />
+            <OfferList results={results} resPerPage={resPerPage} curPage={curPage} setPage={setPage} />
         </>
     )
 }

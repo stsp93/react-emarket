@@ -3,11 +3,10 @@ import './OfferList.css'
 import Pagination from './Pagination/Pagination';
 import OfferCard from './OfferCard/OfferCard';
 import { useState, useEffect } from 'react';
-import useSessionStorage from './../../../hooks/useSessionStorage';
 
 
-export default function OfferList({ results,resPerPage }) {
-    const [curPage, setPage] = useSessionStorage('page');
+export default function OfferList({ results,resPerPage, curPage, setPage }) {
+
 
     const [totalPages, setTotalPages] = useState(0);
 
