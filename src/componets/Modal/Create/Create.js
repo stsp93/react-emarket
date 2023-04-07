@@ -89,7 +89,6 @@ export default function Create() {
             closeModal()
         } catch (error) {
             setLoading(false);
-            console.log(payload);
             setErrors(error);
         }
 

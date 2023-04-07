@@ -59,7 +59,6 @@ export async function createLink(response) {
 export async function deleteImage(url) {
 const fileNamePattern = /https:\/\/.+\/(.+)\?dl=0&raw=1/g
 
-    console.log(url);
     const fileName = fileNamePattern.exec(url)[1]
     const res = await request(endpoints.delete, fileName);
     return res
