@@ -2,6 +2,12 @@
 
 React App for course project defense
 
+## [[ LIVE DEMO ]](https://stsp93-e-market.netlify.app)
+Demo Authentication :
+  > account: john@abv.bg 
+
+  > password: 123
+
 ## Getting Started
 
 - App uses this [REST API](https://github.com/stsp93/emarket-rest-api)
@@ -15,6 +21,21 @@ React App for course project defense
 - React Router
 - REST API
 - Dropbox API
+
+## Overview 
+- Built in `React`
+  - Only functional components
+  - Folder structure
+    - Tree-structured
+    - Contains the component and CSS styling file
+- Styled using CSS
+  - Divided in files for each component 
+  - Responsive style for smaller screens
+- State management
+  - Uses Context API to partially manage state between components
+  - Uses SessionStorage to persist state
+- Image upload
+  - Uses Dropbox API to store images
 
 ## Functionality
 
@@ -46,7 +67,8 @@ Accessible by User and Guest
 - Results list *(if any)*
 - Option to set results per page
 - Option to sort the results
-- Pagination *(when multiple pages)*
+- Pagination *(when multiple pages)*  
+`Uses SessionStorage to persist Pagination state`
 
 
 ### 4. Details Page
@@ -105,7 +127,8 @@ Accessible by User
 - Notification on new Message       
 ![New Message](https://raw.githubusercontent.com/stsp93/react-emarket/main/screenshots/New%20Message.png)
 - Shows Users Listings *(if any)*
-- Pagination *(when multiple pages)*
+- Pagination *(when multiple pages)*  
+`Uses SessionStorage to persist Pagination state`
 
 
 ### 8. Create Listing Window
