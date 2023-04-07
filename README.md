@@ -121,7 +121,6 @@ Accessible by Guests in Home Page, Results Page, Details Page and 404 Page
 ![Profile Page](https://raw.githubusercontent.com/stsp93/react-emarket/main/screenshots/Profile.png)
 Accessible by User
 #### Features :
-- Carousel
 - Create Listing button *(opens Create Window)*
 - Messages button *(Navigates to Messages Page)*
 - Notification on new Message       
