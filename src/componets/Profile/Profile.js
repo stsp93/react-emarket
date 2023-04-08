@@ -26,7 +26,7 @@ const profileReducer = function (state, action) {
                 results: [action.listing, ...state.results]
             }
         }
-        default: return;
+        default: return state;
     }
 }
 

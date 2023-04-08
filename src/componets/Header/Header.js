@@ -7,11 +7,13 @@ import * as userService from '../../services/api/user';
 import { AuthContext } from './../../context/AuthContext';
 import { modals } from '../../utils/modalUtils';
 import SearchBar from './SearchBar/SearchBar';
+import Loading from '../Modal/Loading/Loading';
 
 
 export default function Header() {
-    const { updateModal, closeModal } = useContext(ModalContext);
+    const { updateModal } = useContext(ModalContext);
     const { auth, setAuth } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false)
 
 
     //Setting active link
@@ -37,13 +39,14 @@ export default function Header() {
     // Logout logic
     async function onLogout() {
         try {
-            updateModal(modals.loading)
+            setLoading(true)
             await userService.logout()
             setAuth(null);
-            // Show Success window and remove it after 2s
-            closeModal();
+
+            setLoading(false)
         } catch (error) {
             console.log(error);
+            setLoading(false)
         }
     }
 
@@ -63,22 +66,26 @@ export default function Header() {
                     <ul>
 
                         <li className={liClassName(visible)}><NavLink className='nav__link' style={activeStyle} to="/"><i className="fa-solid fa-list-ul"></i>Categories</NavLink></li>
-                        {auth ?
-                            <>
-                                {/* <!-- USER LINKS --> */}
-                                <li className={liClassName(visible)}><NavLink className='nav__link' style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
-                                <li className={liClassName(visible)}><button className='nav__link' onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</button></li>
-                            </>
-                            : <>
-                                {/* <!-- GUEST LINKS --> */}
-                                <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.login)}><i className="fa-solid fa-user-check"></i>Sign in</button>
-                                </li>
-                                <li className={liClassName(visible)}>
-                                    <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.register)} ><i className="fa-solid fa-file-signature"></i>Sign up</button>
-                                </li>
-                            </>
+                        {loading ? <Loading color={'#FFF'} />
+                            :
+                            auth ?
+                                <>
+                                    {/* <!-- USER LINKS --> */}
+                                    <li className={liClassName(visible)}><NavLink className='nav__link' style={activeStyle} to="/user/profile"><i className="fa-solid fa-user"></i>Profile</NavLink></li>
+                                    <li className={liClassName(visible)}><button className='nav__link' onClick={onLogout}><i className="fa-solid fa-right-from-bracket"></i>Logout</button></li>
+                                </>
+                                : <>
+                                    {/* <!-- GUEST LINKS --> */}
+                                    <li className={liClassName(visible)}>
+                                        <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.login)}><i className="fa-solid fa-user-check"></i>Sign in</button>
+                                    </li>
+                                    <li className={liClassName(visible)}>
+                                        <button className='nav__link' to="#" onClick={updateModal.bind(this, modals.register)} ><i className="fa-solid fa-file-signature"></i>Sign up</button>
+                                    </li>
+                                </>
+
                         }
+
 
                     </ul>
                 </nav>
