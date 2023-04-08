@@ -44,8 +44,6 @@ export default function Edit() {
         validationApi.isEmpty(key, payload, setErrors);
     }
 
-
-
     function isPositiveNumber() {
         validationApi.positiveNumber(payload, setErrors)
     }

@@ -26,7 +26,7 @@ async function request(url, payload) {
         })
     } else if (payload) {
         options.headers['Dropbox-API-Arg'] = JSON.stringify({
-            path: '/images/'+ Date.now() + payload.name,
+            path: '/images/'+ Date.now() + encodeURI(payload.name),
             mode: 'add',
             autorename: true,
             mute: false,
