@@ -36,7 +36,7 @@ function positiveNumber(payload, setErrors) {
 function imagesValidation(payload, setErrors) {
     if (payload.length > 3) return setErrors(x => ({ ...x, images: 'Maximum 3 images allowed' }))
     if (payload.some(i => !i.type.startsWith('image'))) return setErrors(x => ({ ...x, images: 'Only images allowed for upload' }))
-    if (payload.some(i => i.size > 2097152 )) return setErrors(x => ({ ...x, images: 'Maximum allowed size is 1 MB' }))
+    if (payload.some(i => i.size > 2097152 )) return setErrors(x => ({ ...x, images: 'Maximum allowed size is 2 MB' }))
 
     setErrors(x => ({ ...x, images: null }))
     return true;
