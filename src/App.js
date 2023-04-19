@@ -13,6 +13,7 @@ import { ModalProvider } from './context/ModalContext';
 import useSessionStorage from './hooks/useSessionStorage';
 import { AuthContext } from './context/AuthContext';
 import HomePage from './componets/HomePage/HomePage';
+import DemoMessage from './componets/DemoMessage/DemoMessage';
 
 function App() {
     const [auth, setAuth] = useSessionStorage('session');
@@ -25,6 +26,7 @@ function App() {
                 <Header />
 
                 {/* Main Content */}
+                <DemoMessage />
                 <main>
 
                     <Routes>

@@ -1,0 +1,40 @@
+.demo-message {
+    background-color: var(--orange);
+    color: var(--white);
+    font-weight: 300;
+    opacity: 0.90;
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-align: center;
+    border-radius: 20px;
+
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    z-index: 10;
+}
+
+.demo-message h2 {
+    font-weight: 400;
+}
+
+.demo-message p {
+    font-size: 2rem;
+}
+
+.demo-message button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    
+    color: var(--honeydew);
+    font-size: 2.5rem;
+}
+
+.demo-message button:hover i{
+    border-radius: 50%;
+    background-color: var(--white);
+    color: var(--orange);
+}
